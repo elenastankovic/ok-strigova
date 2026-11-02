@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T20:32:29.718Z",
+  "generatedAt": "2026-11-02T21:36:38.462Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "2. studenog 2026., 21,29"
+      "lastChange": "2. studenog 2026., 22,05"
     },
     {
       "id": "osmz",
@@ -4060,32 +4060,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4488",
-      "site": "osvz",
-      "sourceId": 4488,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4488",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 5,
-      "roundDates": [
-        "2026-11-07",
-        "2026-11-08"
-      ],
-      "number": 33,
-      "home": "OK Vinica",
-      "away": "OK Plavi 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4490",
       "site": "osvz",
       "sourceId": 4490,
@@ -4265,6 +4239,32 @@
       "sets": [],
       "winner": null,
       "scheduledAt": "2026-11-08T15:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4488",
+      "site": "osvz",
+      "sourceId": 4488,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4488",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 5,
+      "roundDates": [
+        "2026-11-07",
+        "2026-11-08"
+      ],
+      "number": 33,
+      "home": "OK Vinica",
+      "away": "OK Plavi 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-08T18:00",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
