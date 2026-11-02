@@ -1,6 +1,8 @@
 ---
 import { p } from '../lib/putanja';
 import { klub } from '../data/klub';
+import { snapshot } from '../lib/data';
+import { formatStamp } from '../lib/format';
 const godina = new Date().getFullYear();
 ---
 
@@ -39,6 +41,7 @@ const godina = new Date().getFullYear();
   </div>
   <div class="wrap podnozje-dno">
     <p>© {godina} {klub.naziv}. Osnovan {klub.osnovan}</p>
+    <p>Rasporedi, rezultati i tablice preuzimaju se sa stranica saveza; osvježeno {formatStamp(snapshot.generatedAt)}.</p>
   </div>
 </footer>
 

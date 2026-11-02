@@ -1,0 +1,226 @@
+---
+import type { Match } from '../lib/data';
+import { clubOutcome, clubTeamsOf, competitionFor, competitionShortName, teamShort } from '../lib/data';
+import { formatRangeShort, formatResult, formatSets, formatShortDate, formatTime, formatWeekday, formatWeekdayShort } from '../lib/format';
+import { p } from '../lib/putanja';
+
+interface Props {
+  match: Match;
+  showTeam?: boolean;
+  showCompetition?: boolean;
+}
+
+const { match: m, showTeam = false, showCompetition = true } = Astro.props;
+
+const outcome = clubOutcome(m);
+const result = formatResult(m);
+const time = m.scheduledAt ? formatTime(m.scheduledAt) : null;
+const competition = competitionFor(m.competitionId);
+const clubTeams = clubTeamsOf(m);
+const isBye = m.status === 'bye';
+const byeTeam = m.home === '0' ? m.away : m.home;
+
+let day = '';
+let date = '';
+if (m.scheduledAt) {
+  day = formatWeekday(m.scheduledAt);
+  date = formatShortDate(m.scheduledAt);
+} else if (m.roundDates.length > 0) {
+  const first = m.roundDates[0]!;
+  const last = m.roundDates[m.roundDates.length - 1]!;
+  day = first === last ? formatWeekday(first) : `${formatWeekdayShort(first)} – ${formatWeekdayShort(last)}`;
+  date = formatRangeShort(m.roundDates, false);
+}
+const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'termin nije određen' : null;
+---
+
+<li class:list={['mc', { 'mc-pobjeda': outcome === 'win', 'mc-poraz': outcome === 'loss', 'mc-slobodno': isBye }]}>
+  <div class="mc-kad">
+    <span class="mc-dan">{day || 'datum'}</span>
+    <span class="mc-datum">{date || 'nepoznat'}</span>
+    <span class:list={['mc-vrijeme', { 'mc-vrijeme-nema': !time }]}>{time ?? '–'}</span>
+  </div>
+  <div class="mc-tijelo">
+    {
+      showCompetition && competition && (
+        <a class="mc-liga" href={p(`/natjecanja/${competition.id}`)}>
+          {competitionShortName(competition) + (m.round ? `, ${m.round}. kolo` : '')}
+        </a>
+      )
+    }
+    {
+      isBye ? (
+        <p class="mc-par">
+          <span class="nasa">{byeTeam}</span>
+          <span class="mc-slobodno-kolo">slobodno kolo</span>
+        </p>
+      ) : (
+        <p class="mc-par">
+          <span class:list={['mc-ekipa', { nasa: m.clubTeams.includes(m.home) }]}>{m.home}</span>
+          {result ? <span class="mc-rezultat">{result}</span> : <span class="mc-rezultat mc-vs">–</span>}
+          <span class:list={['mc-ekipa', 'mc-gost', { nasa: m.clubTeams.includes(m.away) }]}>{m.away}</span>
+        </p>
+      )
+    }
+    {
+      (note || outcome || m.venue || m.sets.length > 0 || (showTeam && clubTeams.length > 0)) && (
+        <p class="mc-meta">
+          {note && <span class="mc-napomena">{note}</span>}
+          {outcome && <span class="mc-ishod">{outcome === 'win' ? 'pobjeda' : 'poraz'}</span>}
+          {m.venue && <span>{m.venue}</span>}
+          {m.sets.length > 0 && <span class="num">po setovima {formatSets(m.sets)}</span>}
+          {showTeam &&
+            clubTeams.map((t) => (
+              <a class="mc-cip" href={p(`/ekipe/${t.slug}`)}>
+                {teamShort(t)}
+              </a>
+            ))}
+        </p>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  .mc {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.5rem 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--crta);
+  }
+
+  .mc-kad {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mc-dan {
+    font-size: 0.8rem;
+    color: var(--siva);
+    text-transform: lowercase;
+  }
+
+  .mc-datum {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .mc-vrijeme {
+    font-weight: 600;
+    color: var(--modra);
+  }
+
+  .mc-vrijeme-nema {
+    color: var(--siva);
+    font-weight: 400;
+  }
+
+  .mc-liga {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--siva);
+    margin-bottom: 0.2rem;
+  }
+
+  .mc-par {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .mc-gost {
+    text-align: right;
+  }
+
+  .nasa {
+    font-weight: 700;
+    color: var(--modra);
+  }
+
+  .mc-rezultat {
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-stretch: 90%;
+    font-variant-numeric: tabular-nums;
+    background: var(--modra);
+    color: var(--bijela);
+    padding: 0.1rem 0.6rem;
+    border-radius: var(--radius);
+    min-width: 3.2rem;
+    text-align: center;
+  }
+
+  .mc-pobjeda .mc-rezultat {
+    background: var(--narancasta);
+    color: var(--modra-tamna);
+  }
+
+  .mc-vs {
+    background: var(--modra-svijetla);
+    color: var(--modra);
+  }
+
+  .mc-slobodno-kolo {
+    color: var(--siva);
+  }
+
+  .mc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    color: var(--siva);
+  }
+
+  .mc-ishod {
+    font-weight: 600;
+    color: var(--modra);
+  }
+
+  .mc-pobjeda .mc-ishod {
+    color: var(--narancasta-tamna);
+  }
+
+  .mc-napomena {
+    font-style: italic;
+  }
+
+  .mc-cip {
+    display: inline-block;
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    background: var(--modra-svijetla);
+    color: var(--modra);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .mc-cip:hover {
+    background: var(--modra);
+    color: var(--bijela);
+  }
+
+  @media (max-width: 560px) {
+    .mc {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .mc-kad {
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+
+    .mc-par {
+      font-size: 1rem;
+    }
+  }
+</style>

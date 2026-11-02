@@ -1,8 +1,10 @@
+# Objava na GitHub Pages: na svaki push na main, ručno, ili iz workflowa "Osvježi podatke".
 name: Objava na GitHub Pages
 
 on:
   push:
     branches: [main]
+  workflow_call:
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,8 @@ jobs:
     steps:
       - name: Preuzmi kod
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Postavi Node
         uses: actions/setup-node@v4
@@ -30,10 +34,11 @@ jobs:
       - name: Instaliraj ovisnosti
         run: npm ci
 
+      - name: Testovi parsera
+        run: npm test
+
       - name: Postavi GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Izgradi stranicu
         run: npm run build

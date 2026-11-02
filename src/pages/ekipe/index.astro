@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TeamSummary from '../../components/TeamSummary.astro';
+import { p } from '../../lib/putanja';
+import { ekipe } from '../../data/ekipe';
+import { klub } from '../../data/klub';
+import { snapshot, teamsBySlug } from '../../lib/data';
+import { formatStamp } from '../../lib/format';
+---
+
+<Layout title="Ekipe" opis="Šest ekipa OK Štrigova u sezoni 2026./27.: tri seniorske, juniorke, U13 i U11, s mjestom na tablici i rasporedom.">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Ekipe</h1>
+      <p>Sezona {klub.sezona}: tri seniorske ekipe, juniorke i dvije skupine najmlađih kadetkinja</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <ol class="ekipe-lista">{ekipe.map((e) => <TeamSummary ekipa={e} />)}</ol>
+      <p class="muted small">Poredak sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {
+        ekipe.map((e) => {
+          const team = e.snapshotSlug ? teamsBySlug.get(e.snapshotSlug) : undefined;
+          return (
+            <article class:list={['ekipa', { prva: e.prva }]} id={e.slug}>
+              <div class="ekipa-naslov">
+                <h2>{team ? <a href={p(`/ekipe/${team.slug}`)}>{e.naziv}</a> : e.naziv}</h2>
+                <p class="ekipa-kategorija">{e.kategorija}</p>
+              </div>
+              <div class="ekipa-tijelo">
+                <p>{e.opis}</p>
+                <dl>
+                  {e.organizator && (
+                    <div>
+                      <dt>Organizator</dt>
+                      <dd>{e.organizator}</dd>
+                    </div>
+                  )}
+                  {team?.hall && (
+                    <div>
+                      <dt>Dvorana</dt>
+                      <dd>{team.hall}</dd>
+                    </div>
+                  )}
+                </dl>
+                {team && (
+                  <p>
+                    <a href={p(`/ekipe/${team.slug}`)}>Tablica, raspored i rezultati</a>
+                  </p>
+                )}
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ekipe-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--crta);
+  }
+
+  .ekipa {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 1rem 3rem;
+    padding: 2rem 0 2rem 1.25rem;
+    border-top: 1px solid var(--crta);
+    border-left: 4px solid transparent;
+  }
+
+  .ekipa.prva {
+    border-left-color: var(--narancasta);
+  }
+
+  .ekipa h2 {
+    margin-bottom: 0.2rem;
+  }
+
+  .ekipa h2 a {
+    text-decoration: none;
+  }
+
+  .ekipa h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .ekipa-kategorija {
+    color: var(--siva);
+    margin: 0;
+  }
+
+  dl {
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  dl div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+  }
+
+  dt {
+    color: var(--siva);
+    font-size: 0.9rem;
+    padding-top: 0.1rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media (max-width: 760px) {
+    .ekipa {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>

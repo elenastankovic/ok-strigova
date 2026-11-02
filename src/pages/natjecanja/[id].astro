@@ -1,0 +1,69 @@
+---
+import type { Competition } from '../../lib/data';
+import Layout from '../../layouts/Layout.astro';
+import Standings from '../../components/Standings.astro';
+import WeekSection from '../../components/WeekSection.astro';
+import { competitionShortName, competitions, groupByRound, matches, snapshot } from '../../lib/data';
+import { formatRange, formatStamp } from '../../lib/format';
+
+export function getStaticPaths() {
+  return competitions.map((c) => ({ params: { id: c.id }, props: { competition: c } }));
+}
+
+interface Props {
+  competition: Competition;
+}
+
+const { competition: c } = Astro.props;
+const all = matches.filter((m) => m.competitionId === c.id);
+const groupNames = c.groups.length > 0 ? c.groups.map((g) => g.name) : [null];
+---
+
+<Layout title={competitionShortName(c)} opis={`${competitionShortName(c)}, ${c.category ?? ''}: poredak i sve utakmice po kolima.`}>
+  <div class="page-head">
+    <div class="wrap">
+      <h1>{competitionShortName(c)}</h1>
+      <p>{c.category}. Naše ekipe: {c.clubTeams.join(', ')}.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="muted small">
+        <a href={c.url} rel="noopener">Natjecanje na stranici saveza</a>, osvježeno {formatStamp(snapshot.generatedAt)}.
+      </p>
+    </div>
+  </section>
+
+  {
+    groupNames.map((name) => {
+      const group = c.groups.find((g) => g.name === name);
+      const list = all.filter((m) => m.group === name);
+      return (
+        <section class="section">
+          <div class="wrap">
+            {name && <h2>Skupina {name}</h2>}
+            {group && <Standings competition={c} group={group} caption={name ? `Skupina ${name}` : 'Poredak'} />}
+            <div class="kola">
+              {groupByRound(list).map((r) => (
+                <WeekSection
+                  razina={3}
+                  title={r.round !== null ? `${r.round}. kolo` : 'Utakmice'}
+                  dates={r.dates.length > 0 ? formatRange(r.dates) : 'Turnir'}
+                  matches={r.matches}
+                  showCompetition={false}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
+</Layout>
+
+<style>
+  .kola {
+    margin-top: 2rem;
+  }
+</style>

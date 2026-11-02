@@ -1,0 +1,105 @@
+---
+import type { Competition, Team } from '../../lib/data';
+import Layout from '../../layouts/Layout.astro';
+import Standings from '../../components/Standings.astro';
+import WeekSection from '../../components/WeekSection.astro';
+import { p } from '../../lib/putanja';
+import { ekipe } from '../../data/ekipe';
+import { competitionFor, competitionShortName, groupByRound, matchesOf, plural, snapshot, standingOf, teamLabel, teams } from '../../lib/data';
+import { formatRange, formatStamp } from '../../lib/format';
+
+export function getStaticPaths() {
+  return teams.map((team) => ({ params: { slug: team.slug }, props: { team } }));
+}
+
+interface Props {
+  team: Team;
+}
+
+const { team } = Astro.props;
+const label = teamLabel(team);
+const opis = ekipe.find((e) => e.snapshotSlug === team.slug);
+const all = matchesOf(team);
+const competitions = team.competitionIds.map(competitionFor).filter((c): c is Competition => c !== undefined);
+const primary = competitions.map((c) => standingOf(team, c)).find((s) => s !== null);
+---
+
+<Layout title={label} opis={`${label}: tablica, raspored i rezultati u sezoni 2026./27.`}>
+  <div class="page-head">
+    <div class="wrap">
+      <h1>{label}</h1>
+      <p>{opis?.kategorija ?? team.category}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <div class="prose">
+        {opis && <p class="lead">{opis.opis}</p>}
+        {
+          primary && (
+            <p>
+              Bilanca: {plural(primary.row.won, 'pobjeda', 'pobjede', 'pobjeda')} i{' '}
+              {plural(primary.row.lost, 'poraz', 'poraza', 'poraza')}, setovi {primary.row.setsWon}:{primary.row.setsLost},{' '}
+              {plural(primary.row.points, 'bod', 'boda', 'bodova')}.
+            </p>
+          )
+        }
+      </div>
+      <div class="kontakt-blok">
+        {team.hall && <p>Dvorana: <strong>{team.hall}</strong></p>}
+        {team.contact && <p>Kontakt: <strong>{team.contact}</strong></p>}
+        <p><a href={p(`/kalendar/${team.slug}.ics`)}>Kalendar ekipe za mobitel (iCal)</a></p>
+        <p><a href={team.url} rel="noopener">Ekipa na stranici saveza</a></p>
+        <p class="small muted">Osvježeno {formatStamp(snapshot.generatedAt)}.</p>
+      </div>
+    </div>
+  </section>
+
+  {
+    competitions.map((c) => {
+      const standing = standingOf(team, c);
+      const list = all.filter((m) => m.competitionId === c.id);
+      return (
+        <section class="section">
+          <div class="wrap">
+            <div class="section-head">
+              <h2>
+                <a href={p(`/natjecanja/${c.id}`)}>{competitionShortName(c)}</a>
+              </h2>
+              <span class="muted">{c.category}</span>
+            </div>
+            {standing && (
+              <Standings competition={c} group={standing.group} caption={standing.group.name ? `Skupina ${standing.group.name}` : 'Poredak'} />
+            )}
+            <div class="kola">
+              {groupByRound(list).map((r) => (
+                <WeekSection
+                  razina={3}
+                  title={r.round !== null ? `${r.round}. kolo` : 'Utakmice'}
+                  dates={r.dates.length > 0 ? formatRange(r.dates) : 'Turnir'}
+                  matches={r.matches}
+                  showCompetition={false}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
+</Layout>
+
+<style>
+  .section-head h2 a {
+    text-decoration: none;
+  }
+
+  .section-head h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .kola {
+    margin-top: 2rem;
+  }
+</style>

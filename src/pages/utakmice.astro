@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WeekSection from '../components/WeekSection.astro';
+import { p } from '../lib/putanja';
+import { groupByWeek, results, snapshot, teams, teamLabel, upcoming } from '../lib/data';
+import { formatRange, formatStamp } from '../lib/format';
+
+const nadolazeci = groupByWeek(upcoming);
+const odigrani = groupByWeek(results);
+---
+
+<Layout title="Utakmice" opis="Sve utakmice svih ekipa OK Štrigova: raspored, rezultati i kalendar za mobitel.">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Utakmice</h1>
+      <p>Raspored i rezultati svih ekipa kluba, po tjednima</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="napomena">
+        <p>Kalendar za mobitel (iCal), pretplata se sama osvježava:</p>
+        <ul class="kalendari">
+          <li>
+            <a href={p('/kalendar.ics')}>sve ekipe</a>
+          </li>
+          {teams.map((t) => (
+            <li>
+              <a href={p(`/kalendar/${t.slug}.ics`)}>{teamLabel(t)}</a>
+            </li>
+          ))}
+        </ul>
+        <p class="small muted">Podaci sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="veliki">Nadolazeće</h2>
+      {nadolazeci.map((w) => <WeekSection razina={3} title={formatRange([w.start, w.end])} matches={w.matches} showTeam />)}
+      {nadolazeci.length === 0 && <p class="muted">Nema zakazanih utakmica.</p>}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="veliki">Odigrano</h2>
+      {odigrani.map((w) => <WeekSection razina={3} title={formatRange([w.start, w.end])} matches={w.matches} showTeam />)}
+      {odigrani.length === 0 && <p class="muted">Još nema odigranih utakmica.</p>}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .veliki {
+    margin-bottom: 1.5rem;
+  }
+
+  .napomena p {
+    margin-bottom: 0.4rem;
+  }
+
+  .kalendari {
+    list-style: none;
+    margin: 0 0 0.6rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+  }
+
+  .kalendari a {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .kalendari a:hover {
+    border-color: var(--modra);
+  }
+</style>

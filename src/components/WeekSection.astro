@@ -1,0 +1,56 @@
+---
+import type { Match } from '../lib/data';
+import MatchList from './MatchList.astro';
+
+interface Props {
+  title: string;
+  /** Datumi uz naslov, npr. "3. – 4.10.2026." */
+  dates?: string | null;
+  matches: Match[];
+  showTeam?: boolean;
+  showCompetition?: boolean;
+  /** Razina naslova: 2 na samostalnim popisima, 3 unutar natjecanja ili ekipe. */
+  razina?: 2 | 3;
+}
+
+const { title, dates = null, matches, showTeam = false, showCompetition = true, razina = 2 } = Astro.props;
+const Naslov = razina === 3 ? 'h3' : 'h2';
+---
+
+<section class="tjedan">
+  <header class="tjedan-glava">
+    <Naslov>{title}</Naslov>
+    {dates && <p class="tjedan-datumi">{dates}</p>}
+  </header>
+  <MatchList matches={matches} showTeam={showTeam} showCompetition={showCompetition} />
+</section>
+
+<style>
+  .tjedan {
+    margin-bottom: 2.5rem;
+  }
+
+  .tjedan-glava {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tjedan-glava h2,
+  .tjedan-glava h3 {
+    margin: 0;
+  }
+
+  .tjedan-glava h3 {
+    font-size: 1.15rem;
+  }
+
+  .tjedan-datumi {
+    margin: 0;
+    color: var(--siva);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

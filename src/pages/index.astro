@@ -1,15 +1,20 @@
 ---
-import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
 import Court from '../components/Court.astro';
-import MatchList from '../components/MatchList.astro';
+import WeekSection from '../components/WeekSection.astro';
+import TeamSummary from '../components/TeamSummary.astro';
+import { p } from '../lib/putanja';
 import { klub } from '../data/klub';
 import { ekipe } from '../data/ekipe';
-import { trecaLiga, sljedecaUtakmica } from '../data/natjecanja';
+import { competitionFor, competitionShortName, groupByWeek, isWeekend, matchDatesOf, results, snapshot, upcoming } from '../lib/data';
+import { formatRange, formatRangeShort, formatStamp, formatWhenFull } from '../lib/format';
 
-const nasRedak = trecaLiga.tablica.find((r) => r.ekipa === trecaLiga.ekipa);
-const domaca = sljedecaUtakmica.domacin === 'OK Štrigova';
-const zadnje = [...trecaLiga.odigrano].reverse();
+const sljedeca = upcoming[0];
+const sljedecaLiga = sljedeca ? competitionFor(sljedeca.competitionId) : undefined;
+const sljedecaDomaca = sljedeca ? sljedeca.clubTeams.includes(sljedeca.home) : false;
+const [prviTjedan, ...kasnijiTjedni] = groupByWeek(upcoming);
+const datumiTjedna = prviTjedan ? matchDatesOf(prviTjedan.matches) : [];
+const zadnjiRezultati = results.slice(0, 6);
 ---
 
 <Layout>
@@ -24,21 +29,68 @@ const zadnje = [...trecaLiga.odigrano].reverse();
         </p>
         <div class="hero-akcije">
           <a class="btn btn-primary" href={p('/kontakt#upisi')}>Dođi na trening</a>
-          <a class="btn btn-outline" href={p('/natjecanja')}>Raspored i rezultati</a>
+          <a class="btn btn-outline" href={p('/utakmice')}>Raspored i rezultati</a>
         </div>
       </div>
       <aside class="sljedeca" aria-labelledby="sljedeca-naslov">
         <h2 id="sljedeca-naslov">Sljedeća utakmica</h2>
-        <p class="sljedeca-liga">{trecaLiga.naziv}, {sljedecaUtakmica.kolo}. kolo</p>
-        <p class="sljedeca-par">
-          <span>{sljedecaUtakmica.domacin}</span>
-          <span class="sljedeca-crtica">–</span>
-          <span>{sljedecaUtakmica.gost}</span>
-        </p>
-        <p class="sljedeca-datum">{sljedecaUtakmica.datum}</p>
-        <p class="sljedeca-mjesto">{domaca ? klub.dvorana.naziv : 'Gostovanje'}</p>
-        {sljedecaUtakmica.napomena && <p class="sljedeca-napomena">{sljedecaUtakmica.napomena}</p>}
+        {
+          sljedeca && sljedecaLiga ? (
+            <>
+              <p class="sljedeca-liga">{competitionShortName(sljedecaLiga) + (sljedeca.round ? `, ${sljedeca.round}. kolo` : '')}</p>
+              <p class="sljedeca-par">
+                <span>{sljedeca.home}</span>
+                <span class="sljedeca-crtica">–</span>
+                <span>{sljedeca.away}</span>
+              </p>
+              <p class="sljedeca-datum">
+                {sljedeca.scheduledAt ? formatWhenFull(sljedeca.scheduledAt) : formatRange(sljedeca.roundDates)}
+              </p>
+              <p class="sljedeca-mjesto">{sljedeca.venue ?? (sljedecaDomaca ? klub.dvorana.naziv : 'Gostovanje')}</p>
+              {!sljedeca.scheduledAt && <p class="sljedeca-napomena">termin još nije određen</p>}
+              {sljedeca.status === 'postponed' && <p class="sljedeca-napomena">odgođeno</p>}
+            </>
+          ) : (
+            <p class="sljedeca-datum">Trenutno nema zakazanih utakmica.</p>
+          )
+        }
       </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {
+        prviTjedan ? (
+          <WeekSection
+            title={isWeekend(datumiTjedna) ? 'Utakmice vikenda' : 'Utakmice tjedna'}
+            dates={formatRangeShort(datumiTjedna)}
+            matches={prviTjedan.matches}
+            showTeam
+          />
+        ) : (
+          <p class="muted">Trenutno nema zakazanih utakmica.</p>
+        )
+      }
+      {
+        kasnijiTjedni.slice(0, 1).map((w) => (
+          <WeekSection title="Sljedeći tjedan" dates={formatRange([w.start, w.end])} matches={w.matches} showTeam />
+        ))
+      }
+      <p><a href={p('/utakmice')}>Sve utakmice i kalendar za mobitel</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Zadnji rezultati</h2>
+        <a href={p('/natjecanja')}>Tablice svih liga</a>
+      </div>
+      <WeekSection title="" matches={zadnjiRezultati} showTeam />
+      <p class="muted small">
+        Podaci sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}. Osvježavaju se četiri puta dnevno.
+      </p>
     </div>
   </section>
 
@@ -69,50 +121,7 @@ const zadnje = [...trecaLiga.odigrano].reverse();
         <h2>Šest ekipa, jedna dvorana</h2>
         <a href={p('/ekipe')}>Sve o ekipama</a>
       </div>
-      <ol class="ekipe-lista">
-        {
-          ekipe.map((e) => (
-            <li class:list={{ prva: e.prva }}>
-              <div class="e-ime">
-                <strong>{e.naziv}</strong>
-                <span>{e.kategorija}</span>
-              </div>
-              <div class="e-liga">{e.natjecanje}</div>
-              <div class="e-stanje">{e.stanje ?? 'Natjecanje još nije počelo'}</div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Kako igra prva ekipa</h2>
-        <a href={p('/natjecanja')}>Sve tablice i rasporedi</a>
-      </div>
-      <div class="grid-2">
-        <div>
-          {
-            nasRedak && (
-              <p class="lead">
-                Nakon {nasRedak.odigrano} kola OK Štrigova je na {nasRedak.mjesto}. mjestu od{' '}
-                {trecaLiga.tablica.length} ekipa u ligi, s {nasRedak.pobjede} pobjede i{' '}
-                {nasRedak.porazi} poraza i omjerom setova {nasRedak.setovi}.
-              </p>
-            )
-          }
-          <p class="muted small">
-            Tablica je provjerena {klub.azurirano}. Službenu tablicu vodi
-            <a href={trecaLiga.izvor} rel="noopener"> {klub.savezi.osvz.naziv}</a>.
-          </p>
-        </div>
-        <div>
-          <h3>Zadnje utakmice</h3>
-          <MatchList utakmice={zadnje} />
-        </div>
-      </div>
+      <ol class="ekipe-lista">{ekipe.map((e) => <TeamSummary ekipa={e} />)}</ol>
     </div>
   </section>
 
@@ -282,47 +291,6 @@ const zadnje = [...trecaLiga.odigrano].reverse();
     margin: 0;
     padding: 0;
     border-top: 1px solid var(--crta);
-  }
-
-  .ekipe-lista li {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: 0.5rem 2rem;
-    padding: 1rem 0 1rem 1rem;
-    border-bottom: 1px solid var(--crta);
-    border-left: 4px solid transparent;
-  }
-
-  .ekipe-lista li.prva {
-    border-left-color: var(--narancasta);
-    background: var(--bijela);
-  }
-
-  .e-ime {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .e-ime strong {
-    font-size: 1.15rem;
-    font-stretch: 92%;
-  }
-
-  .e-ime span {
-    color: var(--siva);
-    font-size: 0.9rem;
-  }
-
-  .e-stanje {
-    color: var(--modra);
-    font-weight: 600;
-  }
-
-  @media (max-width: 760px) {
-    .ekipe-lista li {
-      grid-template-columns: 1fr;
-      gap: 0.2rem;
-    }
   }
 
   .upisi {

@@ -1,0 +1,174 @@
+import { CLUB, SITES, competitionUrl, isClubTeam, matchUrl, teamUrl, type SiteConfig } from './config';
+import { removeMirrors } from './dedupe';
+import { Client, type ClientOptions } from './http';
+import type { Competition, Match, SiteSource, Snapshot, Team } from './model';
+import { slugify } from './parse/common';
+import { parseCompetitionPage } from './parse/competition';
+import { parseMatchPage } from './parse/match';
+import { parseNav } from './parse/nav';
+import { parseTeamPage } from './parse/team';
+import { finalizeTeams } from './teams';
+
+export interface ScrapeOptions extends ClientOptions {
+  sites?: SiteConfig[];
+  /** Dohvati i stranice pojedinih utakmica kluba (dvorana, suci, trajanje). */
+  matchDetails?: boolean;
+  /**
+   * Prethodni snapshot. Kad dopunska stranica (ekipa, detalji utakmice) ne uspije,
+   * zadržavaju se njezini stari podaci umjesto praznih polja, pa prolazni prekid
+   * veze ne mijenja podatke.
+   */
+  previous?: Snapshot | null;
+}
+
+/** Cijeli postupak: izbornik → natjecanja → ekipe kluba → detalji utakmica kluba → dedup. */
+export async function scrape(opts: ScrapeOptions = {}): Promise<Snapshot> {
+  const log = opts.log ?? (() => {});
+  const client = new Client(opts);
+  const sites = opts.sites ?? SITES;
+  const previousTeams = new Map((opts.previous?.teams ?? []).map((t) => [t.id, t]));
+  const previousMatches = new Map((opts.previous?.matches ?? []).map((m) => [m.id, m]));
+
+  skipped.length = 0;
+  const sources: SiteSource[] = [];
+  let competitions: Competition[] = [];
+  let matches: Match[] = [];
+  const teams: Team[] = [];
+
+  for (const site of sites) {
+    const nav = parseNav(await client.get(`${site.baseUrl}/index.php`));
+    sources.push({ id: site.id, name: site.name, baseUrl: site.baseUrl, lastChange: nav.lastChange });
+    log(`[${site.id}] ${nav.competitions.length} natjecanja u izborniku`);
+
+    const teamIds = new Map<number, Set<string>>();
+
+    for (const entry of nav.competitions) {
+      const html = await client.get(competitionUrl(site.baseUrl, entry.sourceId));
+      const parsed = parseCompetitionPage(html, {
+        site: site.id,
+        sourceId: entry.sourceId,
+        baseUrl: site.baseUrl,
+        section: entry.section,
+        isClubTeam,
+      });
+      if (parsed.competition.clubTeams.length === 0) {
+        log(`[${site.id}] ${parsed.competition.name}: bez ekipa kluba, preskačem`);
+        continue;
+      }
+      log(`[${site.id}] ${parsed.competition.name}: ${parsed.competition.clubTeams.join(', ')} (${parsed.matches.length} utakmica)`);
+      competitions.push(parsed.competition);
+      matches.push(...parsed.matches);
+
+      for (const row of parsed.competition.groups.flatMap((g) => g.standings)) {
+        if (!row.isClub || !row.teamSourceId) continue;
+        let set = teamIds.get(row.teamSourceId);
+        if (!set) teamIds.set(row.teamSourceId, (set = new Set()));
+        set.add(parsed.competition.id);
+      }
+    }
+
+    for (const [sourceId, competitionIds] of teamIds) {
+      const url = teamUrl(site.baseUrl, sourceId);
+      // Stranica ekipe je samo dopuna (dvorana, kontakt); bez nje ekipu i dalje znamo iz tablice.
+      const info = await optional(() => client.get(url).then(parseTeamPage), url, log);
+      const old = info ? undefined : previousTeams.get(`${site.id}-${sourceId}`);
+      const name = info?.name ?? old?.name ?? nameFromStandings(competitions, site.id, sourceId) ?? `${site.id}-${sourceId}`;
+      teams.push({
+        id: `${site.id}-${sourceId}`,
+        site: site.id,
+        sourceId,
+        url,
+        slug: slugify(name),
+        name,
+        club: info?.club ?? old?.club ?? null,
+        hall: info?.hall ?? old?.hall ?? null,
+        category: info?.category ?? old?.category ?? categoryFromStandings(competitions, site.id, sourceId),
+        gender: info?.gender ?? old?.gender ?? null,
+        contact: info?.contact ?? old?.contact ?? null,
+        competitionIds: [...competitionIds],
+      });
+    }
+  }
+
+  const deduped = removeMirrors(competitions, matches);
+  competitions = deduped.competitions;
+  matches = deduped.matches;
+  for (const mirror of deduped.mirrors) log(`kopija: ${mirror.id} je isto što i ${mirror.mirrorOf}, uklonjeno`);
+
+  if (opts.matchDetails ?? true) {
+    const siteById = new Map(sites.map((s) => [s.id, s]));
+    for (const match of matches) {
+      if (match.clubTeams.length === 0 || match.status === 'bye' || match.status === 'tbd') continue;
+      const site = siteById.get(match.site)!;
+      const url = matchUrl(site.baseUrl, match.sourceId);
+      // Detalji su dopuna (dvorana, suci); bez njih utakmica ostaje kakva je na stranici natjecanja.
+      const detail = await optional(() => client.get(url).then(parseMatchPage), url, log);
+      if (!detail) {
+        const old = previousMatches.get(match.id);
+        if (old) {
+          match.venue = old.venue;
+          match.referees = old.referees;
+          match.durationMinutes = old.durationMinutes;
+          match.scheduledAt = match.scheduledAt ?? old.scheduledAt;
+          if (match.sets.length === 0) match.sets = old.sets;
+          log(`  zadržani prethodni detalji za ${match.id}`);
+        }
+        continue;
+      }
+      match.venue = detail.venue ?? match.venue;
+      match.referees = detail.referees;
+      match.durationMinutes = detail.durationMinutes;
+      if (detail.startsAt) match.scheduledAt = detail.startsAt;
+      if (match.sets.length === 0 && detail.sets.length) match.sets = detail.sets;
+    }
+  }
+
+  const finalTeams = finalizeTeams(teams, competitions);
+  matches.sort(compareMatches);
+  log(`ukupno ${client.requests} HTTP zahtjeva${skipped.length ? `, ${skipped.length} stranica preskočeno` : ''}`);
+
+  return {
+    generatedAt: new Date().toISOString(),
+    club: { name: CLUB.name },
+    sources,
+    competitions,
+    mirrors: deduped.mirrors,
+    teams: finalTeams,
+    matches,
+  };
+}
+
+const skipped: string[] = [];
+
+/** Pokuša dohvatiti dopunsku stranicu; kad ne uspije, zabilježi i vrati null umjesto rušenja cijelog prolaza. */
+async function optional<T>(run: () => Promise<T>, url: string, log: (m: string) => void): Promise<T | null> {
+  try {
+    return await run();
+  } catch (err) {
+    skipped.push(url);
+    log(`UPOZORENJE: preskačem ${url}: ${err instanceof Error ? err.message : String(err)}`);
+    return null;
+  }
+}
+
+function nameFromStandings(competitions: Competition[], site: string, teamSourceId: number): string | null {
+  for (const c of competitions) {
+    if (c.site !== site) continue;
+    const row = c.groups.flatMap((g) => g.standings).find((r) => r.teamSourceId === teamSourceId);
+    if (row) return row.team;
+  }
+  return null;
+}
+
+function categoryFromStandings(competitions: Competition[], site: string, teamSourceId: number): string | null {
+  const c = competitions.find(
+    (x) => x.site === site && x.groups.some((g) => g.standings.some((r) => r.teamSourceId === teamSourceId)),
+  );
+  return c?.category ?? null;
+}
+
+function compareMatches(a: Match, b: Match): number {
+  const da = a.scheduledAt ?? a.roundDates[0] ?? '9999';
+  const db = b.scheduledAt ?? b.roundDates[0] ?? '9999';
+  return da.localeCompare(db) || a.competitionId.localeCompare(b.competitionId) || (a.number ?? 0) - (b.number ?? 0);
+}

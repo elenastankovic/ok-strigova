@@ -1,0 +1,108 @@
+import type { Match, SetScore } from '../../scraper/src/model';
+
+// Vremena su zapisana kao lokalno vrijeme bez zone ("2026-10-04T17:00"), pa ih čitamo kao UTC
+// i formatiramo u UTC-u da se ne pomaknu ovisno o poslužitelju na kojem se gradi stranica.
+const TZ = 'UTC';
+const fmt = (opts: Intl.DateTimeFormatOptions): Intl.DateTimeFormat =>
+  new Intl.DateTimeFormat('hr-HR', { timeZone: TZ, ...opts });
+
+const dayFmt = fmt({ weekday: 'short', day: 'numeric', month: 'long' });
+const dayFullFmt = fmt({ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const dayMonthFmt = fmt({ day: 'numeric', month: 'long' });
+const monthFmt = fmt({ month: 'long', year: 'numeric' });
+const timeFmt = fmt({ hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+const weekdayFmt = fmt({ weekday: 'long' });
+const weekdayShortFmt = fmt({ weekday: 'short' });
+
+function asDate(iso: string): Date {
+  return new Date(iso.length === 10 ? `${iso}T00:00:00Z` : `${iso}:00Z`);
+}
+
+export function hasTime(iso: string): boolean {
+  return iso.length > 10;
+}
+
+/** "ned, 4. listopada" */
+export function formatDay(iso: string): string {
+  return dayFmt.format(asDate(iso));
+}
+
+/** "nedjelja, 4. listopada 2026." */
+export function formatDayFull(iso: string): string {
+  return dayFullFmt.format(asDate(iso));
+}
+
+/** "17:00" ili null kad je poznat samo datum. */
+export function formatTime(iso: string): string | null {
+  return hasTime(iso) ? timeFmt.format(asDate(iso)) : null;
+}
+
+/** "ned, 4. listopada u 17:00" */
+export function formatWhen(iso: string): string {
+  const time = formatTime(iso);
+  return time ? `${formatDay(iso)} u ${time}` : formatDay(iso);
+}
+
+/** "nedjelja, 4. listopada 2026. u 17:00" */
+export function formatWhenFull(iso: string): string {
+  const time = formatTime(iso);
+  return time ? `${formatDayFull(iso)} u ${time}` : formatDayFull(iso);
+}
+
+/** "listopad 2026" */
+export function formatMonth(iso: string): string {
+  return monthFmt.format(asDate(iso.slice(0, 10))).replace(/\.$/u, '');
+}
+
+/** ["2026-10-03","2026-10-04"] → "3. – 4. listopada" */
+export function formatRange(dates: string[]): string {
+  const first = dates[0];
+  const last = dates[dates.length - 1];
+  if (!first || !last) return '';
+  if (first === last) return dayMonthFmt.format(asDate(first));
+  if (first.slice(0, 7) === last.slice(0, 7)) return `${Number(first.slice(8, 10))}. – ${dayMonthFmt.format(asDate(last))}`;
+  return `${dayMonthFmt.format(asDate(first))} – ${dayMonthFmt.format(asDate(last))}`;
+}
+
+/** Stvarni trenutak (UTC ISO) prikazan u zagrebačkom vremenu, npr. "31. lis 2026. 08:05". */
+export function formatStamp(isoUtc: string): string {
+  return new Intl.DateTimeFormat('hr-HR', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Europe/Zagreb' }).format(
+    new Date(isoUtc),
+  );
+}
+
+export function formatSets(sets: SetScore[]): string {
+  return sets.map((s) => `${s.home}:${s.away}`).join(', ');
+}
+
+export function formatResult(m: Match): string | null {
+  return m.result ? `${m.result.home}:${m.result.away}` : null;
+}
+
+/** "subota" */
+export function formatWeekday(iso: string): string {
+  return weekdayFmt.format(asDate(iso));
+}
+
+/** "sub" */
+export function formatWeekdayShort(iso: string): string {
+  return weekdayShortFmt.format(asDate(iso)).replace(/\.$/u, '');
+}
+
+/** "3.10." ili "3.10.2026." */
+export function formatShortDate(iso: string, withYear = false): string {
+  const [y, m, d] = iso.slice(0, 10).split('-');
+  return `${Number(d)}.${Number(m)}.${withYear ? `${y}.` : ''}`;
+}
+
+/** ["2026-10-03","2026-10-04"] → "3. – 4.10.2026." */
+export function formatRangeShort(dates: string[], withYear = true): string {
+  const first = dates[0];
+  const last = dates[dates.length - 1];
+  if (!first || !last) return '';
+  if (first === last) return formatShortDate(first, withYear);
+  if (first.slice(0, 7) === last.slice(0, 7)) {
+    return `${Number(first.slice(8, 10))}. – ${formatShortDate(last, withYear)}`;
+  }
+  return `${formatShortDate(first)} – ${formatShortDate(last, withYear)}`;
+}

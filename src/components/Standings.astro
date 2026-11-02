@@ -1,18 +1,20 @@
 ---
-import type { Redak } from '../data/natjecanja';
+import type { Competition, CompetitionGroup } from '../lib/data';
+import { teamInStandings } from '../lib/data';
+import { p } from '../lib/putanja';
 
 interface Props {
-  redovi: Redak[];
-  istakni: string;
-  naslov?: string;
+  competition: Competition;
+  group: CompetitionGroup;
+  caption?: string;
 }
 
-const { redovi, istakni, naslov } = Astro.props;
+const { competition, group, caption } = Astro.props;
 ---
 
 <div class="tablica-wrap">
   <table class="tablica">
-    {naslov && <caption class="sr-only">{naslov}</caption>}
+    {caption && <caption class="sr-only">{caption}</caption>}
     <thead>
       <tr>
         <th class="num" scope="col" abbr="Mjesto">#</th>
@@ -21,22 +23,31 @@ const { redovi, istakni, naslov } = Astro.props;
         <th class="num" scope="col" abbr="Pobjede">Pob.</th>
         <th class="num" scope="col" abbr="Porazi">Por.</th>
         <th class="num" scope="col">Setovi</th>
+        <th class="num siroko" scope="col">Poeni</th>
         <th class="num" scope="col">Bodovi</th>
       </tr>
     </thead>
     <tbody>
       {
-        redovi.map((r) => (
-          <tr class:list={{ istaknuto: r.ekipa === istakni }}>
-            <td class="num">{r.mjesto}.</td>
-            <td class="ekipa">{r.ekipa}</td>
-            <td class="num">{r.odigrano}</td>
-            <td class="num">{r.pobjede}</td>
-            <td class="num">{r.porazi}</td>
-            <td class="num">{r.setovi}</td>
-            <td class="num">{r.bodovi}</td>
-          </tr>
-        ))
+        group.standings.map((r) => {
+          const team = r.isClub ? teamInStandings(competition, r.team) : undefined;
+          return (
+            <tr class:list={{ istaknuto: r.isClub }}>
+              <td class="num">{r.rank}.</td>
+              <td class="ekipa">{team ? <a href={p(`/ekipe/${team.slug}`)}>{r.team}</a> : r.team}</td>
+              <td class="num">{r.played}</td>
+              <td class="num">{r.won}</td>
+              <td class="num">{r.lost}</td>
+              <td class="num">
+                {r.setsWon}:{r.setsLost}
+              </td>
+              <td class="num siroko">
+                {r.pointsWon}:{r.pointsLost}
+              </td>
+              <td class="num">{r.points}</td>
+            </tr>
+          );
+        })
       }
     </tbody>
   </table>
@@ -50,5 +61,11 @@ const { redovi, istakni, naslov } = Astro.props;
     overflow: hidden;
     clip: rect(0 0 0 0);
     white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .siroko {
+      display: none;
+    }
   }
 </style>

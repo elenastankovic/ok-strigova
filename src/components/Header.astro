@@ -5,10 +5,11 @@ import { klub } from '../data/klub';
 const put = bezKoseCrte(Astro.url.pathname);
 const stavke = [
   { href: '/', tekst: 'Naslovna' },
-  { href: '/o-klubu', tekst: 'O klubu' },
-  { href: '/uprava', tekst: 'Uprava' },
+  { href: '/utakmice', tekst: 'Utakmice' },
   { href: '/ekipe', tekst: 'Ekipe' },
   { href: '/natjecanja', tekst: 'Natjecanja' },
+  { href: '/o-klubu', tekst: 'O klubu' },
+  { href: '/uprava', tekst: 'Uprava' },
   { href: '/kontakt', tekst: 'Kontakt' },
 ];
 ---
@@ -121,6 +122,12 @@ const stavke = [
 
     nav ul {
       justify-content: center;
+      gap: 0;
+    }
+
+    nav a {
+      padding: 0.35rem 0.5rem;
+      font-size: 0.95rem;
     }
   }
 </style>
