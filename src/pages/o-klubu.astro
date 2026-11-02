@@ -1,0 +1,138 @@
+---
+import { p } from '../lib/putanja';
+import Layout from '../layouts/Layout.astro';
+import { klub } from '../data/klub';
+import { povijest } from '../data/natjecanja';
+---
+
+<Layout title="O klubu" opis="Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog 2016. u Međimurju.">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>O klubu</h1>
+      <p>Odbojkaški klub Štrigova, osnovan {klub.osnovan}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <div class="prose">
+        <h2>Odbojka u selu među vinogradima</h2>
+        <p>
+          Štrigova je općina od oko 2.700 stanovnika na brežuljcima gornjeg Međimurja, poznata po
+          vinu i crkvi svetog Jeronima. Odbojkaški klub osnovan je {klub.osnovan}, a od prvog dana
+          trenira i igra u dvorani Osnovne škole Štrigova.
+        </p>
+        <p>
+          Klub je od početka ženski. Prva ekipa igrala je 2. ligu Sjever, u sezoni 2023./24. osvojila
+          je prvo mjesto u skupini Sjever, a danas igra 3. hrvatsku odbojkašku ligu Sjever. Uz nju
+          klub ima još dvije seniorske ekipe u 4. HOL Međimurje, juniorke i dvije skupine najmlađih
+          kadetkinja.
+        </p>
+        <p>
+          Sve ekipe nastupaju pod imenom OK Štrigova i registrirane su pri Hrvatskom odbojkaškom
+          savezu, Odbojkaškom savezu Međimurske županije i Odbojkaškom savezu Varaždinske županije,
+          koji vodi ligu prve ekipe.
+        </p>
+      </div>
+      <div class="grb">
+        <img src={p('/logo.png')} alt="Grb Odbojkaškog kluba Štrigova" width="343" height="311" />
+        <p class="small muted">
+          Grb kluba: štit u plavoj s narančastim obrubom i plavo-žutom loptom.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Deset godina kluba</h2>
+      <ol class="vrijeme">
+        {
+          povijest.map((p) => (
+            <li>
+              <span class="vrijeme-godina">{p.godina}</span>
+              <p>{p.tekst}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-3">
+      <div class="kontakt-blok">
+        <h3>Dvorana</h3>
+        <address>
+          {klub.dvorana.naziv}<br />
+          {klub.dvorana.adresa}
+        </address>
+        <p class="small muted">Domaće utakmice svih ekipa i svi treninzi.</p>
+        <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
+      </div>
+      <div class="kontakt-blok">
+        <h3>Ljudi</h3>
+        <p>
+          Kontakt osobe kluba pri savezima su {klub.kontaktOsoba}, Goran Vuk i Matija Horvat.
+        </p>
+        <p class="small muted">Trenere i upravu kluba dopisat ćemo kad potvrdimo sastav za ovu sezonu.</p>
+      </div>
+      <div class="kontakt-blok">
+        <h3>Podaci o udruzi</h3>
+        <address>
+          {klub.naziv}<br />
+          {klub.adresa}, {klub.postanskiBroj}<br />
+          OIB {klub.oib}
+        </address>
+        <p class="small muted">Osnovan {klub.osnovan}, upisan u registar udruga 25. siječnja 2016.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grb img {
+    width: min(100%, 280px);
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .vrijeme {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .vrijeme li {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--crta);
+  }
+
+  .vrijeme li:last-child {
+    border-bottom: 1px solid var(--crta);
+  }
+
+  .vrijeme-godina {
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-stretch: 88%;
+    color: var(--modra);
+    line-height: 1.2;
+  }
+
+  .vrijeme p {
+    margin: 0.25rem 0 0;
+  }
+
+  @media (max-width: 560px) {
+    .vrijeme li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>

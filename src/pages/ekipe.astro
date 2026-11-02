@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ekipe } from '../data/ekipe';
+import { klub } from '../data/klub';
+---
+
+<Layout title="Ekipe" opis="Šest ekipa OK Štrigova u sezoni 2026./27.: tri seniorske, juniorke, U13 i U11.">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Ekipe</h1>
+      <p>Sezona {klub.sezona}: tri seniorske ekipe, juniorke i dvije skupine najmlađih kadetkinja</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      {
+        ekipe.map((e) => (
+          <article class:list={['ekipa', { prva: e.prva }]} id={e.slug}>
+            <div class="ekipa-naslov">
+              <h2>{e.naziv}</h2>
+              <p class="ekipa-kategorija">{e.kategorija}</p>
+            </div>
+            <div class="ekipa-tijelo">
+              <p>{e.opis}</p>
+              <dl>
+                <div>
+                  <dt>Natjecanje</dt>
+                  <dd>{e.natjecanje}</dd>
+                </div>
+                <div>
+                  <dt>Organizator</dt>
+                  <dd>{e.organizator}</dd>
+                </div>
+                {e.stanje && (
+                  <div>
+                    <dt>Stanje</dt>
+                    <dd>{e.stanje}</dd>
+                  </div>
+                )}
+              </dl>
+              {e.tablica && (
+                <p>
+                  <a href={e.tablica} rel="noopener">
+                    Tablica i raspored na stranici saveza
+                  </a>
+                </p>
+              )}
+            </div>
+          </article>
+        ))
+      }
+      <p class="small muted">Stanja na tablicama provjerena {klub.azurirano}.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ekipa {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 1rem 3rem;
+    padding: 2rem 0 2rem 1.25rem;
+    border-top: 1px solid var(--crta);
+    border-left: 4px solid transparent;
+  }
+
+  .ekipa.prva {
+    border-left-color: var(--narancasta);
+  }
+
+  .ekipa h2 {
+    margin-bottom: 0.2rem;
+  }
+
+  .ekipa-kategorija {
+    color: var(--siva);
+    margin: 0;
+  }
+
+  dl {
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  dl div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+  }
+
+  dt {
+    color: var(--siva);
+    font-size: 0.9rem;
+    padding-top: 0.1rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media (max-width: 760px) {
+    .ekipa {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    dl div {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>

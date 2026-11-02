@@ -1,0 +1,54 @@
+---
+import type { Redak } from '../data/natjecanja';
+
+interface Props {
+  redovi: Redak[];
+  istakni: string;
+  naslov?: string;
+}
+
+const { redovi, istakni, naslov } = Astro.props;
+---
+
+<div class="tablica-wrap">
+  <table class="tablica">
+    {naslov && <caption class="sr-only">{naslov}</caption>}
+    <thead>
+      <tr>
+        <th class="num" scope="col" abbr="Mjesto">#</th>
+        <th scope="col" class="ekipa">Ekipa</th>
+        <th class="num" scope="col" abbr="Odigrano">Ut.</th>
+        <th class="num" scope="col" abbr="Pobjede">Pob.</th>
+        <th class="num" scope="col" abbr="Porazi">Por.</th>
+        <th class="num" scope="col">Setovi</th>
+        <th class="num" scope="col">Bodovi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        redovi.map((r) => (
+          <tr class:list={{ istaknuto: r.ekipa === istakni }}>
+            <td class="num">{r.mjesto}.</td>
+            <td class="ekipa">{r.ekipa}</td>
+            <td class="num">{r.odigrano}</td>
+            <td class="num">{r.pobjede}</td>
+            <td class="num">{r.porazi}</td>
+            <td class="num">{r.setovi}</td>
+            <td class="num">{r.bodovi}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

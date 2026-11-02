@@ -1,0 +1,125 @@
+---
+import { p, bezKoseCrte } from '../lib/putanja';
+import { klub } from '../data/klub';
+
+const put = bezKoseCrte(Astro.url.pathname);
+const stavke = [
+  { href: '/', tekst: 'Naslovna' },
+  { href: '/o-klubu', tekst: 'O klubu' },
+  { href: '/ekipe', tekst: 'Ekipe' },
+  { href: '/natjecanja', tekst: 'Natjecanja' },
+  { href: '/kontakt', tekst: 'Kontakt' },
+];
+---
+
+<header class="zaglavlje">
+  <div class="wrap zaglavlje-red">
+    <a class="brand" href={p('/')}>
+      <img src={p('/logo.png')} alt="" width="52" height="47" />
+      <span class="brand-tekst">
+        <span class="brand-ime">{klub.kratko}</span>
+        <span class="brand-pod">Odbojkaški klub, Međimurje</span>
+      </span>
+    </a>
+    <nav aria-label="Glavna navigacija">
+      <ul>
+        {
+          stavke.map((s) => (
+            <li>
+              <a href={p(s.href)} aria-current={put === bezKoseCrte(p(s.href)) ? 'page' : undefined}>
+                {s.tekst}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .zaglavlje {
+    background: var(--bijela);
+    border-bottom: 1px solid var(--crta);
+  }
+
+  .zaglavlje-red {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+    min-height: 76px;
+    padding-block: 0.6rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--tinta);
+  }
+
+  .brand img {
+    width: 52px;
+    height: auto;
+  }
+
+  .brand-tekst {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand-ime {
+    font-weight: 800;
+    font-size: 1.25rem;
+    font-stretch: 90%;
+    letter-spacing: -0.01em;
+  }
+
+  .brand-pod {
+    font-size: 0.8rem;
+    color: var(--siva);
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 0.45rem 0.7rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+
+  nav a:hover {
+    background: var(--modra-svijetla);
+    color: var(--modra);
+  }
+
+  nav a[aria-current='page'] {
+    background: var(--modra);
+    color: var(--bijela);
+  }
+
+  @media (max-width: 640px) {
+    .zaglavlje-red {
+      justify-content: center;
+      text-align: center;
+    }
+
+    nav ul {
+      justify-content: center;
+    }
+  }
+</style>

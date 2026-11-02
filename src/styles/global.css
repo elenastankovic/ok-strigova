@@ -1,0 +1,330 @@
+:root {
+  --modra: #15386a;
+  --modra-tamna: #0d2548;
+  --modra-svijetla: #e6edf7;
+  --narancasta: #f07e22;
+  --narancasta-tamna: #c9640f;
+  --zuta: #f8c630;
+  --nebo: #3f8cdc;
+  --papir: #f4f6f9;
+  --bijela: #ffffff;
+  --tinta: #10213a;
+  --siva: #5b6676;
+  --crta: #d6dce6;
+  --font: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --max: 1120px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  background: var(--papir);
+  font-optical-sizing: auto;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--modra);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--narancasta-tamna);
+}
+
+:focus-visible {
+  outline: 3px solid var(--narancasta);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  font-stretch: 90%;
+  line-height: 1;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-stretch: 92%;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 62ch;
+}
+
+ul,
+ol {
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--zuta);
+  color: var(--tinta);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  z-index: 100;
+}
+
+.skip:focus {
+  top: 1rem;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-head a {
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.3rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid transparent;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--narancasta);
+  color: var(--modra-tamna);
+}
+
+.btn-primary:hover {
+  background: var(--zuta);
+  color: var(--modra-tamna);
+}
+
+.btn-outline {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.45;
+  max-width: 52ch;
+}
+
+.muted {
+  color: var(--siva);
+}
+
+.small {
+  font-size: 0.9rem;
+}
+
+.rule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--crta);
+}
+
+.rule-list > li {
+  border-bottom: 1px solid var(--crta);
+  padding: 1rem 0;
+}
+
+.page-head {
+  background: var(--modra);
+  color: var(--bijela);
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  border-bottom: 6px solid var(--narancasta);
+}
+
+.page-head h1 {
+  margin-bottom: 0.3em;
+}
+
+.page-head p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.prose h2 {
+  margin-top: 2em;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.napomena {
+  background: var(--modra-svijetla);
+  border-left: 4px solid var(--modra);
+  padding: 0.8rem 1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  max-width: 62ch;
+}
+
+.napomena p {
+  margin: 0;
+}
+
+.tablica-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table.tablica {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.98rem;
+}
+
+table.tablica th,
+table.tablica td {
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--crta);
+  white-space: nowrap;
+}
+
+table.tablica th {
+  font-weight: 600;
+  color: var(--siva);
+  font-size: 0.85rem;
+  border-bottom: 2px solid var(--crta);
+}
+
+table.tablica td.num,
+table.tablica th.num {
+  text-align: right;
+}
+
+table.tablica td.ekipa {
+  width: 100%;
+  white-space: normal;
+}
+
+table.tablica tr.istaknuto td {
+  background: var(--modra-svijetla);
+  font-weight: 700;
+}
+
+table.tablica tr.istaknuto td:first-child {
+  box-shadow: inset 4px 0 0 var(--narancasta);
+}
+
+.grid-2 {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items: start;
+}
+
+.grid-3 {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  align-items: start;
+}
+
+.kontakt-blok {
+  background: var(--bijela);
+  border: 1px solid var(--crta);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+}
+
+.kontakt-blok h3 {
+  margin-bottom: 0.4rem;
+}
+
+.kontakt-blok p:last-child {
+  margin-bottom: 0;
+}
+
+.kontakt-blok address {
+  font-style: normal;
+}
+
+.veliki-broj {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-stretch: 90%;
+}

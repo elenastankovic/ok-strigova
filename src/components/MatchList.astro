@@ -1,0 +1,103 @@
+---
+import type { Utakmica } from '../data/natjecanja';
+
+interface Props {
+  utakmice: Utakmica[];
+  kolo?: boolean;
+}
+
+const { utakmice, kolo = true } = Astro.props;
+const nasa = (ime: string) => ime.startsWith('OK Štrigova');
+---
+
+<ul class="utakmice">
+  {
+    utakmice.map((u) => (
+      <li>
+        <div class="u-meta">
+          {kolo && <span class="u-kolo">{u.kolo}. kolo</span>}
+          <span class="u-datum">{u.datum}</span>
+        </div>
+        <div class="u-par">
+          <span class:list={['u-ekipa', { nasa: nasa(u.domacin) }]}>{u.domacin}</span>
+          {u.rezultat ? (
+            <span class="u-rezultat">{u.rezultat}</span>
+          ) : (
+            <span class="u-rezultat u-vs">–</span>
+          )}
+          <span class:list={['u-ekipa', 'u-gost', { nasa: nasa(u.gost) }]}>{u.gost}</span>
+        </div>
+        {u.setovi && <div class="u-setovi">po setovima {u.setovi}</div>}
+        {u.napomena && <div class="u-setovi">{u.napomena}</div>}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .utakmice {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--crta);
+  }
+
+  .utakmice li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--crta);
+  }
+
+  .u-meta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--siva);
+    margin-bottom: 0.25rem;
+  }
+
+  .u-kolo {
+    font-weight: 600;
+  }
+
+  .u-par {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.05rem;
+  }
+
+  .u-ekipa.nasa {
+    font-weight: 700;
+    color: var(--modra);
+  }
+
+  .u-gost {
+    text-align: right;
+  }
+
+  .u-rezultat {
+    font-weight: 800;
+    font-size: 1.25rem;
+    font-stretch: 90%;
+    font-variant-numeric: tabular-nums;
+    background: var(--modra);
+    color: var(--bijela);
+    padding: 0.1rem 0.6rem;
+    border-radius: var(--radius);
+    min-width: 3.2rem;
+    text-align: center;
+  }
+
+  .u-vs {
+    background: var(--modra-svijetla);
+    color: var(--modra);
+  }
+
+  .u-setovi {
+    font-size: 0.85rem;
+    color: var(--siva);
+    margin-top: 0.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+</style>

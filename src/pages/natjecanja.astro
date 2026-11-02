@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MatchList from '../components/MatchList.astro';
+import Standings from '../components/Standings.astro';
+import { klub } from '../data/klub';
+import { trecaLiga, cetvrtaLiga, malaOdbojka } from '../data/natjecanja';
+---
+
+<Layout
+  title="Natjecanja"
+  opis="Tablice, rezultati i raspored svih ekipa OK Štrigova: 3. HOL Sjever, 4. HOL Međimurje, mala i mini odbojka."
+>
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Natjecanja</h1>
+      <p>Tablice, rezultati i sljedeće utakmice u sezoni {klub.sezona}</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="napomena">
+        <p>
+          Podaci su provjereni {klub.azurirano}. Službene tablice vode županijski savezi i mijenjaju se
+          nakon svakog kola; poveznica na izvor je uz svako natjecanje.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="treca-liga">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{trecaLiga.naziv}</h2>
+        <a href={trecaLiga.izvor} rel="noopener">Službena tablica, OSVŽ</a>
+      </div>
+      <p class="muted">{trecaLiga.puniNaziv}. Igra prva ekipa.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Tablica</h3>
+          <Standings redovi={trecaLiga.tablica} istakni={trecaLiga.ekipa} naslov={trecaLiga.puniNaziv} />
+        </div>
+        <div>
+          <h3>Sljedeće utakmice</h3>
+          <MatchList utakmice={trecaLiga.sljedece} />
+          <h3 class="razmak">Odigrano</h3>
+          <MatchList utakmice={[...trecaLiga.odigrano].reverse()} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cetvrta-liga">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>{cetvrtaLiga.naziv}</h2>
+        <a href={cetvrtaLiga.izvor} rel="noopener">Službena tablica, OSMŽ</a>
+      </div>
+      <p class="muted">{cetvrtaLiga.puniNaziv}. Igraju druga i treća ekipa, liga od {cetvrtaLiga.brojEkipa} ekipa.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Naše ekipe na tablici</h3>
+          <div class="tablica-wrap">
+            <table class="tablica">
+              <thead>
+                <tr>
+                  <th class="num" scope="col">#</th>
+                  <th scope="col" class="ekipa">Ekipa</th>
+                  <th class="num" scope="col" abbr="Odigrano">Ut.</th>
+                  <th class="num" scope="col" abbr="Pobjede">Pob.</th>
+                  <th class="num" scope="col" abbr="Porazi">Por.</th>
+                  <th class="num" scope="col">Setovi</th>
+                  <th class="num" scope="col">Bodovi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  cetvrtaLiga.stanje.map((r) => (
+                    <tr class="istaknuto">
+                      <td class="num">{r.mjesto}.</td>
+                      <td class="ekipa">{r.ekipa}</td>
+                      <td class="num">{r.odigrano}</td>
+                      <td class="num">{r.pobjede}</td>
+                      <td class="num">{r.porazi}</td>
+                      <td class="num">{r.setovi}</td>
+                      <td class="num">{r.bodovi}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <h3 class="razmak">Sljedeće utakmice</h3>
+          <MatchList utakmice={cetvrtaLiga.sljedece} />
+        </div>
+        <div>
+          <h3>Odigrano</h3>
+          <MatchList utakmice={[...cetvrtaLiga.odigrano].reverse()} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mala-odbojka">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Mala odbojka U13</h2>
+        <a href={malaOdbojka.izvor} rel="noopener">Službena tablica, OSMŽ</a>
+      </div>
+      <p class="muted">
+        {malaOdbojka.naziv}. Najmlađe kadetkinje su na {malaOdbojka.stanje.mjesto}. mjestu od{' '}
+        {malaOdbojka.stanje.brojEkipa} ekipa, s {malaOdbojka.stanje.pobjede} pobjedom i{' '}
+        {malaOdbojka.stanje.porazi} porazom. Igra se na dva dobivena seta.
+      </p>
+      <div class="grid-2">
+        <div>
+          <h3>Sljedeći turnir</h3>
+          <MatchList utakmice={malaOdbojka.sljedece} kolo={false} />
+        </div>
+        <div>
+          <h3>Odigrano</h3>
+          <MatchList utakmice={[...malaOdbojka.odigrano].reverse()} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mini-odbojka">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Mini odbojka U11</h2>
+        <a href="https://www.osmz.hr/index.php?rubrika=utakmica&natjecanje=24" rel="noopener">Natjecanje, OSMŽ</a>
+      </div>
+      <p class="muted">
+        Ekipa U11 prijavljena je za Prvenstvo Međimurja u mini odbojci. Raspored turnira savez još nije
+        objavio; bit će ovdje čim bude poznat.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .razmak {
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import { p } from '../lib/putanja';
+import { klub } from '../data/klub';
+const godina = new Date().getFullYear();
+---
+
+<footer class="podnozje">
+  <div class="wrap podnozje-grid">
+    <div>
+      <img src={p('/logo.png')} alt="Grb OK Štrigova" width="96" height="87" class="podnozje-logo" />
+      <p class="podnozje-ime">{klub.naziv}</p>
+      <address>
+        {klub.adresa}<br />
+        {klub.postanskiBroj}<br />
+        OIB {klub.oib}
+      </address>
+    </div>
+    <div>
+      <h3>Dvorana</h3>
+      <address>
+        {klub.dvorana.naziv}<br />
+        {klub.dvorana.adresa}
+      </address>
+      <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
+    </div>
+    <div>
+      <h3>Kontakt</h3>
+      <p>
+        {klub.kontaktOsoba}<br />
+        <a href={klub.telefonHref}>{klub.telefon}</a>
+      </p>
+      <h3>Tablice i rasporedi</h3>
+      <ul>
+        <li><a href={klub.savezi.osvz.url} rel="noopener">{klub.savezi.osvz.naziv}</a></li>
+        <li><a href={klub.savezi.osmz.url} rel="noopener">{klub.savezi.osmz.naziv}</a></li>
+        <li><a href={klub.savezi.hos.url} rel="noopener">{klub.savezi.hos.naziv}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap podnozje-dno">
+    <p>© {godina} {klub.naziv}. Osnovan {klub.osnovan}</p>
+  </div>
+</footer>
+
+<style>
+  .podnozje {
+    background: var(--modra-tamna);
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: auto;
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .podnozje a {
+    color: var(--bijela);
+  }
+
+  .podnozje a:hover {
+    color: var(--zuta);
+  }
+
+  .podnozje-grid {
+    display: grid;
+    gap: 2rem 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    padding-bottom: 2.5rem;
+  }
+
+  .podnozje h3 {
+    color: var(--bijela);
+    font-size: 1rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .podnozje h3 + ul,
+  .podnozje h3 + p,
+  .podnozje h3 + address {
+    margin-bottom: 1.4rem;
+  }
+
+  .podnozje ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .podnozje li {
+    margin-bottom: 0.3rem;
+  }
+
+  .podnozje-logo {
+    width: 96px;
+    margin-bottom: 0.8rem;
+  }
+
+  .podnozje-ime {
+    font-weight: 700;
+    color: var(--bijela);
+    margin-bottom: 0.3rem;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  .podnozje-dno {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-block: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .podnozje-dno p {
+    margin: 0;
+  }
+</style>

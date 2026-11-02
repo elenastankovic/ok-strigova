@@ -1,0 +1,50 @@
+---
+import { p } from '../lib/putanja';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { klub } from '../data/klub';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  opis?: string;
+}
+
+const {
+  title,
+  opis = 'Odbojkaški klub Štrigova iz Međimurja: šest ženskih ekipa, od mini odbojke do seniorki. Raspored, rezultati, ekipe i kontakt.',
+} = Astro.props;
+
+const puniNaslov = title ? `${title} | ${klub.kratko}` : `${klub.naziv}`;
+---
+
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{puniNaslov}</title>
+    <meta name="description" content={opis} />
+    <link rel="icon" type="image/svg+xml" href={p('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#15386a" />
+    <meta property="og:title" content={puniNaslov} />
+    <meta property="og:description" content={opis} />
+    <meta property="og:image" content={new URL(p('/logo.png'), Astro.site).href} />
+    <meta property="og:locale" content="hr_HR" />
+  </head>
+  <body>
+    <a class="skip" href="#sadrzaj">Preskoči na sadržaj</a>
+    <Header />
+    <main id="sadrzaj">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

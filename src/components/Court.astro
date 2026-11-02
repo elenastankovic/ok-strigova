@@ -1,0 +1,82 @@
+---
+// Tlocrt odbojkaškog terena 18 × 9 m: vanjske crte, središnja crta, crte napada
+// na 3 m od mreže, oznake zone servisa i stupovi mreže. Crte se iscrtaju pri učitavanju.
+---
+
+<svg class="teren" viewBox="0 0 1000 560" aria-hidden="true" focusable="false">
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square">
+    <rect x="100" y="80" width="800" height="400" pathLength="1" />
+    <line x1="366.7" y1="80" x2="366.7" y2="480" pathLength="1" />
+    <line x1="633.3" y1="80" x2="633.3" y2="480" pathLength="1" />
+    <line x1="500" y1="80" x2="500" y2="480" pathLength="1" />
+    <line x1="100" y1="80" x2="78" y2="80" pathLength="1" />
+    <line x1="100" y1="480" x2="78" y2="480" pathLength="1" />
+    <line x1="900" y1="80" x2="922" y2="80" pathLength="1" />
+    <line x1="900" y1="480" x2="922" y2="480" pathLength="1" />
+    <line class="mreza" x1="500" y1="38" x2="500" y2="522" stroke-width="7" pathLength="1" />
+  </g>
+  <circle class="lopta" cx="292" cy="318" r="17" fill="var(--zuta)" />
+</svg>
+
+<style>
+  .teren {
+    width: 100%;
+    height: auto;
+  }
+
+  .teren rect,
+  .teren line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: iscrtaj 1.3s cubic-bezier(0.3, 0, 0.2, 1) forwards;
+  }
+
+  .teren line:nth-child(2),
+  .teren line:nth-child(3) {
+    animation-delay: 0.35s;
+  }
+
+  .teren line:nth-child(4) {
+    animation-delay: 0.55s;
+  }
+
+  .teren line:nth-child(n + 5) {
+    animation-delay: 0.7s;
+  }
+
+  .teren .mreza {
+    animation-delay: 0.9s;
+  }
+
+  .teren .lopta {
+    opacity: 0;
+    animation: lopta 0.5s ease-out 1.5s forwards;
+  }
+
+  @keyframes iscrtaj {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes lopta {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .teren rect,
+    .teren line,
+    .teren .lopta {
+      animation: none;
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+</style>

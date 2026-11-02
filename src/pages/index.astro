@@ -1,0 +1,360 @@
+---
+import { p } from '../lib/putanja';
+import Layout from '../layouts/Layout.astro';
+import Court from '../components/Court.astro';
+import MatchList from '../components/MatchList.astro';
+import { klub } from '../data/klub';
+import { ekipe } from '../data/ekipe';
+import { trecaLiga, sljedecaUtakmica } from '../data/natjecanja';
+
+const nasRedak = trecaLiga.tablica.find((r) => r.ekipa === trecaLiga.ekipa);
+const domaca = sljedecaUtakmica.domacin === 'OK Štrigova';
+const zadnje = [...trecaLiga.odigrano].reverse();
+---
+
+<Layout>
+  <section class="hero">
+    <div class="hero-teren"><Court /></div>
+    <div class="wrap hero-grid">
+      <div class="hero-tekst">
+        <h1>Odbojka u Štrigovi od 2016.</h1>
+        <p class="lead">
+          Šest ženskih ekipa, od mini odbojke do seniorki. Treniramo i igramo u dvorani Osnovne
+          škole Štrigova, a vikendima nas gledate u 3. HOL Sjever i 4. HOL Međimurje.
+        </p>
+        <div class="hero-akcije">
+          <a class="btn btn-primary" href={p('/kontakt#upisi')}>Dođi na trening</a>
+          <a class="btn btn-outline" href={p('/natjecanja')}>Raspored i rezultati</a>
+        </div>
+      </div>
+      <aside class="sljedeca" aria-labelledby="sljedeca-naslov">
+        <h2 id="sljedeca-naslov">Sljedeća utakmica</h2>
+        <p class="sljedeca-liga">{trecaLiga.naziv}, {sljedecaUtakmica.kolo}. kolo</p>
+        <p class="sljedeca-par">
+          <span>{sljedecaUtakmica.domacin}</span>
+          <span class="sljedeca-crtica">–</span>
+          <span>{sljedecaUtakmica.gost}</span>
+        </p>
+        <p class="sljedeca-datum">{sljedecaUtakmica.datum}</p>
+        <p class="sljedeca-mjesto">{domaca ? klub.dvorana.naziv : 'Gostovanje'}</p>
+        {sljedecaUtakmica.napomena && <p class="sljedeca-napomena">{sljedecaUtakmica.napomena}</p>}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2 klub">
+      <div>
+        <h2>Klub iz Štrigove, za cijelo gornje Međimurje</h2>
+        <p>
+          Odbojkaški klub Štrigova osnovan je {klub.osnovan} u Štrigovi, općini na krajnjem
+          sjeverozapadu Međimurja, uz slovensku granicu. Danas okuplja šest ženskih ekipa: tri
+          seniorske, juniorke te najmlađe kadetkinje u maloj i mini odbojci.
+        </p>
+        <p>
+          Prva ekipa igra 3. hrvatsku odbojkašku ligu Sjever, a druga i treća županijsku 4. HOL
+          Međimurje. Domaće utakmice igramo u dvorani Osnovne škole Štrigova.
+        </p>
+        <p><a href={p('/o-klubu')}>Više o klubu i njegovoj povijesti</a></p>
+      </div>
+      <div class="klub-grb">
+        <img src={p('/logo.png')} alt="Grb Odbojkaškog kluba Štrigova" width="343" height="311" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Šest ekipa, jedna dvorana</h2>
+        <a href={p('/ekipe')}>Sve o ekipama</a>
+      </div>
+      <ol class="ekipe-lista">
+        {
+          ekipe.map((e) => (
+            <li class:list={{ prva: e.prva }}>
+              <div class="e-ime">
+                <strong>{e.naziv}</strong>
+                <span>{e.kategorija}</span>
+              </div>
+              <div class="e-liga">{e.natjecanje}</div>
+              <div class="e-stanje">{e.stanje ?? 'Natjecanje još nije počelo'}</div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Kako igra prva ekipa</h2>
+        <a href={p('/natjecanja')}>Sve tablice i rasporedi</a>
+      </div>
+      <div class="grid-2">
+        <div>
+          {
+            nasRedak && (
+              <p class="lead">
+                Nakon {nasRedak.odigrano} kola OK Štrigova je na {nasRedak.mjesto}. mjestu od{' '}
+                {trecaLiga.tablica.length} ekipa u ligi, s {nasRedak.pobjede} pobjede i{' '}
+                {nasRedak.porazi} poraza i omjerom setova {nasRedak.setovi}.
+              </p>
+            )
+          }
+          <p class="muted small">
+            Tablica je provjerena {klub.azurirano}. Službenu tablicu vodi
+            <a href={trecaLiga.izvor} rel="noopener"> {klub.savezi.osvz.naziv}</a>.
+          </p>
+        </div>
+        <div>
+          <h3>Zadnje utakmice</h3>
+          <MatchList utakmice={zadnje} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="upisi">
+    <div class="wrap grid-2">
+      <div>
+        <h2>Dođi na trening</h2>
+        <p class="lead">
+          Primamo djevojčice i djevojke svih uzrasta, od mini odbojke do seniorki. Javite se i
+          dogovorite kad doći na prvi trening u dvoranu OŠ Štrigova.
+        </p>
+      </div>
+      <div class="upisi-akcije">
+        <a class="btn btn-primary" href={p('/kontakt#upisi')}>Kako se upisati</a>
+        <p>
+          {klub.kontaktOsoba}, <a href={klub.telefonHref}>{klub.telefon}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--modra);
+    color: var(--bijela);
+    border-bottom: 6px solid var(--narancasta);
+  }
+
+  .hero-teren {
+    position: absolute;
+    right: -12%;
+    top: 50%;
+    width: min(78vw, 980px);
+    transform: translateY(-50%) rotate(-7deg);
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding-block: clamp(3.5rem, 9vw, 7rem);
+  }
+
+  .hero h1 {
+    color: var(--bijela);
+    margin-bottom: 0.4em;
+  }
+
+  .hero .lead {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .hero-akcije {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .sljedeca {
+    justify-self: end;
+    width: min(100%, 380px);
+    background: var(--bijela);
+    color: var(--tinta);
+    border-radius: var(--radius);
+    border-top: 8px solid var(--narancasta);
+    padding: 1.4rem 1.5rem 1.3rem;
+    box-shadow: 0 24px 60px rgba(8, 24, 52, 0.45);
+  }
+
+  .sljedeca h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--siva);
+    margin-bottom: 0.2rem;
+  }
+
+  .sljedeca p {
+    margin: 0;
+  }
+
+  .sljedeca .sljedeca-liga {
+    margin-bottom: 0.9rem;
+  }
+
+  .sljedeca .sljedeca-datum {
+    margin-top: 0.9rem;
+  }
+
+  .sljedeca-liga {
+    font-size: 0.9rem;
+    color: var(--siva);
+  }
+
+  .sljedeca-par {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-stretch: 88%;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--modra);
+  }
+
+  .sljedeca-crtica {
+    color: var(--narancasta);
+    font-size: 1.2rem;
+    line-height: 1;
+    padding-block: 0.15rem;
+  }
+
+  .sljedeca-datum {
+    font-weight: 600;
+  }
+
+  .sljedeca-mjesto {
+    font-size: 0.95rem;
+  }
+
+  .sljedeca-napomena {
+    font-size: 0.85rem;
+    color: var(--siva);
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-teren {
+      width: 140vw;
+      right: -45vw;
+      top: 36%;
+      color: rgba(255, 255, 255, 0.22);
+    }
+
+    .sljedeca {
+      justify-self: stretch;
+      width: 100%;
+    }
+  }
+
+  .klub {
+    align-items: center;
+  }
+
+  .klub-grb {
+    display: flex;
+    justify-content: center;
+  }
+
+  .klub-grb img {
+    width: min(100%, 300px);
+    height: auto;
+  }
+
+  .ekipe-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--crta);
+  }
+
+  .ekipe-lista li {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 0.5rem 2rem;
+    padding: 1rem 0 1rem 1rem;
+    border-bottom: 1px solid var(--crta);
+    border-left: 4px solid transparent;
+  }
+
+  .ekipe-lista li.prva {
+    border-left-color: var(--narancasta);
+    background: var(--bijela);
+  }
+
+  .e-ime {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .e-ime strong {
+    font-size: 1.15rem;
+    font-stretch: 92%;
+  }
+
+  .e-ime span {
+    color: var(--siva);
+    font-size: 0.9rem;
+  }
+
+  .e-stanje {
+    color: var(--modra);
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .ekipe-lista li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+
+  .upisi {
+    background: var(--narancasta);
+    color: var(--modra-tamna);
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .upisi .lead {
+    color: var(--modra-tamna);
+  }
+
+  .upisi .btn-primary {
+    background: var(--modra);
+    color: var(--bijela);
+  }
+
+  .upisi .btn-primary:hover {
+    background: var(--modra-tamna);
+    color: var(--bijela);
+  }
+
+  .upisi a {
+    color: var(--modra-tamna);
+  }
+
+  .upisi-akcije {
+    align-self: center;
+  }
+
+  .upisi-akcije p {
+    margin: 1rem 0 0;
+    font-weight: 600;
+  }
+</style>
