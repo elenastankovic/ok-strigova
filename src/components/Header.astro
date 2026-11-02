@@ -1,6 +1,6 @@
 ---
-import { p, bezKoseCrte } from '../lib/putanja';
 import { klub } from '../data/klub';
+import { p, bezKoseCrte } from '../lib/putanja';
 
 const put = bezKoseCrte(Astro.url.pathname);
 const stavke = [
@@ -23,7 +23,11 @@ const stavke = [
         <span class="brand-pod">Odbojkaški klub, Međimurje</span>
       </span>
     </a>
-    <nav aria-label="Glavna navigacija">
+    <button class="izbornik-gumb" type="button" aria-expanded="false" aria-controls="glavna-navigacija">
+      <span class="crte" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="izbornik-tekst">Izbornik</span>
+    </button>
+    <nav id="glavna-navigacija" aria-label="Glavna navigacija">
       <ul>
         {
           stavke.map((s) => (
@@ -38,6 +42,41 @@ const stavke = [
     </nav>
   </div>
 </header>
+
+<script>
+  // Izbornik na klik za uske ekrane. Bez JavaScripta navigacija je uvijek vidljiva,
+  // a gumb se pojavljuje tek kad skripta doda klasu ima-izbornik.
+  const zaglavlje = document.querySelector<HTMLElement>('.zaglavlje');
+  const gumb = zaglavlje?.querySelector<HTMLButtonElement>('.izbornik-gumb');
+  const nav = zaglavlje?.querySelector<HTMLElement>('nav');
+
+  if (zaglavlje && gumb && nav) {
+    zaglavlje.classList.add('ima-izbornik');
+
+    const postavi = (otvoren: boolean) => {
+      zaglavlje.classList.toggle('otvoreno', otvoren);
+      gumb.setAttribute('aria-expanded', String(otvoren));
+      gumb.querySelector('.izbornik-tekst')!.textContent = otvoren ? 'Zatvori' : 'Izbornik';
+    };
+
+    gumb.addEventListener('click', () => postavi(!zaglavlje.classList.contains('otvoreno')));
+
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) postavi(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && zaglavlje.classList.contains('otvoreno')) {
+        postavi(false);
+        gumb.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (zaglavlje.classList.contains('otvoreno') && !zaglavlje.contains(e.target as Node)) postavi(false);
+    });
+  }
+</script>
 
 <style>
   .zaglavlje {
@@ -114,20 +153,97 @@ const stavke = [
     color: var(--bijela);
   }
 
-  @media (max-width: 640px) {
-    .zaglavlje-red {
-      justify-content: center;
-      text-align: center;
+  /* Gumb izbornika: skriven dok skripta ne potvrdi da radi, i uvijek na širokim ekranima. */
+  .izbornik-gumb {
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--crta);
+    border-radius: var(--radius);
+    background: var(--bijela);
+    color: var(--tinta);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .izbornik-gumb:hover {
+    border-color: var(--modra);
+    color: var(--modra);
+  }
+
+  .crte {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 14px;
+  }
+
+  .crte span {
+    display: block;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .otvoreno .crte span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .otvoreno .crte span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .otvoreno .crte span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .crte span {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .ima-izbornik .izbornik-gumb {
+      display: inline-flex;
     }
 
-    nav ul {
-      justify-content: center;
-      gap: 0;
+    .ima-izbornik nav {
+      display: none;
+      flex-basis: 100%;
+      border-top: 1px solid var(--crta);
+      padding-top: 0.5rem;
     }
 
-    nav a {
-      padding: 0.35rem 0.5rem;
-      font-size: 0.95rem;
+    .ima-izbornik.otvoreno nav {
+      display: block;
+    }
+
+    .ima-izbornik nav ul {
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .ima-izbornik nav a {
+      display: block;
+      padding: 0.7rem 0.8rem;
+      font-size: 1.05rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brand-pod {
+      display: none;
+    }
+
+    .brand img {
+      width: 44px;
     }
   }
 </style>
