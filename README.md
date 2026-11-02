@@ -29,7 +29,8 @@ i osmz.hr (4. HOL Međimurje, mala i mini odbojka) u `src/data/natjecanja.ts` i 
 
 ## Objava
 
-Stranica je uživo na https://elenastankovic.github.io/claude-demo-es
+Stranica je uživo na https://elenastankovic.github.io/<ime-repozitorija>, dakle
+https://elenastankovic.github.io/ok-strigova nakon preimenovanja repozitorija u `ok-strigova`.
 
 Objavu radi GitHub Actions (`.github/workflows/deploy.yml`): svaki push na granu `main` pokrene build i
 objavi `dist/` na GitHub Pages, obično za jednu do dvije minute. Tijek rada:
@@ -43,6 +44,7 @@ git push
 Napredak se vidi pod karticom Actions u repozitoriju. Ako objava padne na koraku "Postavi GitHub Pages",
 vlasnik repozitorija mora jednom u Settings → Pages postaviti Source na **GitHub Actions**.
 
-Stranica živi na podputanji `/claude-demo-es` (postavka `base` u `astro.config.mjs`), pa sve
-unutarnje poveznice idu kroz funkciju `p()` iz `src/lib/putanja.ts`. Uz vlastitu domenu promijenite
-`site` i postavite `base` na `/`.
+Stranica živi na podputanji s imenom repozitorija (`base` u `astro.config.mjs` čita se iz
+`GITHUB_REPOSITORY` na GitHub Actionsu), pa sve unutarnje poveznice idu kroz funkciju `p()` iz
+`src/lib/putanja.ts`. Preimenovanje repozitorija zato ne traži nikakvu promjenu koda. Uz vlastitu
+domenu promijenite `site` i postavite `base` na `/`.
