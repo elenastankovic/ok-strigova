@@ -28,10 +28,16 @@ const godina = new Date().getFullYear();
     </div>
     <div>
       <h3>Kontakt</h3>
-      <p>
-        {klub.kontaktOsoba}<br />
-        <a href={klub.telefonHref}>{klub.telefon}</a>
-      </p>
+      {
+        klub.kontaktOsobe.map((o) => (
+          <p class="podnozje-osoba">
+            <span class="podnozje-uloga">{o.uloga}</span>
+            {o.ime}
+            <br />
+            <a href={o.telefonHref}>{o.telefon}</a>
+          </p>
+        ))
+      }
       <h3>Pratite nas</h3>
       <Mreze class="podnozje-mreze" />
       <h3>Tablice i rasporedi</h3>
@@ -103,6 +109,23 @@ const godina = new Date().getFullYear();
 
   .podnozje :global(.podnozje-mreze a:hover) {
     color: var(--zuta);
+  }
+
+  .podnozje .podnozje-osoba {
+    margin: 0 0 0.8rem;
+  }
+
+  .podnozje .podnozje-osoba:last-of-type {
+    margin-bottom: 1.4rem;
+  }
+
+  .podnozje-uloga {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
   }
 
   .podnozje-logo {
