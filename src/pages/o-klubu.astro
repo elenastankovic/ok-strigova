@@ -5,7 +5,7 @@ import { klub } from '../data/klub';
 import { povijest } from '../data/povijest';
 ---
 
-<Layout title="O klubu" opis="Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog 2016. u Međimurju.">
+<Layout title="O klubu" opis={`Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog ${klub.godinaOsnutka}. u Međimurju.`}>
   <div class="page-head">
     <div class="wrap">
       <h1>O klubu</h1>
@@ -45,7 +45,7 @@ import { povijest } from '../data/povijest';
 
   <section class="section">
     <div class="wrap">
-      <h2>Deset godina kluba</h2>
+      <h2>Povijest kluba</h2>
       <ol class="vrijeme">
         {
           povijest.map((p) => (

@@ -2,8 +2,8 @@
 export const klub = {
   naziv: 'Odbojkaški klub Štrigova',
   kratko: 'OK Štrigova',
-  osnovan: '14. siječnja 2016.',
-  godinaOsnutka: 2016,
+  osnovan: '2009.',
+  godinaOsnutka: 2009,
   mjesto: 'Štrigova',
   zupanija: 'Međimurska županija',
   adresa: 'Štrigova 35a',
