@@ -38,19 +38,19 @@ export const ekipe: Ekipa[] = [
   {
     slug: 'strigova-2',
     naziv: 'OK Štrigova 2',
-    kategorija: 'Seniorke, druga ekipa',
+    kategorija: 'Kadetkinje',
     snapshotSlug: 'ok-strigova-2',
     organizator: 'Odbojkaški savez Međimurske županije',
-    opis: 'Druga seniorska ekipa igra županijsku ligu, 22 kola od listopada do travnja.',
+    opis: 'Kadetkinje igraju županijsku ligu 4. HOL Međimurje, 22 kola od listopada do travnja.',
     trener: { ime: 'Elena Stanković', telefon: '091 930 0666' },
   },
   {
     slug: 'strigova-3',
     naziv: 'OK Štrigova 3',
-    kategorija: 'Seniorke, treća ekipa',
+    kategorija: 'Mlađe kadetkinje',
     snapshotSlug: 'ok-strigova-3',
     organizator: 'Odbojkaški savez Međimurske županije',
-    opis: 'Treća seniorska ekipa igra istu ligu kao i druga, pa se dvije ekipe kluba u sezoni sretnu i međusobno.',
+    opis: 'Mlađe kadetkinje igraju istu ligu kao i kadetkinje, pa se dvije ekipe kluba u sezoni sretnu i međusobno.',
     trener: { ime: 'Ana Semenič', telefon: '095 889 4445' },
   },
   {

@@ -49,8 +49,8 @@ export const strucniStozer: Tijelo = {
   opis: 'Treneri odgovaraju upravnom odboru za rad s ekipama, od mini odbojke do prve ekipe.',
   clanovi: [
     { uloga: 'Trener prve ekipe', ime: 'Siniša Stanković', slika: '/slike/osoba-nebo.svg', opis: '3. HOL Sjever' },
-    { uloga: 'Trenerica druge ekipe', ime: 'Elena Stanković', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
-    { uloga: 'Trenerica treće ekipe', ime: 'Ana Semenič', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
+    { uloga: 'Trenerica kadetkinja', ime: 'Elena Stanković', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
+    { uloga: 'Trenerica mlađih kadetkinja', ime: 'Ana Semenič', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
     { uloga: 'Trener U13', ime: 'Ime Prezime', slika: '/slike/osoba-nebo.svg', opis: 'mala odbojka' },
     { uloga: 'Trenerica mini odbojke', ime: 'Ana Šinko', slika: '/slike/osoba-nebo.svg', opis: 'U11' },
   ],
