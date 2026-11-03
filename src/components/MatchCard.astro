@@ -1,6 +1,6 @@
 ---
 import type { Match } from '../lib/data';
-import { clubOutcome, clubTeamsOf, competitionFor, competitionShortName, teamFor, teamShort, teamTone } from '../lib/data';
+import { clubOutcome, clubTeamsOf, competitionFor, competitionShortName, leagueTone, teamFor, teamShort, teamTone } from '../lib/data';
 import { formatRangeShort, formatResult, formatSets, formatShortDate, formatTime, formatWeekday, formatWeekdayShort } from '../lib/format';
 import { p } from '../lib/putanja';
 
@@ -44,7 +44,7 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
   <div class="mc-tijelo">
     {
       showCompetition && competition && (
-        <a class:list={['mc-liga', teamTone(clubTeams[0])]} href={p(`/natjecanja/${competition.id}`)}>
+        <a class:list={['mc-liga', leagueTone(clubTeams[0])]} href={p(`/natjecanja/${competition.id}`)}>
           {competitionShortName(competition) + (m.round ? `, ${m.round}. kolo` : '')}
         </a>
       )

@@ -117,6 +117,18 @@ export function teamTone(team: Team | undefined): string | undefined {
   return team ? toneBySlug[team.slug] : undefined;
 }
 
+/** Boja oznake lige: 3. HOL plava, 4. HOL (druga i treća ekipa) roza, mala odbojka (U13) žuta. */
+const leagueToneBySlug: Record<string, string> = {
+  'ok-strigova': 'ton-1',
+  'ok-strigova-2': 'ton-2',
+  'ok-strigova-3': 'ton-2',
+  'ok-strigova-u13': 'ton-4',
+};
+
+export function leagueTone(team: Team | undefined): string | undefined {
+  return team ? leagueToneBySlug[team.slug] : undefined;
+}
+
 /** "3. HRVATSKA ODBOJKAŠKA LIGA SJEVER - skupina Sjever" → "3. HOL Sjever - skupina Sjever". Kratice do 3 slova (HOL, ŽOK) ostaju. */
 export function competitionShortName(c: Competition): string {
   return c.name
