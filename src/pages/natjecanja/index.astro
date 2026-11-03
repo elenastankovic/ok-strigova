@@ -1,10 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Standings from '../../components/Standings.astro';
-import { p } from '../../lib/putanja';
-import { klub } from '../../data/klub';
-import { competitionShortName, competitionsByPriority, snapshot } from '../../lib/data';
-import { formatStamp } from '../../lib/format';
+import NatjecanjaSadrzaj from '../../components/stranice/NatjecanjaSadrzaj.astro';
 ---
 
 <Layout title="Natjecanja" opis="Tablice svih liga i turnira u kojima igraju ekipe OK Štrigova, sa stranica županijskih saveza.">
@@ -14,95 +10,5 @@ import { formatStamp } from '../../lib/format';
       <p>Lige i turniri u kojima ove sezone nastupaju ekipe kluba, s poretkom i svim utakmicama</p>
     </div>
   </div>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="napomena">
-        <p>
-          Podaci se četiri puta dnevno preuzimaju sa stranica saveza; zadnje osvježavanje
-          {formatStamp(snapshot.generatedAt)}. Poveznica na službenu stranicu je uz svako natjecanje.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  {
-    competitionsByPriority().map((c) => (
-      <section class="section" id={c.id}>
-        <div class="wrap">
-          <div class="section-head">
-            <h2>
-              <a href={p(`/natjecanja/${c.id}`)}>{competitionShortName(c)}</a>
-            </h2>
-            <a href={c.url} rel="noopener">Službena stranica</a>
-          </div>
-          <p class="muted">
-            {c.category}. Naše ekipe: {c.clubTeams.join(', ')}.
-            {c.groups.length > 1 && ` Natjecanje ima ${c.groups.length} skupine.`}
-            {c.groups.length === 0 && ' Turnir bez tablice poretka.'}
-          </p>
-          {c.groups.map((g) => (
-            <div class="skupina">
-              {g.name && <h3>Skupina {g.name}</h3>}
-              <Standings competition={c} group={g} caption={g.name ? `Skupina ${g.name}` : 'Poredak'} />
-            </div>
-          ))}
-          <p>
-            <a href={p(`/natjecanja/${c.id}`)}>Sve utakmice natjecanja po kolima</a>
-          </p>
-        </div>
-      </section>
-    ))
-  }
-
-  {
-    snapshot.mirrors.length > 0 && (
-      <section class="section">
-        <div class="wrap">
-          <p class="muted small">
-            Natjecanja koja oba saveza objavljuju s istim utakmicama prikazana su samo jednom (
-            {snapshot.mirrors.map((m) => m.name).join(', ')}).
-          </p>
-        </div>
-      </section>
-    )
-  }
-
-  <section class="section">
-    <div class="wrap">
-      <h2>Izvori</h2>
-      <ul class="rule-list">
-        {
-          snapshot.sources.map((s) => (
-            <li>
-              <a href={s.baseUrl} rel="noopener">{s.name}</a>
-              {s.lastChange && <span class="muted">, zadnja promjena na stranici saveza {s.lastChange}</span>}
-            </li>
-          ))
-        }
-        <li>
-          <a href={klub.savezi.hos.url} rel="noopener">{klub.savezi.hos.naziv}</a>
-          <span class="muted">, krovni savez i registar klubova</span>
-        </li>
-      </ul>
-    </div>
-  </section>
+  <NatjecanjaSadrzaj />
 </Layout>
-
-<style>
-  .section-head h2 a {
-    text-decoration: none;
-  }
-
-  .section-head h2 a:hover {
-    text-decoration: underline;
-  }
-
-  .skupina {
-    margin-bottom: 1.5rem;
-  }
-
-  .skupina h3 {
-    margin-bottom: 0.5rem;
-  }
-</style>

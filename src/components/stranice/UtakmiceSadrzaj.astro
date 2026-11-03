@@ -1,0 +1,106 @@
+---
+// Sadržaj stranice Utakmice; koristi ga i naslovnica.
+// skraceno: samo idući tjedni i zadnji rezultati, s poveznicom na cijeli raspored (naslovnica).
+import WeekSection from '../WeekSection.astro';
+import { p } from '../../lib/putanja';
+import { groupByWeek, results, snapshot, teams, teamLabel, upcoming } from '../../lib/data';
+import { formatRange, formatStamp } from '../../lib/format';
+
+interface Props {
+  skraceno?: boolean;
+}
+
+const { skraceno = false } = Astro.props;
+const sviNadolazeci = groupByWeek(upcoming);
+const sviOdigrani = groupByWeek(results);
+const nadolazeci = skraceno ? sviNadolazeci.slice(0, 2) : sviNadolazeci;
+const odigrani = skraceno ? sviOdigrani.slice(0, 1) : sviOdigrani;
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="napomena">
+      <p>Kalendar za mobitel (iCal), pretplata se sama osvježava:</p>
+      <ul class="kalendari">
+        <li>
+          <a href={p('/kalendar.ics')}>sve ekipe</a>
+        </li>
+        {
+          teams.map((t) => (
+            <li>
+              <a href={p(`/kalendar/${t.slug}.ics`)}>{teamLabel(t)}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="small muted">Podaci sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="veliki">Nadolazeće</h2>
+    {nadolazeci.map((w) => <WeekSection razina={3} title={formatRange([w.start, w.end])} matches={w.matches} showTeam />)}
+    {nadolazeci.length === 0 && <p class="muted">Nema zakazanih utakmica.</p>}
+    {
+      skraceno && sviNadolazeci.length > nadolazeci.length && (
+        <p class="vise">
+          <a href={p('/utakmice')}>Cijeli raspored sezone</a>
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="veliki">{skraceno ? 'Zadnji rezultati' : 'Odigrano'}</h2>
+    {odigrani.map((w) => <WeekSection razina={3} title={formatRange([w.start, w.end])} matches={w.matches} showTeam />)}
+    {odigrani.length === 0 && <p class="muted">Još nema odigranih utakmica.</p>}
+    {
+      skraceno && sviOdigrani.length > odigrani.length && (
+        <p class="vise">
+          <a href={p('/utakmice')}>Svi rezultati sezone</a>
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .veliki {
+    margin-bottom: 1.5rem;
+  }
+
+  .vise a {
+    font-weight: 700;
+  }
+
+  .napomena p {
+    margin-bottom: 0.4rem;
+  }
+
+  .kalendari {
+    list-style: none;
+    margin: 0 0 0.6rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+  }
+
+  .kalendari a {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .kalendari a:hover {
+    border-color: var(--modra);
+  }
+</style>

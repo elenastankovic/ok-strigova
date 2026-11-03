@@ -1,0 +1,25 @@
+---
+// Sadržaj stranice Ekipe; koristi ga i naslovnica.
+import TeamCard from '../TeamCard.astro';
+import { ekipe } from '../../data/ekipe';
+import { snapshot } from '../../lib/data';
+import { formatStamp } from '../../lib/format';
+---
+
+<section class="section">
+  <div class="wrap">
+    <ol class="ekipe-kartice">{ekipe.map((e) => <TeamCard ekipa={e} />)}</ol>
+    <p class="muted small">Poredak sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}.</p>
+  </div>
+</section>
+
+<style>
+  .ekipe-kartice {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  }
+</style>

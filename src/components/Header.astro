@@ -4,15 +4,20 @@ import { p, bezKoseCrte } from '../lib/putanja';
 import Mreze from './Mreze.astro';
 
 const put = bezKoseCrte(Astro.url.pathname);
+// Na naslovnici su sve stranice složene jedna ispod druge, pa izbornik skače na njihove dijelove (dio = id);
+// na ostalim stranicama vodi na zasebne stranice.
+const naslovnica = put === bezKoseCrte(p('/'));
 const stavke = [
-  { href: '/', tekst: 'Naslovna' },
-  { href: '/utakmice', tekst: 'Utakmice' },
-  { href: '/ekipe', tekst: 'Ekipe' },
-  { href: '/natjecanja', tekst: 'Natjecanja' },
-  { href: '/o-klubu', tekst: 'O klubu' },
-  { href: '/uprava', tekst: 'Uprava' },
-  { href: '/kontakt', tekst: 'Kontakt' },
+  { href: '/', dio: '', tekst: 'Naslovna' },
+  { href: '/utakmice', dio: 'utakmice', tekst: 'Utakmice' },
+  { href: '/ekipe', dio: 'ekipe', tekst: 'Ekipe' },
+  { href: '/natjecanja', dio: 'natjecanja', tekst: 'Natjecanja' },
+  { href: '/o-klubu', dio: 'o-klubu', tekst: 'O klubu' },
+  { href: '/uprava', dio: 'uprava', tekst: 'Uprava' },
+  { href: '/kontakt', dio: 'kontakt', tekst: 'Kontakt' },
 ];
+const poveznica = (s: (typeof stavke)[number]) => (naslovnica ? `#${s.dio}` : p(s.href));
+const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : put === bezKoseCrte(p(s.href)));
 ---
 
 <div class="gornja-traka">
@@ -45,7 +50,7 @@ const stavke = [
         {
           stavke.map((s) => (
             <li>
-              <a href={p(s.href)} aria-current={put === bezKoseCrte(p(s.href)) ? 'page' : undefined}>
+              <a href={poveznica(s)} data-dio={s.dio} aria-current={trenutna(s) ? 'page' : undefined}>
                 {s.tekst}
               </a>
             </li>
@@ -68,6 +73,23 @@ const stavke = [
     const sjena = () => zaglavlje.classList.toggle('pomaknuto', zaglavlje.getBoundingClientRect().top <= 0 && window.scrollY > 0);
     sjena();
     window.addEventListener('scroll', sjena, { passive: true });
+  }
+
+  // Na naslovnici izbornik označava dio stranice koji se trenutno čita.
+  const dijelovi = [...document.querySelectorAll<HTMLElement>('.dio[id]')];
+  if (nav && dijelovi.length > 0) {
+    const poveznice = [...nav.querySelectorAll<HTMLAnchorElement>('a[data-dio]')];
+    const oznaci = () => {
+      const granica = (zaglavlje?.offsetHeight ?? 0) + 40;
+      const aktivni = dijelovi.filter((d) => d.getBoundingClientRect().top <= granica).pop();
+      const dio = aktivni?.id ?? '';
+      for (const a of poveznice) {
+        if (a.dataset.dio === dio) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      }
+    };
+    oznaci();
+    window.addEventListener('scroll', oznaci, { passive: true });
   }
 
   if (zaglavlje && gumb && nav) {

@@ -1,0 +1,92 @@
+---
+// Sadržaj stranice Kontakt; koristi ga i naslovnica.
+import { klub } from '../../data/klub';
+import Mreze from '../Mreze.astro';
+---
+
+<section class="section">
+  <div class="wrap grid-3">
+    <div class="kontakt-blok">
+      <h3>Klub</h3>
+      <address>
+        {klub.naziv}<br />
+        {klub.adresa}<br />
+        {klub.postanskiBroj}
+      </address>
+      <p class="small muted">OIB {klub.oib}</p>
+    </div>
+    <div class="kontakt-blok">
+      <h3>Telefon</h3>
+      {
+        klub.kontaktOsobe.map((o) => (
+          <p>
+            <span class="veliki-broj"><a href={o.telefonHref}>{o.telefon}</a></span><br />
+            {o.ime}, {o.uloga.toLowerCase()}
+          </p>
+        ))
+      }
+    </div>
+    <div class="kontakt-blok">
+      <h3>Dvorana</h3>
+      <address>
+        {klub.dvorana.naziv}<br />
+        {klub.dvorana.adresa}
+      </address>
+      <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
+    </div>
+    <div class="kontakt-blok">
+      <h3>Pratite nas</h3>
+      <p class="small muted">Novosti, fotografije s utakmica i obavijesti o treninzima.</p>
+      <Mreze />
+    </div>
+  </div>
+</section>
+
+<section class="section" id="upisi">
+  <div class="wrap grid-2">
+    <div class="prose">
+      <h2>Upisi i prvi trening</h2>
+      <p>
+        Klub prima djevojčice i djevojke svih uzrasta. Najmlađe počinju u mini odbojci U11, zatim
+        slijede mala odbojka U13, mlađe kadetkinje, kadetkinje i seniorke, pa svaka igračica ima ekipu prema svojim godinama i
+        iskustvu.
+      </p>
+      <p>
+        Za prvi trening nije potrebno ništa osim sportske odjeće i tenisica za dvoranu. Kontakt osoba kluba je
+        {klub.kontaktOsoba}. Nazovite <a href={klub.telefonHref}>{klub.telefon}</a> i dogovorite termin,
+        ili dođite u dvoranu OŠ Štrigova na jedan od treninga.
+      </p>
+    </div>
+    <div class="kontakt-blok">
+      <h3>Što ponijeti</h3>
+      <ul>
+        <li>sportsku odjeću i tenisice za dvoranu</li>
+        <li>bocu vode</li>
+        <li>za mlađe od 18 godina, roditelja na prvi trening</li>
+      </ul>
+      <p class="small muted">
+        Termine treninga po uzrastima objavit ćemo ovdje; do tada ih dogovorite telefonom.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Savezi i službene tablice</h2>
+    <ul class="rule-list">
+      <li>
+        <a href={klub.savezi.osvz.url} rel="noopener">{klub.savezi.osvz.naziv}</a>
+        <span class="muted">, vodi 3. HOL Sjever u kojoj igra prva ekipa</span>
+      </li>
+      <li>
+        <a href={klub.savezi.osmz.klub} rel="noopener">{klub.savezi.osmz.naziv}</a>
+        <span class="muted">, vodi 4. HOL Međimurje te prvenstva u maloj i mini odbojci</span>
+      </li>
+      <li>
+        <a href={klub.savezi.hos.url} rel="noopener">{klub.savezi.hos.naziv}</a>
+        <span class="muted">, krovni savez i registar klubova</span>
+      </li>
+    </ul>
+  </div>
+</section>

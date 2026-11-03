@@ -1,0 +1,269 @@
+---
+// Sadržaj stranice O klubu; koristi ga i naslovnica.
+import { p } from '../../lib/putanja';
+import { klub } from '../../data/klub';
+import { povijest } from '../../data/povijest';
+
+// Najveći uspjesi kluba. Fotografiju stavite u public/slike i upišite putanju u polje slika;
+// dok je nema, prikazuje se prazno mjesto s natpisom "Fotografija uskoro".
+type Uspjeh = {
+  oznaka: string;
+  naslov: string;
+  tekst: string;
+  slika?: { src: string; alt: string; sirina: number; visina: number };
+  poveznica?: { href: string; tekst: string };
+};
+
+const uspjesi: Uspjeh[] = [
+  {
+    oznaka: 'Svibanj 2024.',
+    naslov: 'Kup Međimurja je naš',
+    tekst:
+      'U finalu pred prepunim tribinama dvorane u Štrigovi OK Štrigova pobijedila je OK Nedelišće Elting 3:1 (25:22, 25:18, 13:25, 25:23). Prvi put u povijesti kluba pehar ovog natjecanja završio je u rukama naših odbojkašica.',
+    slika: {
+      src: '/slike/kup-medimurja-2024.webp',
+      alt: 'Odbojkašice i treneri OK Štrigova slave s peharom Kupa Međimurja u dvorani u Štrigovi',
+      sirina: 838,
+      visina: 838,
+    },
+    poveznica: { href: 'https://www.instagram.com/p/C7KU_VkKvL1/', tekst: 'Objava na Instagramu' },
+  },
+  {
+    oznaka: 'Sezona 2023./24.',
+    naslov: 'Prvo mjesto u 2. ligi',
+    tekst:
+      'Seniorke su skupinu Sjever 2. lige završile na prvom mjestu, s 8 pobjeda u 10 utakmica i omjerom setova 27:8. Do tada najbolja sezona u povijesti kluba.',
+    slika: {
+      src: '/slike/prvo-mjesto-2-liga-2024.jpg',
+      alt: 'Odbojkašice OK Štrigova raspoložene na terenu dvorane nakon utakmice',
+      sirina: 1200,
+      visina: 818,
+    },
+  },
+  {
+    oznaka: '2016.',
+    naslov: 'Prvakinje 3. lige i ulazak u 2. ligu',
+    tekst:
+      'Samo šest godina nakon osnutka seniorke su osvojile 3. ligu i izborile mjesto u 2. ligi. O malom klubu iz Štrigove tada su pisale i novine.',
+    slika: {
+      src: '/slike/prvakinje-3-liga-2016.jpg',
+      alt: 'Seniorke OK Štrigova u tamnim dresovima s trenerom, fotografija iz novinskog članka 2016.',
+      sirina: 330,
+      visina: 212,
+    },
+  },
+];
+---
+
+<section class="section">
+  <div class="wrap uspjesi">
+    {
+      uspjesi.map((u) => (
+        <figure class="kup">
+          {u.slika ? (
+            <img src={p(u.slika.src)} alt={u.slika.alt} width={u.slika.sirina} height={u.slika.visina} loading="lazy" />
+          ) : (
+            <div class="kup-prazno" aria-hidden="true">
+              Fotografija uskoro
+            </div>
+          )}
+          <figcaption>
+            <p class="kup-oznaka">{u.oznaka}</p>
+            <h2>{u.naslov}</h2>
+            <p>{u.tekst}</p>
+            {u.poveznica && (
+              <p>
+                <a href={u.poveznica.href} rel="noopener" target="_blank">
+                  {u.poveznica.tekst}
+                </a>
+              </p>
+            )}
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Povijest kluba</h2>
+    <ol class="vrijeme">
+      {
+        povijest.map((p) => (
+          <li>
+            <span class="vrijeme-godina">{p.godina}</span>
+            <p>{p.tekst}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap grid-3">
+    <div class="kontakt-blok">
+      <h3>Dvorana</h3>
+      <address>
+        {klub.dvorana.naziv}<br />
+        {klub.dvorana.adresa}
+      </address>
+      <p class="small muted">Domaće utakmice svih ekipa i svi treninzi.</p>
+      <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
+    </div>
+    <div class="kontakt-blok">
+      <h3>Kontakt osobe</h3>
+      <ul class="kontakt-osobe">
+        {
+          klub.kontaktOsobe.map((o) => (
+            <li>
+              <span class="small muted">{o.uloga}</span>
+              <strong>{o.ime}</strong>
+              <a href={o.telefonHref}>{o.telefon}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="small muted">Trenere svih ekipa i njihove brojeve naći ćete na stranici Ekipe.</p>
+      <p><a href={p('/uprava')}>Uprava kluba</a></p>
+    </div>
+    <div class="kontakt-blok">
+      <h3>Podaci o udruzi</h3>
+      <address>
+        {klub.naziv}<br />
+        {klub.adresa}, {klub.postanskiBroj}<br />
+        OIB {klub.oib}
+      </address>
+      <p class="small muted">Osnovan {klub.osnovan}, upisan u registar udruga 25. siječnja 2016.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kup {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    border-top: 6px solid var(--narancasta);
+    border-radius: var(--radius);
+    padding: clamp(1rem, 3vw, 1.75rem);
+  }
+
+  .uspjesi {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  /* Svaki drugi uspjeh ima sliku desno. */
+  .kup:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+
+  .kup:nth-child(even) > :first-child {
+    order: 2;
+  }
+
+  .kup img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+
+  .kup-prazno {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    background: var(--modra-svijetla);
+    border: 2px dashed var(--crta);
+    color: var(--siva);
+    font-weight: 600;
+  }
+
+  .kup-oznaka {
+    margin: 0 0 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--narancasta-tamna);
+  }
+
+  .kup h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 760px) {
+    .kup,
+    .kup:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .kup:nth-child(even) > :first-child {
+      order: 0;
+    }
+  }
+
+  .kontakt-osobe {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .kontakt-osobe li {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+  }
+
+  .kontakt-osobe a {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .vrijeme {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .vrijeme li {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--crta);
+  }
+
+  .vrijeme li:last-child {
+    border-bottom: 1px solid var(--crta);
+  }
+
+  .vrijeme-godina {
+    font-size: 1.6rem;
+    font-weight: 800;
+    font-stretch: 88%;
+    color: var(--modra);
+    line-height: 1.2;
+  }
+
+  .vrijeme p {
+    margin: 0.25rem 0 0;
+  }
+
+  @media (max-width: 560px) {
+    .vrijeme li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+</style>

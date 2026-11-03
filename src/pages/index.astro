@@ -1,20 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Court from '../components/Court.astro';
-import WeekSection from '../components/WeekSection.astro';
-import TeamSummary from '../components/TeamSummary.astro';
-import { p } from '../lib/putanja';
+import UtakmiceSadrzaj from '../components/stranice/UtakmiceSadrzaj.astro';
+import EkipeSadrzaj from '../components/stranice/EkipeSadrzaj.astro';
+import NatjecanjaSadrzaj from '../components/stranice/NatjecanjaSadrzaj.astro';
+import OKlubuSadrzaj from '../components/stranice/OKlubuSadrzaj.astro';
+import UpravaSadrzaj from '../components/stranice/UpravaSadrzaj.astro';
+import KontaktSadrzaj from '../components/stranice/KontaktSadrzaj.astro';
 import { klub } from '../data/klub';
-import { ekipe } from '../data/ekipe';
-import { competitionFor, competitionShortName, groupByWeek, isWeekend, matchDatesOf, results, snapshot, upcoming } from '../lib/data';
-import { formatRange, formatRangeShort, formatStamp, formatWhenFull } from '../lib/format';
+import { competitionFor, competitionShortName, upcoming } from '../lib/data';
+import { formatRange, formatWhenFull } from '../lib/format';
 
 const sljedeca = upcoming[0];
 const sljedecaLiga = sljedeca ? competitionFor(sljedeca.competitionId) : undefined;
 const sljedecaDomaca = sljedeca ? sljedeca.clubTeams.includes(sljedeca.home) : false;
-const [prviTjedan, ...kasnijiTjedni] = groupByWeek(upcoming);
-const datumiTjedna = prviTjedan ? matchDatesOf(prviTjedan.matches) : [];
-const zadnjiRezultati = results.slice(0, 6);
+
+// Naslovnica redom prikazuje sadržaj svih stranica; izbornik na njoj skače na ove dijelove (id).
+const dijelovi = [
+  { id: 'utakmice', naslov: 'Utakmice', podnaslov: 'Idući tjedni i zadnji rezultati svih ekipa kluba', Sadrzaj: UtakmiceSadrzaj, svojstva: { skraceno: true } },
+  { id: 'ekipe', naslov: 'Ekipe', podnaslov: `Sezona ${klub.sezona}: seniorke, kadetkinje, mlađe kadetkinje, mala odbojka U13 i mini odbojka U11`, Sadrzaj: EkipeSadrzaj },
+  { id: 'natjecanja', naslov: 'Natjecanja', podnaslov: 'Lige u kojima ove sezone nastupaju ekipe kluba, s poretkom', Sadrzaj: NatjecanjaSadrzaj },
+  { id: 'o-klubu', naslov: 'O klubu', podnaslov: `Odbojkaški klub Štrigova, osnovan ${klub.osnovan}`, Sadrzaj: OKlubuSadrzaj },
+  { id: 'uprava', naslov: 'Uprava', podnaslov: 'Tko vodi klub i kamo želimo ići', Sadrzaj: UpravaSadrzaj },
+];
 ---
 
 <Layout>
@@ -28,8 +36,8 @@ const zadnjiRezultati = results.slice(0, 6);
           škole Štrigova, a vikendima nas gledate u 3. HOL Sjever i 4. HOL Međimurje.
         </p>
         <div class="hero-akcije">
-          <a class="btn btn-primary" href={p('/kontakt#upisi')}>Dođi na trening</a>
-          <a class="btn btn-outline" href={p('/utakmice')}>Raspored i rezultati</a>
+          <a class="btn btn-primary" href="#upisi">Dođi na trening</a>
+          <a class="btn btn-outline" href="#utakmice">Raspored i rezultati</a>
         </div>
       </div>
       <aside class="sljedeca" aria-labelledby="sljedeca-naslov">
@@ -58,72 +66,19 @@ const zadnjiRezultati = results.slice(0, 6);
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      {
-        prviTjedan ? (
-          <WeekSection
-            title={isWeekend(datumiTjedna) ? 'Utakmice vikenda' : 'Utakmice tjedna'}
-            dates={formatRangeShort(datumiTjedna)}
-            matches={prviTjedan.matches}
-            showTeam
-          />
-        ) : (
-          <p class="muted">Trenutno nema zakazanih utakmica.</p>
-        )
-      }
-      {
-        kasnijiTjedni.slice(0, 1).map((w) => (
-          <WeekSection title="Sljedeći tjedan" dates={formatRange([w.start, w.end])} matches={w.matches} showTeam />
-        ))
-      }
-      <p><a href={p('/utakmice')}>Sve utakmice i kalendar za mobitel</a></p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Zadnji rezultati</h2>
-        <a href={p('/natjecanja')}>Tablice svih liga</a>
+  {
+    dijelovi.map(({ id, naslov, podnaslov, Sadrzaj, svojstva }) => (
+      <div class="dio" id={id}>
+        <header class="page-head dio-glava">
+          <div class="wrap">
+            <h2>{naslov}</h2>
+            <p>{podnaslov}</p>
+          </div>
+        </header>
+        <Sadrzaj {...svojstva} />
       </div>
-      <WeekSection title="" matches={zadnjiRezultati} showTeam />
-      <p class="muted small">
-        Podaci sa stranica saveza, osvježeno {formatStamp(snapshot.generatedAt)}. Osvježavaju se četiri puta dnevno.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap grid-2 klub">
-      <div>
-        <h2>Klub iz Štrigove, za cijelo gornje Međimurje</h2>
-        <p>
-          Odbojkaški klub Štrigova osnovan je {klub.osnovan} u Štrigovi, općini na krajnjem
-          sjeverozapadu Međimurja, uz slovensku granicu. Danas okuplja pet ženskih ekipa:
-          seniorke, kadetkinje, mlađe kadetkinje te najmlađe u maloj (U13) i mini odbojci (U11).
-        </p>
-        <p>
-          Prva ekipa igra 3. hrvatsku odbojkašku ligu Sjever, a kadetkinje i mlađe kadetkinje županijsku 4. HOL
-          Međimurje. Domaće utakmice igramo u dvorani Osnovne škole Štrigova.
-        </p>
-        <p><a href={p('/o-klubu')}>Više o klubu i njegovoj povijesti</a></p>
-      </div>
-      <div class="klub-grb">
-        <img src={p('/logo.png')} alt="Grb Odbojkaškog kluba Štrigova" width="343" height="311" />
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Pet ekipa, jedna dvorana</h2>
-        <a href={p('/ekipe')}>Sve o ekipama</a>
-      </div>
-      <ol class="ekipe-lista">{ekipe.map((e) => <TeamSummary ekipa={e} />)}</ol>
-    </div>
-  </section>
+    ))
+  }
 
   <section class="upisi">
     <div class="wrap grid-2">
@@ -135,13 +90,23 @@ const zadnjiRezultati = results.slice(0, 6);
         </p>
       </div>
       <div class="upisi-akcije">
-        <a class="btn btn-primary" href={p('/kontakt#upisi')}>Kako se upisati</a>
+        <a class="btn btn-primary" href="#upisi">Kako se upisati</a>
         <p>
           {klub.upisi.ime}, <a href={klub.upisi.telefonHref}>{klub.upisi.telefon}</a>
         </p>
       </div>
     </div>
   </section>
+
+  <div class="dio" id="kontakt">
+    <header class="page-head dio-glava">
+      <div class="wrap">
+        <h2>Kontakt</h2>
+        <p>Javite se telefonom ili dođite u dvoranu na trening</p>
+      </div>
+    </header>
+    <KontaktSadrzaj />
+  </div>
 </Layout>
 
 <style>
@@ -272,25 +237,14 @@ const zadnjiRezultati = results.slice(0, 6);
     }
   }
 
-  .klub {
-    align-items: center;
-  }
-
-  .klub-grb {
-    display: flex;
-    justify-content: center;
-  }
-
-  .klub-grb img {
-    width: min(100%, 300px);
-    height: auto;
-  }
-
-  .ekipe-lista {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid var(--crta);
+  /* Naslov svakog dijela izgleda kao zaglavlje zasebne stranice. */
+  .dio-glava h2 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    font-stretch: 90%;
+    line-height: 1;
+    color: var(--bijela);
+    margin-bottom: 0.3em;
   }
 
   .upisi {

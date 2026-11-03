@@ -1,0 +1,145 @@
+---
+// Sadržaj stranice Uprava; koristi ga i naslovnica.
+import { p } from '../../lib/putanja';
+import { uprava } from '../../data/uprava';
+
+const odlomci = (tekst: string) => tekst.split(/\n\s*\n/).map((o) => o.trim()).filter(Boolean);
+---
+
+<section class="section">
+  <div class="wrap">
+    <ol class="uprava">
+      {
+        uprava.map((o) => (
+          <li class="osoba">
+            <div class="osoba-slika">
+              {o.fotografija ? (
+                <img src={p(o.fotografija)} alt={o.ime} loading="lazy" />
+              ) : (
+                <div class="osoba-slika-prazno">
+                  <img src={p(o.slika)} alt="" width="120" height="120" />
+                  <span>Fotografija uskoro</span>
+                </div>
+              )}
+            </div>
+            <div class="osoba-tekst">
+              <p class="osoba-uloga">{o.uloga}</p>
+              <h2>{o.ime}</h2>
+              {o.tekst ? (
+                <div class="osoba-misli">
+                  {odlomci(o.tekst).map((odlomak) => (
+                    <p>{odlomak}</p>
+                  ))}
+                </div>
+              ) : (
+                <p class="osoba-uskoro">Uskoro ovdje: ciljevi i viđenje kluba.</p>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .uprava {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .osoba {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+  }
+
+  /* Svaka druga osoba ima sliku desno, da stranica ne bude jednolična; stupac slike ostaje iste širine. */
+  .osoba:nth-child(even) {
+    grid-template-columns: 1fr minmax(200px, 300px);
+  }
+
+  .osoba:nth-child(even) .osoba-slika {
+    order: 2;
+  }
+
+  .osoba-slika img,
+  .osoba-slika-prazno {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .osoba-slika-prazno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--modra-svijetla);
+    border: 2px dashed var(--crta);
+    color: var(--siva);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .osoba-slika-prazno img {
+    width: 120px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+
+  .osoba-tekst {
+    border-left: 4px solid var(--narancasta);
+    padding-left: clamp(1rem, 3vw, 2rem);
+  }
+
+  .osoba-uloga {
+    margin: 0 0 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--narancasta-tamna);
+  }
+
+  .osoba-tekst h2 {
+    margin-bottom: 1rem;
+  }
+
+  .osoba-misli p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .osoba-misli p:last-child {
+    margin-bottom: 0;
+  }
+
+  .osoba-uskoro {
+    margin: 0;
+    color: var(--siva);
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .osoba,
+    .osoba:nth-child(even) {
+      grid-template-columns: 1fr;
+    }
+
+    .osoba:nth-child(even) .osoba-slika {
+      order: 0;
+    }
+
+    .osoba-slika {
+      max-width: 280px;
+    }
+  }
+</style>
