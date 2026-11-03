@@ -22,9 +22,6 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
 
 <div class="gornja-traka">
   <div class="wrap gornja-traka-red">
-    <p class="gornja-traka-telefon">
-      <span class="gornja-traka-oznaka">Upisi i informacije: </span><a href={klub.telefonHref}>{klub.telefon}</a>
-    </p>
     <div class="gornja-traka-mreze">
       <span>Pratite nas</span>
       <Mreze samoIkone />
@@ -154,7 +151,7 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
   .gornja-traka-red {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 0.5rem 1rem;
     min-height: 40px;
   }
@@ -165,10 +162,6 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
 
   .gornja-traka a:hover {
     color: var(--zuta);
-  }
-
-  .gornja-traka-telefon {
-    margin: 0;
   }
 
   .gornja-traka-mreze {
@@ -345,10 +338,6 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
 
     .brand img {
       width: 44px;
-    }
-
-    .gornja-traka-oznaka {
-      display: none;
     }
   }
 </style>
