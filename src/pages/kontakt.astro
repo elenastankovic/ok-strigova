@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { klub } from '../data/klub';
+import Mreze from '../components/Mreze.astro';
 ---
 
 <Layout title="Kontakt" opis="Kontakt, adresa dvorane i upisi u Odbojkaški klub Štrigova.">
@@ -36,6 +37,11 @@ import { klub } from '../data/klub';
           {klub.dvorana.adresa}
         </address>
         <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
+      </div>
+      <div class="kontakt-blok">
+        <h3>Pratite nas</h3>
+        <p class="small muted">Novosti, fotografije s utakmica i obavijesti o treninzima.</p>
+        <Mreze />
       </div>
     </div>
   </section>

@@ -3,6 +3,7 @@ import { p } from '../lib/putanja';
 import { klub } from '../data/klub';
 import { snapshot } from '../lib/data';
 import { formatStamp } from '../lib/format';
+import Mreze from './Mreze.astro';
 const godina = new Date().getFullYear();
 ---
 
@@ -31,6 +32,8 @@ const godina = new Date().getFullYear();
         {klub.kontaktOsoba}<br />
         <a href={klub.telefonHref}>{klub.telefon}</a>
       </p>
+      <h3>Pratite nas</h3>
+      <Mreze class="podnozje-mreze" />
       <h3>Tablice i rasporedi</h3>
       <ul>
         <li><a href={klub.savezi.osvz.url} rel="noopener">{klub.savezi.osvz.naziv}</a></li>
@@ -88,6 +91,18 @@ const godina = new Date().getFullYear();
 
   .podnozje li {
     margin-bottom: 0.3rem;
+  }
+
+  .podnozje :global(.podnozje-mreze) {
+    margin-bottom: 1.4rem;
+  }
+
+  .podnozje :global(.podnozje-mreze a) {
+    color: var(--bijela);
+  }
+
+  .podnozje :global(.podnozje-mreze a:hover) {
+    color: var(--zuta);
   }
 
   .podnozje-logo {

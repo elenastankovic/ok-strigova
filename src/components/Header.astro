@@ -1,6 +1,7 @@
 ---
 import { klub } from '../data/klub';
 import { p, bezKoseCrte } from '../lib/putanja';
+import Mreze from './Mreze.astro';
 
 const put = bezKoseCrte(Astro.url.pathname);
 const stavke = [
@@ -13,6 +14,18 @@ const stavke = [
   { href: '/kontakt', tekst: 'Kontakt' },
 ];
 ---
+
+<div class="gornja-traka">
+  <div class="wrap gornja-traka-red">
+    <p class="gornja-traka-telefon">
+      <span class="gornja-traka-oznaka">Upisi i informacije: </span><a href={klub.telefonHref}>{klub.telefon}</a>
+    </p>
+    <div class="gornja-traka-mreze">
+      <span>Pratite nas</span>
+      <Mreze samoIkone />
+    </div>
+  </div>
+</div>
 
 <header class="zaglavlje">
   <div class="wrap zaglavlje-red">
@@ -92,6 +105,54 @@ const stavke = [
     flex-wrap: wrap;
     min-height: 76px;
     padding-block: 0.6rem;
+  }
+
+  .gornja-traka {
+    background: var(--modra-tamna);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.85rem;
+  }
+
+  .gornja-traka-red {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    min-height: 40px;
+  }
+
+  .gornja-traka a {
+    color: var(--bijela);
+  }
+
+  .gornja-traka a:hover {
+    color: var(--zuta);
+  }
+
+  .gornja-traka-telefon {
+    margin: 0;
+  }
+
+  .gornja-traka-mreze {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .gornja-traka-mreze > span {
+    font-weight: 600;
+  }
+
+  .gornja-traka :global(.mreze-ikone a) {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--bijela);
+  }
+
+  .gornja-traka :global(.mreze-ikone a:hover) {
+    background: var(--narancasta);
+    color: var(--modra-tamna);
   }
 
   .brand {
@@ -244,6 +305,10 @@ const stavke = [
 
     .brand img {
       width: 44px;
+    }
+
+    .gornja-traka-oznaka {
+      display: none;
     }
   }
 </style>

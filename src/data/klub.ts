@@ -17,6 +17,10 @@ export const klub = {
     adresa: 'Štrigova 126a, 40312 Štrigova',
     karta: 'https://www.openstreetmap.org/search?query=%C5%A0trigova%20126a',
   },
+  mreze: {
+    instagram: { naziv: 'Instagram', korisnik: '@ok.strigova', url: 'https://www.instagram.com/ok.strigova/' },
+    facebook: { naziv: 'Facebook', korisnik: 'ok.strigova', url: 'https://www.facebook.com/ok.strigova' },
+  },
   sezona: '2026./27.',
   azurirano: '2. studenog 2026.',
   savezi: {
