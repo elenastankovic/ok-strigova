@@ -6,9 +6,17 @@ import snapshotJson from '../../data/snapshot.json';
 export type { Competition, CompetitionGroup, Match, StandingRow, Team };
 
 export const snapshot = snapshotJson as unknown as Snapshot;
-export const competitions: Competition[] = snapshot.competitions;
-export const teams: Team[] = snapshot.teams;
-export const matches: Match[] = snapshot.matches;
+
+/** Natjecanja koja ne prikazujemo na stranici iako ih scraper pronađe (npr. memorijalni turnir Sova). */
+const hiddenCompetition = /Željko Sović/iu;
+const hiddenIds = new Set(snapshot.competitions.filter((c) => hiddenCompetition.test(c.name)).map((c) => c.id));
+
+export const competitions: Competition[] = snapshot.competitions.filter((c) => !hiddenIds.has(c.id));
+export const teams: Team[] = snapshot.teams.map((t) => ({
+  ...t,
+  competitionIds: t.competitionIds.filter((id) => !hiddenIds.has(id)),
+}));
+export const matches: Match[] = snapshot.matches.filter((m) => !hiddenIds.has(m.competitionId));
 
 export const competitionsById = new Map(competitions.map((c) => [c.id, c] as const));
 export const teamsBySlug = new Map(teams.map((t) => [t.slug, t] as const));
