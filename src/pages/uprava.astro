@@ -67,7 +67,11 @@ const odlomci = (tekst: string) => tekst.split(/\n\s*\n/).map((o) => o.trim()).f
     align-items: center;
   }
 
-  /* Svaka druga osoba ima sliku desno, da stranica ne bude jednolična. */
+  /* Svaka druga osoba ima sliku desno, da stranica ne bude jednolična; stupac slike ostaje iste širine. */
+  .osoba:nth-child(even) {
+    grid-template-columns: 1fr minmax(200px, 300px);
+  }
+
   .osoba:nth-child(even) .osoba-slika {
     order: 2;
   }
@@ -134,7 +138,8 @@ const odlomci = (tekst: string) => tekst.split(/\n\s*\n/).map((o) => o.trim()).f
   }
 
   @media (max-width: 640px) {
-    .osoba {
+    .osoba,
+    .osoba:nth-child(even) {
       grid-template-columns: 1fr;
     }
 
