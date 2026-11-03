@@ -19,6 +19,8 @@
   --ton-3-jaka: #2e9e63;
   --ton-4: #fbe08a;
   --ton-4-jaka: #f2b705;
+  --ton-5: #d8c8f6;
+  --ton-5-jaka: #8a63d2;
   --font: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
   --max: 1120px;
   --gutter: clamp(16px, 4vw, 40px);
@@ -316,6 +318,11 @@ table.tablica tr.istaknuto td:first-child {
 .ton-4 {
   --ton: var(--ton-4);
   --ton-jaka: var(--ton-4-jaka);
+}
+
+.ton-5 {
+  --ton: var(--ton-5);
+  --ton-jaka: var(--ton-5-jaka);
 }
 
 table.tablica tr.istaknuto[class*='ton-'] td {

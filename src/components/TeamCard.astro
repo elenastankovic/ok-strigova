@@ -17,6 +17,9 @@ const stanje = standing
   ? `${plural(standing.row.points, 'bod', 'boda', 'bodova')} iz ${plural(standing.row.played, 'utakmice', 'utakmice', 'utakmica')}, ${plural(standing.row.won, 'pobjeda', 'pobjede', 'pobjeda')} i ${plural(standing.row.lost, 'poraz', 'poraza', 'poraza')}`
   : null;
 const href = team ? p(`/ekipe/${team.slug}`) : null;
+// Ekipe bez natjecanja na stranicama saveza nemaju boju iz podataka: juniorke ljubičasta, U11 (mini odbojka) žuta.
+const bojaBezNatjecanja: Record<string, string> = { juniorke: 'ton-5', u11: 'ton-4' };
+const ton = teamTone(team) ?? leagueTone(team) ?? bojaBezNatjecanja[e.slug];
 
 /** "091 730 1905" → "tel:+385917301905" */
 const telHref = (broj: string) => {
@@ -25,7 +28,7 @@ const telHref = (broj: string) => {
 };
 ---
 
-<li class:list={['ekipa-kartica', teamTone(team) ?? leagueTone(team), { prva: e.prva }]}>
+<li class:list={['ekipa-kartica', ton, { prva: e.prva }]}>
   <header class="e-glava">
     <h2>{href ? <a href={href}>{e.naziv}</a> : e.naziv}</h2>
     <p class="e-kategorija">{e.kategorija}</p>
