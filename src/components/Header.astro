@@ -15,9 +15,12 @@ const stavke = [
   { href: '/o-klubu', dio: 'o-klubu', tekst: 'O klubu' },
   { href: '/uprava', dio: 'uprava', tekst: 'Uprava' },
   { href: '/kontakt', dio: 'kontakt', tekst: 'Kontakt' },
+  { href: '/kontakt#upisi', dio: 'upisi', tekst: 'Upisi', istaknuto: true },
 ];
 const poveznica = (s: (typeof stavke)[number]) => (naslovnica ? `#${s.dio}` : p(s.href));
-const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : put === bezKoseCrte(p(s.href)));
+// Upisi vode na dio stranice Kontakt, pa se nikad ne označavaju kao trenutna stranica.
+const trenutna = (s: (typeof stavke)[number]) =>
+  !s.istaknuto && (naslovnica ? s.dio === '' : put === bezKoseCrte(p(s.href)));
 ---
 
 <div class="gornja-traka">
@@ -47,7 +50,12 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
         {
           stavke.map((s) => (
             <li>
-              <a href={poveznica(s)} data-dio={s.dio} aria-current={trenutna(s) ? 'page' : undefined}>
+              <a
+                href={poveznica(s)}
+                data-dio={s.istaknuto ? undefined : s.dio}
+                class:list={{ 'nav-upisi': s.istaknuto }}
+                aria-current={trenutna(s) ? 'page' : undefined}
+              >
                 {s.tekst}
               </a>
             </li>
@@ -242,6 +250,18 @@ const trenutna = (s: (typeof stavke)[number]) => (naslovnica ? s.dio === '' : pu
 
   nav a[aria-current='page'] {
     background: var(--modra);
+    color: var(--bijela);
+  }
+
+  /* Upisi su istaknuti narančastim gumbom, u boji grba. */
+  nav a.nav-upisi {
+    background: var(--narancasta);
+    color: var(--modra-tamna);
+    margin-left: 0.25rem;
+  }
+
+  nav a.nav-upisi:hover {
+    background: var(--modra-tamna);
     color: var(--bijela);
   }
 

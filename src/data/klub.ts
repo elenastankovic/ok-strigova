@@ -27,7 +27,7 @@ export const klub = {
     { ekipa: 'Mini odbojka', dani: [2, 5], od: '18:30', do: '19:30', ton: 'ton-5' },
   ],
   /** Kontakt za upise na naslovnici. */
-  upisi: { ime: 'Elena Stanković', telefon: '091 930 0666', telefonHref: 'tel:+385919300666' },
+  upisi: { ime: 'Elena Stanković', uloga: 'trenerica', telefon: '091 930 0666', telefonHref: 'tel:+385919300666' },
   dvorana: {
     naziv: 'Dvorana OŠ Štrigova',
     adresa: 'Štrigova 126a, 40312 Štrigova',
