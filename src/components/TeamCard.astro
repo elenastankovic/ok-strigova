@@ -13,9 +13,7 @@ const standing = team ? primaryStanding(team) : null;
 const natjecanje = standing
   ? competitionShortName(standing.competition) + (standing.group.name ? `, skupina ${standing.group.name}` : '')
   : (e.natjecanje ?? 'Natjecanje još nije objavljeno');
-const stanje = standing
-  ? `${plural(standing.row.points, 'bod', 'boda', 'bodova')} iz ${plural(standing.row.played, 'utakmice', 'utakmice', 'utakmica')}, ${plural(standing.row.won, 'pobjeda', 'pobjede', 'pobjeda')} i ${plural(standing.row.lost, 'poraz', 'poraza', 'poraza')}`
-  : null;
+const bodovi = standing ? plural(standing.row.points, 'bod', 'boda', 'bodova') : null;
 const href = team ? p(`/ekipe/${team.slug}`) : null;
 // Mini odbojka (U11) nema natjecanje na stranicama saveza, pa boju (breskva, uz narančastu iz grba) dobiva ovdje.
 const ton = teamTone(team) ?? leagueTone(team) ?? (e.slug === 'u11' ? 'ton-5' : undefined);
@@ -34,34 +32,30 @@ const telHref = (broj: string) => {
     <p class="e-liga">{natjecanje}</p>
   </header>
 
-  {
-    e.fotografija ? (
-      <img class="e-foto" src={p(e.fotografija)} alt={`${e.naziv}, ${e.kategorija}`} loading="lazy" />
-    ) : (
-      <div class="e-foto e-foto-prazno" aria-hidden="true">
-        <span>Fotografija ekipe uskoro</span>
-      </div>
-    )
-  }
+  <div class="e-slika">
+    {
+      e.fotografija ? (
+        <img class="e-foto" src={p(e.fotografija)} alt={`${e.naziv}, ${e.kategorija}`} loading="lazy" />
+      ) : (
+        <div class="e-foto e-foto-prazno" aria-hidden="true">
+          <span>Fotografija ekipe uskoro</span>
+        </div>
+      )
+    }
+    {
+      standing && (
+        <p class="e-znacka">
+          <small>Trenutno</small>
+          <strong>{standing.row.rank}. mjesto</strong>
+          <span>
+            od {standing.group.standings.length} · {bodovi}
+          </span>
+        </p>
+      )
+    }
+  </div>
 
   <dl class="e-podaci">
-    <div>
-      <dt>Poredak</dt>
-      <dd>
-        {
-          standing ? (
-            <>
-              <span class="e-mjesto">
-                {standing.row.rank}. od {standing.group.standings.length}
-              </span>
-              <span class="e-bilanca">{stanje}</span>
-            </>
-          ) : (
-            <span class="muted">{team ? 'Natjecanje nema tablicu poretka' : 'Čeka početak natjecanja'}</span>
-          )
-        }
-      </dd>
-    </div>
     <div>
       <dt>Trener</dt>
       <dd>
@@ -132,13 +126,50 @@ const telHref = (broj: string) => {
     color: var(--modra);
   }
 
+  .e-slika {
+    position: relative;
+    margin: 1rem 0;
+  }
+
   .e-foto {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius);
-    margin: 1rem 0;
+  }
+
+  .e-znacka {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    margin: 0;
+    padding: 0.35rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius);
+    background: var(--bijela);
+    box-shadow:
+      0 2px 10px rgba(16, 33, 58, 0.15),
+      inset 4px 0 0 var(--ton-jaka, var(--modra));
+    line-height: 1.15;
+  }
+
+  .e-znacka small {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--siva);
+  }
+
+  .e-znacka strong {
+    color: var(--modra-tamna);
+  }
+
+  .e-znacka span {
+    font-size: 0.75rem;
+    color: var(--siva);
   }
 
   .e-foto-prazno {
@@ -172,19 +203,6 @@ const telHref = (broj: string) => {
     margin: 0;
     display: flex;
     flex-direction: column;
-  }
-
-  .e-mjesto {
-    color: var(--modra);
-    font-weight: 800;
-    font-size: 1.25rem;
-    font-stretch: 92%;
-    line-height: 1.2;
-  }
-
-  .e-bilanca {
-    color: var(--siva);
-    font-size: 0.85rem;
   }
 
   .e-trener {
