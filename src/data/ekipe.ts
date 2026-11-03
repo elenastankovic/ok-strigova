@@ -1,7 +1,7 @@
 // Ekipe kluba u sezoni 2026./27. Redoslijed ovdje je redoslijed na stranici.
 // Poredak, rezultati i raspored dolaze iz data/snapshot.json (scraper); ovdje su
 // samo opisi i veza na ekipu u snapshotu (snapshotSlug). Ekipe bez natjecanja na
-// stranicama saveza (npr. juniorke) imaju samo opis.
+// stranicama saveza imaju samo opis i natjecanje upisano ručno.
 //
 // Fotografija: stavite datoteku u public/slike (npr. 'public/slike/ekipa-seniorke.jpg')
 // i upišite fotografija: '/slike/ekipa-seniorke.jpg'. Trener: trener: { ime: 'Ana Horvat', telefon: '091 123 4567' }.
@@ -42,6 +42,7 @@ export const ekipe: Ekipa[] = [
     snapshotSlug: 'ok-strigova-2',
     organizator: 'Odbojkaški savez Međimurske županije',
     opis: 'Druga seniorska ekipa igra županijsku ligu, 22 kola od listopada do travnja.',
+    trener: { ime: 'Elena Stanković', telefon: '091 930 0666' },
   },
   {
     slug: 'strigova-3',
@@ -50,14 +51,7 @@ export const ekipe: Ekipa[] = [
     snapshotSlug: 'ok-strigova-3',
     organizator: 'Odbojkaški savez Međimurske županije',
     opis: 'Treća seniorska ekipa igra istu ligu kao i druga, pa se dvije ekipe kluba u sezoni sretnu i međusobno.',
-  },
-  {
-    slug: 'juniorke',
-    naziv: 'OK Štrigova',
-    kategorija: 'Juniorke',
-    natjecanje: 'Natjecanje za sezonu 2026./27. još nije objavljeno',
-    organizator: 'Odbojkaški savez Međimurske županije',
-    opis: 'Juniorska ekipa prijavljena je pri županijskom savezu. Čim savez objavi natjecanje, raspored će se sam pojaviti ovdje.',
+    trener: { ime: 'Ana Semenič', telefon: '095 889 4445' },
   },
   {
     slug: 'u13',
@@ -70,9 +64,10 @@ export const ekipe: Ekipa[] = [
   {
     slug: 'u11',
     naziv: 'OK Štrigova',
-    kategorija: 'Najmlađe kadetkinje U11',
+    kategorija: 'Mini odbojka U11',
     natjecanje: 'Prvenstvo Međimurja u mini odbojci',
     organizator: 'Odbojkaški savez Međimurske županije',
     opis: 'Najmlađa skupina kluba. Mini odbojka je prvi korak: manji teren, lakša lopta i puno igre. Nove djevojčice mogu se priključiti tijekom cijele sezone.',
+    trener: { ime: 'Ana Šinko', telefon: '098 135 4350' },
   },
 ];

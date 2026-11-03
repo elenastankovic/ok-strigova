@@ -6,5 +6,5 @@ export const povijest = [
   { godina: '2020.', tekst: 'U Drugoj ligi od 13 klubova seniorke završavaju prvi dio sezone na šestom mjestu.' },
   { godina: '2024.', tekst: 'Najbolja sezona dosad: seniorke završavaju skupinu Sjever 2. lige na prvom mjestu, s 8 pobjeda u 10 utakmica i omjerom setova 27:8.' },
   { godina: '2025.', tekst: 'Seniorke igraju 3. HOL Sjever, skupinu Sjever, i sezonu 2024./25. završavaju na 8. mjestu od 10 ekipa.' },
-  { godina: '2026.', tekst: 'Sedamnaest godina nakon osnutka klub ima šest ekipa: prva igra 3. HOL Sjever, druga i treća 4. HOL Međimurje, juniorke čekaju objavu natjecanja, a najmlađe igraju prvenstva Međimurja u maloj i mini odbojci.' },
+  { godina: '2026.', tekst: 'Sedamnaest godina nakon osnutka klub ima pet ekipa: prva igra 3. HOL Sjever, druga i treća 4. HOL Međimurje, a najmlađe igraju prvenstva Međimurja u maloj i mini odbojci.' },
 ];
