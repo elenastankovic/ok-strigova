@@ -12,6 +12,10 @@ export const klub = {
   telefon: '091 730 1905',
   telefonHref: 'tel:+385917301905',
   kontaktOsoba: 'Siniša Stanković',
+  kontaktOsobe: [
+    { uloga: 'Tajnik', ime: 'Siniša Stanković', telefon: '091 730 1905', telefonHref: 'tel:+385917301905' },
+    { uloga: 'Trenerica', ime: 'Elena Stanković', telefon: '091 930 0666', telefonHref: 'tel:+385919300666' },
+  ],
   dvorana: {
     naziv: 'Dvorana OŠ Štrigova',
     adresa: 'Štrigova 126a, 40312 Štrigova',
