@@ -3,6 +3,44 @@ import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
 import { klub } from '../data/klub';
 import { povijest } from '../data/povijest';
+
+// Najveći uspjesi kluba. Fotografiju stavite u public/slike i upišite putanju u polje slika;
+// dok je nema, prikazuje se prazno mjesto s natpisom "Fotografija uskoro".
+type Uspjeh = {
+  oznaka: string;
+  naslov: string;
+  tekst: string;
+  slika?: { src: string; alt: string; sirina: number; visina: number };
+  poveznica?: { href: string; tekst: string };
+};
+
+const uspjesi: Uspjeh[] = [
+  {
+    oznaka: 'Svibanj 2024.',
+    naslov: 'Kup Međimurja je naš',
+    tekst:
+      'U finalu pred prepunim tribinama dvorane u Štrigovi OK Štrigova pobijedila je OK Nedelišće Elting 3:1 (25:22, 25:18, 13:25, 25:23). Prvi put u povijesti kluba pehar ovog natjecanja završio je u rukama naših odbojkašica.',
+    slika: {
+      src: '/slike/kup-medimurja-2024.webp',
+      alt: 'Odbojkašice i treneri OK Štrigova slave s peharom Kupa Međimurja u dvorani u Štrigovi',
+      sirina: 838,
+      visina: 838,
+    },
+    poveznica: { href: 'https://www.instagram.com/p/C7KU_VkKvL1/', tekst: 'Objava na Instagramu' },
+  },
+  {
+    oznaka: 'Sezona 2023./24.',
+    naslov: 'Prvo mjesto u 2. ligi',
+    tekst:
+      'Seniorke su skupinu Sjever 2. lige završile na prvom mjestu, s 8 pobjeda u 10 utakmica i omjerom setova 27:8. Do tada najbolja sezona u povijesti kluba.',
+    slika: {
+      src: '/slike/prvo-mjesto-2-liga-2024.jpg',
+      alt: 'Odbojkašice OK Štrigova raspoložene na terenu dvorane nakon utakmice',
+      sirina: 1200,
+      visina: 818,
+    },
+  },
+];
 ---
 
 <Layout title="O klubu" opis={`Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog ${klub.godinaOsnutka}. u Međimurju.`}>
@@ -44,26 +82,32 @@ import { povijest } from '../data/povijest';
   </section>
 
   <section class="section">
-    <div class="wrap">
-      <figure class="kup">
-        <img
-          src={p('/slike/kup-medimurja-2024.webp')}
-          alt="Odbojkašice i treneri OK Štrigova slave s peharom Kupa Međimurja u dvorani u Štrigovi"
-          width="838"
-          height="838"
-          loading="lazy"
-        />
-        <figcaption>
-          <p class="kup-oznaka">Svibanj 2024.</p>
-          <h2>Kup Međimurja je naš</h2>
-          <p>
-            U finalu pred prepunim tribinama dvorane u Štrigovi OK Štrigova pobijedila je OK Nedelišće
-            Elting 3:1 (25:22, 25:18, 13:25, 25:23). Prvi put u povijesti kluba pehar ovog natjecanja
-            završio je u rukama naših odbojkašica.
-          </p>
-          <p><a href="https://www.instagram.com/p/C7KU_VkKvL1/" rel="noopener" target="_blank">Objava na Instagramu</a></p>
-        </figcaption>
-      </figure>
+    <div class="wrap uspjesi">
+      {
+        uspjesi.map((u) => (
+          <figure class="kup">
+            {u.slika ? (
+              <img src={p(u.slika.src)} alt={u.slika.alt} width={u.slika.sirina} height={u.slika.visina} loading="lazy" />
+            ) : (
+              <div class="kup-prazno" aria-hidden="true">
+                Fotografija uskoro
+              </div>
+            )}
+            <figcaption>
+              <p class="kup-oznaka">{u.oznaka}</p>
+              <h2>{u.naslov}</h2>
+              <p>{u.tekst}</p>
+              {u.poveznica && (
+                <p>
+                  <a href={u.poveznica.href} rel="noopener" target="_blank">
+                    {u.poveznica.tekst}
+                  </a>
+                </p>
+              )}
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
   </section>
 
@@ -137,10 +181,35 @@ import { povijest } from '../data/povijest';
     padding: clamp(1rem, 3vw, 1.75rem);
   }
 
+  .uspjesi {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  /* Svaki drugi uspjeh ima sliku desno. */
+  .kup:nth-child(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+
+  .kup:nth-child(even) > :first-child {
+    order: 2;
+  }
+
   .kup img {
     width: 100%;
     height: auto;
     border-radius: var(--radius);
+  }
+
+  .kup-prazno {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    background: var(--modra-svijetla);
+    border: 2px dashed var(--crta);
+    color: var(--siva);
+    font-weight: 600;
   }
 
   .kup-oznaka {
@@ -157,8 +226,13 @@ import { povijest } from '../data/povijest';
   }
 
   @media (max-width: 760px) {
-    .kup {
+    .kup,
+    .kup:nth-child(even) {
       grid-template-columns: 1fr;
+    }
+
+    .kup:nth-child(even) > :first-child {
+      order: 0;
     }
   }
 
