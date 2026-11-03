@@ -1,5 +1,4 @@
-// Hijerarhija uprave kluba. Imena trenera su zasad predložak ("Ime Prezime"), a slike su
-// template siluete iz public/slike. Za fotografiju stavite datoteku u public/slike
+// Hijerarhija uprave kluba. Slike su zasad template siluete iz public/slike. Za fotografiju stavite datoteku u public/slike
 // (npr. '/slike/ana-horvat.jpg') i upišite je u polje slika.
 export type Osoba = {
   uloga: string;
@@ -51,7 +50,7 @@ export const strucniStozer: Tijelo = {
     { uloga: 'Trener prve ekipe', ime: 'Siniša Stanković', slika: '/slike/osoba-nebo.svg', opis: '3. HOL Sjever' },
     { uloga: 'Trenerica kadetkinja', ime: 'Elena Stanković', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
     { uloga: 'Trenerica mlađih kadetkinja', ime: 'Ana Semenič', slika: '/slike/osoba-nebo.svg', opis: '4. HOL Međimurje' },
-    { uloga: 'Trener U13', ime: 'Ime Prezime', slika: '/slike/osoba-nebo.svg', opis: 'mala odbojka' },
+    { uloga: 'Trenerica U13', ime: 'Emili Puklavec', slika: '/slike/osoba-nebo.svg', opis: 'mala odbojka' },
     { uloga: 'Trenerica mini odbojke', ime: 'Ana Šinko', slika: '/slike/osoba-nebo.svg', opis: 'U11' },
   ],
 };

@@ -60,6 +60,7 @@ export const ekipe: Ekipa[] = [
     snapshotSlug: 'ok-strigova-u13',
     organizator: 'Odbojkaški savez Varaždinske županije i Međimurske županije',
     opis: 'Mala odbojka igra se na manjem terenu, na dva dobivena seta. Kola se igraju nedjeljom kao turniri, pa ekipa odigra više utakmica u jednom danu.',
+    trener: { ime: 'Emili Puklavec', telefon: '095 314 0933' },
   },
   {
     slug: 'u11',
