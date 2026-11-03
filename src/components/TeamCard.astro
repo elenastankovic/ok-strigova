@@ -1,0 +1,201 @@
+---
+import type { Ekipa } from '../data/ekipe';
+import { competitionShortName, leagueTone, plural, primaryStanding, teamsBySlug, teamTone } from '../lib/data';
+import { p } from '../lib/putanja';
+
+interface Props {
+  ekipa: Ekipa;
+}
+
+const { ekipa: e } = Astro.props;
+const team = e.snapshotSlug ? teamsBySlug.get(e.snapshotSlug) : undefined;
+const standing = team ? primaryStanding(team) : null;
+const natjecanje = standing
+  ? competitionShortName(standing.competition) + (standing.group.name ? `, skupina ${standing.group.name}` : '')
+  : (e.natjecanje ?? 'Natjecanje još nije objavljeno');
+const stanje = standing
+  ? `${plural(standing.row.points, 'bod', 'boda', 'bodova')} iz ${plural(standing.row.played, 'utakmice', 'utakmice', 'utakmica')}, ${plural(standing.row.won, 'pobjeda', 'pobjede', 'pobjeda')} i ${plural(standing.row.lost, 'poraz', 'poraza', 'poraza')}`
+  : null;
+const href = team ? p(`/ekipe/${team.slug}`) : null;
+
+/** "091 730 1905" → "tel:+385917301905" */
+const telHref = (broj: string) => {
+  const znamenke = broj.replace(/[^\d+]/g, '');
+  return `tel:${znamenke.startsWith('0') ? '+385' + znamenke.slice(1) : znamenke}`;
+};
+---
+
+<li class:list={['ekipa-kartica', teamTone(team) ?? leagueTone(team), { prva: e.prva }]}>
+  <header class="e-glava">
+    <h2>{href ? <a href={href}>{e.naziv}</a> : e.naziv}</h2>
+    <p class="e-kategorija">{e.kategorija}</p>
+    <p class="e-liga">{natjecanje}</p>
+  </header>
+
+  {
+    e.fotografija ? (
+      <img class="e-foto" src={p(e.fotografija)} alt={`${e.naziv}, ${e.kategorija}`} loading="lazy" />
+    ) : (
+      <div class="e-foto e-foto-prazno" aria-hidden="true">
+        <span>Fotografija ekipe uskoro</span>
+      </div>
+    )
+  }
+
+  <dl class="e-podaci">
+    <div>
+      <dt>Poredak</dt>
+      <dd>
+        {
+          standing ? (
+            <>
+              <span class="e-mjesto">
+                {standing.row.rank}. od {standing.group.standings.length}
+              </span>
+              <span class="e-bilanca">{stanje}</span>
+            </>
+          ) : (
+            <span class="muted">{team ? 'Natjecanje nema tablicu poretka' : 'Čeka početak natjecanja'}</span>
+          )
+        }
+      </dd>
+    </div>
+    <div>
+      <dt>Trener</dt>
+      <dd>
+        {
+          e.trener ? (
+            <>
+              <span class="e-trener">{e.trener.ime}</span>
+              {e.trener.telefon && (
+                <a class="e-telefon" href={telHref(e.trener.telefon)}>
+                  {e.trener.telefon}
+                </a>
+              )}
+            </>
+          ) : (
+            <span class="muted">Ime i kontakt uskoro</span>
+          )
+        }
+      </dd>
+    </div>
+  </dl>
+
+  {href && <a class="e-vise" href={href}>Tablica, raspored i rezultati</a>}
+</li>
+
+<style>
+  .ekipa-kartica {
+    display: flex;
+    flex-direction: column;
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    border-top: 6px solid var(--ton-jaka, var(--modra));
+    border-radius: var(--radius);
+    padding: 1.25rem 1.25rem 1.4rem;
+  }
+
+  .ekipa-kartica.prva {
+    box-shadow: 0 6px 20px rgba(16, 33, 58, 0.08);
+  }
+
+  .e-glava h2 {
+    font-size: 1.45rem;
+    margin: 0;
+  }
+
+  .e-glava h2 a {
+    text-decoration: none;
+  }
+
+  .e-glava h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .e-glava p {
+    margin: 0;
+  }
+
+  .e-kategorija {
+    color: var(--siva);
+    font-size: 0.95rem;
+  }
+
+  .e-liga {
+    margin-top: 0.5rem !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--modra);
+  }
+
+  .e-foto {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin: 1rem 0;
+  }
+
+  .e-foto-prazno {
+    display: grid;
+    place-items: center;
+    background: var(--ton, var(--modra-svijetla));
+    color: var(--modra);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .e-podaci {
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .e-podaci div {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.75rem;
+  }
+
+  .e-podaci dt {
+    color: var(--siva);
+    font-size: 0.85rem;
+    padding-top: 0.15rem;
+  }
+
+  .e-podaci dd {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .e-mjesto {
+    color: var(--modra);
+    font-weight: 800;
+    font-size: 1.25rem;
+    font-stretch: 92%;
+    line-height: 1.2;
+  }
+
+  .e-bilanca {
+    color: var(--siva);
+    font-size: 0.85rem;
+  }
+
+  .e-trener {
+    font-weight: 700;
+  }
+
+  .e-telefon {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .e-vise {
+    margin-top: auto;
+    font-weight: 600;
+  }
+</style>

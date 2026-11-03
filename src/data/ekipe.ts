@@ -2,6 +2,14 @@
 // Poredak, rezultati i raspored dolaze iz data/snapshot.json (scraper); ovdje su
 // samo opisi i veza na ekipu u snapshotu (snapshotSlug). Ekipe bez natjecanja na
 // stranicama saveza (npr. juniorke) imaju samo opis.
+//
+// Fotografija: stavite datoteku u public/slike (npr. 'public/slike/ekipa-seniorke.jpg')
+// i upišite fotografija: '/slike/ekipa-seniorke.jpg'. Trener: trener: { ime: 'Ana Horvat', telefon: '091 123 4567' }.
+export type Trener = {
+  ime: string;
+  telefon?: string;
+};
+
 export type Ekipa = {
   slug: string;
   naziv: string;
@@ -11,6 +19,8 @@ export type Ekipa = {
   organizator?: string;
   opis: string;
   prva?: boolean;
+  fotografija?: string;
+  trener?: Trener;
 };
 
 export const ekipe: Ekipa[] = [
