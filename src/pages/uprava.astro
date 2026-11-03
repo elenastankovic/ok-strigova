@@ -1,297 +1,149 @@
 ---
 import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
-import { skupstina, predsjednik, upravniOdbor, nadzorniOdbor, strucniStozer, kontaktOsobe } from '../data/uprava';
-import type { Osoba, Tijelo } from '../data/uprava';
+import { uprava } from '../data/uprava';
 
-const tijela: Tijelo[] = [upravniOdbor, nadzorniOdbor];
-const popis = (imena: string[]) => imena.slice(0, -1).join(', ') + ' i ' + imena[imena.length - 1];
+const odlomci = (tekst: string) => tekst.split(/\n\s*\n/).map((o) => o.trim()).filter(Boolean);
 ---
 
-<Layout title="Uprava" opis="Hijerarhija uprave Odbojkaškog kluba Štrigova: skupština, predsjednik, upravni i nadzorni odbor te stručni stožer.">
+<Layout title="Uprava" opis="Uprava Odbojkaškog kluba Štrigova: predsjednica, dopredsjednik i tajnik o ciljevima i viđenju kluba.">
   <div class="page-head">
     <div class="wrap">
       <h1>Uprava</h1>
-      <p>Tko vodi klub i tko kome odgovara</p>
+      <p>Tko vodi klub i kamo želimo ići</p>
     </div>
   </div>
 
   <section class="section">
     <div class="wrap">
-      <div class="napomena">
-        <p>
-          Fotografije članova uprave i trenera još se dopunjavaju; dok ih nema, prikazane su siluete.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap stablo">
-      <div class="razina">
-        <div class="tijelo tijelo-vrh">
-          <h2>{skupstina.naziv}</h2>
-          <p>{skupstina.opis}</p>
-        </div>
-      </div>
-
-      <div class="razina spojnica">
-        <article class="osoba osoba-glavna">
-          <img src={p(predsjednik.slika)} alt="" width="96" height="96" />
-          <div>
-            <h2>{predsjednik.uloga}</h2>
-            <p class="osoba-ime">{predsjednik.ime}</p>
-            {predsjednik.opis && <p class="osoba-opis">{predsjednik.opis}</p>}
-          </div>
-        </article>
-      </div>
-
-      <div class="razina spojnica grane">
+      <ol class="uprava">
         {
-          tijela.map((t) => (
-            <section class="grana tijelo">
-              <h2>{t.naziv}</h2>
-              <p class="tijelo-opis">{t.opis}</p>
-              <ul class="clanovi">
-                {t.clanovi.map((o: Osoba) => (
-                  <li class="osoba">
-                    <img src={p(o.slika)} alt="" width="64" height="64" />
-                    <div>
-                      <h3>{o.uloga}</h3>
-                      <p class="osoba-ime">{o.ime}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
+          uprava.map((o) => (
+            <li class="osoba">
+              <div class="osoba-slika">
+                {o.fotografija ? (
+                  <img src={p(o.fotografija)} alt={o.ime} loading="lazy" />
+                ) : (
+                  <div class="osoba-slika-prazno">
+                    <img src={p(o.slika)} alt="" width="120" height="120" />
+                    <span>Fotografija uskoro</span>
+                  </div>
+                )}
+              </div>
+              <div class="osoba-tekst">
+                <p class="osoba-uloga">{o.uloga}</p>
+                <h2>{o.ime}</h2>
+                {o.tekst ? (
+                  <div class="osoba-misli">
+                    {odlomci(o.tekst).map((odlomak) => (
+                      <p>{odlomak}</p>
+                    ))}
+                  </div>
+                ) : (
+                  <p class="osoba-uskoro">Uskoro ovdje: ciljevi i viđenje kluba.</p>
+                )}
+              </div>
+            </li>
           ))
         }
-      </div>
-
-      <div class="razina spojnica spojnica-lijevo">
-        <section class="tijelo tijelo-stozer">
-          <h2>{strucniStozer.naziv}</h2>
-          <p class="tijelo-opis">{strucniStozer.opis}</p>
-          <ul class="clanovi clanovi-red">
-            {
-              strucniStozer.clanovi.map((o) => (
-                <li class="osoba">
-                  <img src={p(o.slika)} alt="" width="64" height="64" />
-                  <div>
-                    <h3>{o.uloga}</h3>
-                    <p class="osoba-ime">{o.ime}</p>
-                    {o.opis && <p class="osoba-opis">{o.opis}</p>}
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap prose">
-      <h2>Kontakt osobe kluba</h2>
-      <p>
-        Pri Hrvatskom odbojkaškom savezu i županijskim savezima kao kontakt osobe kluba upisani su
-        {popis(kontaktOsobe)}.
-      </p>
-      <p><a href={p('/kontakt')}>Kontakt i upisi</a></p>
+      </ol>
     </div>
   </section>
 </Layout>
 
 <style>
-  .stablo {
-    --spoj: 2.5rem;
-  }
-
-  .razina {
-    display: flex;
-    justify-content: center;
-  }
-
-  .spojnica {
-    position: relative;
-    padding-top: var(--spoj);
-  }
-
-  .spojnica::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 3px;
-    height: var(--spoj);
-    background: var(--narancasta);
-    transform: translateX(-50%);
-  }
-
-  .tijelo {
-    background: var(--bijela);
-    border: 1px solid var(--crta);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.5rem;
-  }
-
-  .tijelo h2 {
-    font-size: 1.35rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .tijelo-vrh {
-    width: min(100%, 640px);
-    text-align: center;
-    background: var(--modra);
-    color: var(--bijela);
-    border-color: var(--modra);
-  }
-
-  .tijelo-vrh p {
-    color: rgba(255, 255, 255, 0.85);
-    margin: 0 auto;
-  }
-
-  .tijelo-opis {
-    color: var(--siva);
-    font-size: 0.95rem;
+  .uprava {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
   }
 
   .osoba {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
     align-items: center;
-    gap: 1rem;
   }
 
-  .osoba img {
-    flex: none;
-    width: 64px;
-    height: 64px;
+  /* Svaka druga osoba ima sliku desno, da stranica ne bude jednolična. */
+  .osoba:nth-child(even) .osoba-slika {
+    order: 2;
+  }
+
+  .osoba-slika img,
+  .osoba-slika-prazno {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .osoba-slika-prazno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: var(--modra-svijetla);
+    border: 2px dashed var(--crta);
+    color: var(--siva);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .osoba-slika-prazno img {
+    width: 120px;
+    aspect-ratio: 1;
     border-radius: 50%;
   }
 
-  .osoba h3 {
-    font-size: 1rem;
-    margin: 0;
+  .osoba-tekst {
+    border-left: 4px solid var(--narancasta);
+    padding-left: clamp(1rem, 3vw, 2rem);
   }
 
-  .osoba p {
-    margin: 0;
-  }
-
-  .osoba-ime {
-    color: var(--siva);
-  }
-
-  .osoba-opis {
+  .osoba-uloga {
+    margin: 0 0 0.3rem;
     font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--narancasta-tamna);
+  }
+
+  .osoba-tekst h2 {
+    margin-bottom: 1rem;
+  }
+
+  .osoba-misli p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .osoba-misli p:last-child {
+    margin-bottom: 0;
+  }
+
+  .osoba-uskoro {
+    margin: 0;
     color: var(--siva);
+    font-style: italic;
   }
 
-  .osoba-glavna {
-    width: min(100%, 460px);
-    background: var(--bijela);
-    border: 1px solid var(--crta);
-    border-top: 6px solid var(--narancasta);
-    border-radius: var(--radius);
-    padding: 1.3rem 1.5rem;
-  }
-
-  .osoba-glavna img {
-    width: 96px;
-    height: 96px;
-  }
-
-  .osoba-glavna h2 {
-    font-size: 1.35rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .clanovi {
-    list-style: none;
-    margin: 1rem 0 0;
-    padding: 0;
-    display: grid;
-    gap: 1rem;
-  }
-
-  .grane {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    justify-content: stretch;
-  }
-
-  .grane::after {
-    content: '';
-    position: absolute;
-    top: calc(var(--spoj) / 2);
-    left: 25%;
-    right: 25%;
-    height: 3px;
-    background: var(--narancasta);
-  }
-
-  .grana {
-    position: relative;
-  }
-
-  .grana::before {
-    content: '';
-    position: absolute;
-    top: calc(-1 * var(--spoj) / 2);
-    left: 50%;
-    width: 3px;
-    height: calc(var(--spoj) / 2);
-    background: var(--narancasta);
-    transform: translateX(-50%);
-  }
-
-  .spojnica-lijevo {
-    justify-content: flex-start;
-  }
-
-  .spojnica-lijevo::before {
-    left: 25%;
-  }
-
-  .tijelo-stozer {
-    width: 100%;
-  }
-
-  .clanovi-red {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  }
-
-  @media (max-width: 720px) {
-    .stablo {
-      --spoj: 2rem;
-    }
-
-    .grane {
+  @media (max-width: 640px) {
+    .osoba {
       grid-template-columns: 1fr;
-      gap: var(--spoj);
     }
 
-    .grane::after,
-    .grana::before {
-      display: none;
+    .osoba:nth-child(even) .osoba-slika {
+      order: 0;
     }
 
-    .grana + .grana {
-      position: relative;
-    }
-
-    .grana + .grana::before {
-      display: block;
-      top: calc(-1 * var(--spoj));
-      height: var(--spoj);
-    }
-
-    .spojnica-lijevo::before {
-      left: 50%;
+    .osoba-slika {
+      max-width: 280px;
     }
   }
 </style>
