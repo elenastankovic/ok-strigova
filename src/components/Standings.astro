@@ -1,6 +1,6 @@
 ---
 import type { Competition, CompetitionGroup } from '../lib/data';
-import { teamInStandings } from '../lib/data';
+import { teamInStandings, teamTone } from '../lib/data';
 import { p } from '../lib/putanja';
 
 interface Props {
@@ -32,7 +32,7 @@ const { competition, group, caption } = Astro.props;
         group.standings.map((r) => {
           const team = r.isClub ? teamInStandings(competition, r.team) : undefined;
           return (
-            <tr class:list={{ istaknuto: r.isClub }}>
+            <tr class:list={[{ istaknuto: r.isClub }, teamTone(team)]}>
               <td class="num">{r.rank}.</td>
               <td class="ekipa">{team ? <a href={p(`/ekipe/${team.slug}`)}>{r.team}</a> : r.team}</td>
               <td class="num">{r.played}</td>

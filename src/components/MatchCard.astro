@@ -1,6 +1,6 @@
 ---
 import type { Match } from '../lib/data';
-import { clubOutcome, clubTeamsOf, competitionFor, competitionShortName, teamShort } from '../lib/data';
+import { clubOutcome, clubTeamsOf, competitionFor, competitionShortName, teamFor, teamShort, teamTone } from '../lib/data';
 import { formatRangeShort, formatResult, formatSets, formatShortDate, formatTime, formatWeekday, formatWeekdayShort } from '../lib/format';
 import { p } from '../lib/putanja';
 
@@ -31,6 +31,7 @@ if (m.scheduledAt) {
   day = first === last ? formatWeekday(first) : `${formatWeekdayShort(first)} – ${formatWeekdayShort(last)}`;
   date = formatRangeShort(m.roundDates, false);
 }
+const tone = (name: string) => (m.clubTeams.includes(name) ? teamTone(teamFor(m, name)) : undefined);
 const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'termin nije određen' : null;
 ---
 
@@ -51,14 +52,18 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
     {
       isBye ? (
         <p class="mc-par">
-          <span class="nasa">{byeTeam}</span>
+          <span class:list={['nasa', tone(byeTeam)]}>{byeTeam}</span>
           <span class="mc-slobodno-kolo">slobodno kolo</span>
         </p>
       ) : (
         <p class="mc-par">
-          <span class:list={['mc-ekipa', { nasa: m.clubTeams.includes(m.home) }]}>{m.home}</span>
+          <span class="mc-ekipa">
+            <span class:list={[{ nasa: m.clubTeams.includes(m.home) }, tone(m.home)]}>{m.home}</span>
+          </span>
           {result ? <span class="mc-rezultat">{result}</span> : <span class="mc-rezultat mc-vs">–</span>}
-          <span class:list={['mc-ekipa', 'mc-gost', { nasa: m.clubTeams.includes(m.away) }]}>{m.away}</span>
+          <span class="mc-ekipa mc-gost">
+            <span class:list={[{ nasa: m.clubTeams.includes(m.away) }, tone(m.away)]}>{m.away}</span>
+          </span>
         </p>
       )
     }
@@ -71,7 +76,7 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
           {m.sets.length > 0 && <span class="num">po setovima {formatSets(m.sets)}</span>}
           {showTeam &&
             clubTeams.map((t) => (
-              <a class="mc-cip" href={p(`/ekipe/${t.slug}`)}>
+              <a class:list={['mc-cip', teamTone(t)]} href={p(`/ekipe/${t.slug}`)}>
                 {teamShort(t)}
               </a>
             ))}
@@ -141,6 +146,27 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
   .nasa {
     font-weight: 700;
     color: var(--modra);
+  }
+
+  .nasa[class*='ton-'] {
+    background: var(--ton);
+    color: var(--modra-tamna);
+    padding: 0.1rem 0.5rem;
+    border-radius: var(--radius);
+    box-shadow: inset 4px 0 0 var(--ton-jaka);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .mc-cip[class*='ton-'] {
+    background: var(--ton);
+    color: var(--modra-tamna);
+    box-shadow: inset 0 0 0 1.5px var(--ton-jaka);
+  }
+
+  .mc-cip[class*='ton-']:hover {
+    background: var(--ton-jaka);
+    color: var(--bijela);
   }
 
   .mc-rezultat {

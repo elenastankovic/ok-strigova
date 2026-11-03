@@ -106,6 +106,17 @@ export function teamShort(team: Team): string {
   return teamLabel(team).replace(/^OK\s+/iu, '');
 }
 
+/** Pastelna boja seniorskih ekipa kluba (klasa ton-1/2/3 u global.css) da se lakše razlikuju. */
+const toneBySlug: Record<string, string> = {
+  'ok-strigova': 'ton-1',
+  'ok-strigova-2': 'ton-2',
+  'ok-strigova-3': 'ton-3',
+};
+
+export function teamTone(team: Team | undefined): string | undefined {
+  return team ? toneBySlug[team.slug] : undefined;
+}
+
 /** "3. HRVATSKA ODBOJKAŠKA LIGA SJEVER - skupina Sjever" → "3. HOL Sjever - skupina Sjever". Kratice do 3 slova (HOL, ŽOK) ostaju. */
 export function competitionShortName(c: Competition): string {
   return c.name

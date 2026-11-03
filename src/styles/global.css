@@ -11,6 +11,12 @@
   --tinta: #10213a;
   --siva: #5b6676;
   --crta: #d6dce6;
+  --ton-1: #a6d0f7;
+  --ton-1-jaka: #3b8fe0;
+  --ton-2: #f9b0d0;
+  --ton-2-jaka: #e2558f;
+  --ton-3: #9fe0bb;
+  --ton-3-jaka: #2e9e63;
   --font: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
   --max: 1120px;
   --gutter: clamp(16px, 4vw, 40px);
@@ -288,6 +294,29 @@ table.tablica tr.istaknuto td {
 
 table.tablica tr.istaknuto td:first-child {
   box-shadow: inset 4px 0 0 var(--narancasta);
+}
+
+.ton-1 {
+  --ton: var(--ton-1);
+  --ton-jaka: var(--ton-1-jaka);
+}
+
+.ton-2 {
+  --ton: var(--ton-2);
+  --ton-jaka: var(--ton-2-jaka);
+}
+
+.ton-3 {
+  --ton: var(--ton-3);
+  --ton-jaka: var(--ton-3-jaka);
+}
+
+table.tablica tr.istaknuto[class*='ton-'] td {
+  background: var(--ton);
+}
+
+table.tablica tr.istaknuto[class*='ton-'] td:first-child {
+  box-shadow: inset 5px 0 0 var(--ton-jaka);
 }
 
 .grid-2 {
