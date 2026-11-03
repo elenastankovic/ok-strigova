@@ -63,6 +63,13 @@ const stavke = [
   const gumb = zaglavlje?.querySelector<HTMLButtonElement>('.izbornik-gumb');
   const nav = zaglavlje?.querySelector<HTMLElement>('nav');
 
+  // Sjena ispod zaglavlja tek kad je stranica pomaknuta, da se odvoji od sadržaja ispod.
+  if (zaglavlje) {
+    const sjena = () => zaglavlje.classList.toggle('pomaknuto', zaglavlje.getBoundingClientRect().top <= 0 && window.scrollY > 0);
+    sjena();
+    window.addEventListener('scroll', sjena, { passive: true });
+  }
+
   if (zaglavlje && gumb && nav) {
     zaglavlje.classList.add('ima-izbornik');
 
@@ -92,9 +99,18 @@ const stavke = [
 </script>
 
 <style>
+  /* Zaglavlje ostaje na vrhu ekrana dok se stranica pomiče; tanka traka iznad njega odlazi. */
   .zaglavlje {
+    position: sticky;
+    top: 0;
+    z-index: 50;
     background: var(--bijela);
     border-bottom: 1px solid var(--crta);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .zaglavlje.pomaknuto {
+    box-shadow: 0 4px 16px rgba(16, 33, 58, 0.1);
   }
 
   .zaglavlje-red {
@@ -284,6 +300,8 @@ const stavke = [
 
     .ima-izbornik.otvoreno nav {
       display: block;
+      max-height: calc(100dvh - 90px);
+      overflow-y: auto;
     }
 
     .ima-izbornik nav ul {
