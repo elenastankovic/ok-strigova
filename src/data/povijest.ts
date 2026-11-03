@@ -1,7 +1,7 @@
 // Kratka povijest kluba za stranicu O klubu.
 export const povijest = [
   { godina: '2009.', tekst: 'Klub je osnovan. Prve treninge drži u dvorani Osnovne škole Štrigova.' },
-  { godina: '2016.', tekst: 'Klub je 25. siječnja upisan u registar udruga.' },
+  { godina: '2016.', tekst: 'Klub je 25. siječnja upisan u registar udruga. Seniorke osvajaju 3. ligu i ulaze u 2. ligu.' },
   { godina: '2019.', tekst: 'Seniorke igraju 2. ligu Sjever i nakon 9. kola drže treće mjesto u skupini, iza Gorice i Bjelovara.' },
   { godina: '2020.', tekst: 'U Drugoj ligi od 13 klubova seniorke završavaju prvi dio sezone na šestom mjestu.' },
   { godina: '2024.', tekst: 'Najbolja sezona dosad: seniorke završavaju skupinu Sjever 2. lige na prvom mjestu, s 8 pobjeda u 10 utakmica i omjerom setova 27:8. U svibnju klub prvi put osvaja Kup Međimurja, pobjedom 3:1 nad OK Nedelišće Elting u finalu u Štrigovi.' },
