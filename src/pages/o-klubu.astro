@@ -2,7 +2,8 @@
 import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
 import { klub } from '../data/klub';
-import { povijest } from '../data/povijest';---
+import { povijest } from '../data/povijest';
+---
 
 <Layout title="O klubu" opis={`Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog ${klub.godinaOsnutka}. u Međimurju.`}>
   <div class="page-head">
@@ -39,6 +40,30 @@ import { povijest } from '../data/povijest';---
           Grb kluba: štit u plavoj s narančastim obrubom i plavo-žutom loptom.
         </p>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <figure class="kup">
+        <img
+          src={p('/slike/kup-medimurja-2024.webp')}
+          alt="Odbojkašice i treneri OK Štrigova slave s peharom Kupa Međimurja u dvorani u Štrigovi"
+          width="838"
+          height="838"
+          loading="lazy"
+        />
+        <figcaption>
+          <p class="kup-oznaka">Svibanj 2024.</p>
+          <h2>Kup Međimurja je naš</h2>
+          <p>
+            U finalu pred prepunim tribinama dvorane u Štrigovi OK Štrigova pobijedila je OK Nedelišće
+            Elting 3:1 (25:22, 25:18, 13:25, 25:23). Prvi put u povijesti kluba pehar ovog natjecanja
+            završio je u rukama naših odbojkašica.
+          </p>
+          <p><a href="https://www.instagram.com/p/C7KU_VkKvL1/" rel="noopener" target="_blank">Objava na Instagramu</a></p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -99,6 +124,44 @@ import { povijest } from '../data/povijest';---
 </Layout>
 
 <style>
+  .kup {
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    border-top: 6px solid var(--narancasta);
+    border-radius: var(--radius);
+    padding: clamp(1rem, 3vw, 1.75rem);
+  }
+
+  .kup img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+
+  .kup-oznaka {
+    margin: 0 0 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--narancasta-tamna);
+  }
+
+  .kup h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 760px) {
+    .kup {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .kontakt-osobe {
     list-style: none;
     margin: 0 0 1rem;
