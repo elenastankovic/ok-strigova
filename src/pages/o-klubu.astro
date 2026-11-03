@@ -64,36 +64,6 @@ const uspjesi: Uspjeh[] = [
   </div>
 
   <section class="section">
-    <div class="wrap grid-2">
-      <div class="prose">
-        <h2>Odbojka u selu među vinogradima</h2>
-        <p>
-          Štrigova je općina od oko 2.700 stanovnika na brežuljcima gornjeg Međimurja, poznata po
-          vinu i crkvi svetog Jeronima. Odbojkaški klub osnovan je {klub.osnovan}, a od prvog dana
-          trenira i igra u dvorani Osnovne škole Štrigova.
-        </p>
-        <p>
-          Klub je od početka ženski. Prva ekipa igrala je 2. ligu Sjever, u sezoni 2023./24. osvojila
-          je prvo mjesto u skupini Sjever, a danas igra 3. hrvatsku odbojkašku ligu Sjever. Uz nju
-          klub ima kadetkinje i mlađe kadetkinje u 4. HOL Međimurje te najmlađe u maloj (U13) i mini
-          odbojci (U11).
-        </p>
-        <p>
-          Sve ekipe nastupaju pod imenom OK Štrigova i registrirane su pri Hrvatskom odbojkaškom
-          savezu, Odbojkaškom savezu Međimurske županije i Odbojkaškom savezu Varaždinske županije,
-          koji vodi ligu prve ekipe.
-        </p>
-      </div>
-      <div class="grb">
-        <img src={p('/logo.png')} alt="Grb Odbojkaškog kluba Štrigova" width="343" height="311" />
-        <p class="small muted">
-          Grb kluba: štit u plavoj s narančastim obrubom i plavo-žutom loptom.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="wrap uspjesi">
       {
         uspjesi.map((u) => (
@@ -265,12 +235,6 @@ const uspjesi: Uspjeh[] = [
   .kontakt-osobe a {
     font-weight: 600;
     font-variant-numeric: tabular-nums;
-  }
-
-  .grb img {
-    width: min(100%, 280px);
-    height: auto;
-    margin-bottom: 0.5rem;
   }
 
   .vrijeme {
