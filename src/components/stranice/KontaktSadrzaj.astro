@@ -2,6 +2,11 @@
 // Sadržaj stranice Kontakt; koristi ga i naslovnica.
 import { klub } from '../../data/klub';
 import Mreze from '../Mreze.astro';
+
+const daniKratko = ['P', 'U', 'S', 'Č', 'P', 'S', 'N'];
+const daniPuno = ['ponedjeljak', 'utorak', 'srijeda', 'četvrtak', 'petak', 'subota', 'nedjelja'];
+/** ['utorak', 'srijeda', 'petak'] → "utorak, srijeda i petak" */
+const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i ${r[r.length - 1]}` : (r[0] ?? ''));
 ---
 
 <section class="section">
@@ -64,10 +69,34 @@ import Mreze from '../Mreze.astro';
         <li>bocu vode</li>
         <li>za mlađe od 18 godina, roditelja na prvi trening</li>
       </ul>
-      <p class="small muted">
-        Termine treninga po uzrastima objavit ćemo ovdje; do tada ih dogovorite telefonom.
-      </p>
     </div>
+  </div>
+
+  <div class="wrap">
+    <h3 class="treninzi-naslov">Termini treninga</h3>
+    <ul class="treninzi">
+      {
+        klub.treninzi.map((t) => (
+          <li class:list={['trening', t.ton]}>
+            <p class="trening-ekipa">{t.ekipa}</p>
+            <p class="trening-vrijeme">
+              {t.od}
+              <span>–</span>
+              {t.do}
+            </p>
+            <ol class="tjedan" aria-label={`Dani: ${t.dani.map((d) => daniPuno[d - 1]).join(', ')}`}>
+              {daniKratko.map((d, i) => (
+                <li class:list={{ aktivan: t.dani.includes(i + 1) }} aria-hidden="true">
+                  {d}
+                </li>
+              ))}
+            </ol>
+            <p class="trening-dani">{popis(t.dani.map((d) => daniPuno[d - 1]))}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="small muted">Svi treninzi su u dvorani OŠ Štrigova.</p>
   </div>
 </section>
 
@@ -90,3 +119,83 @@ import Mreze from '../Mreze.astro';
     </ul>
   </div>
 </section>
+
+<style>
+  .treninzi-naslov {
+    font-size: 1.4rem;
+    margin: clamp(2rem, 5vw, 3rem) 0 1rem;
+  }
+
+  .treninzi {
+    list-style: none;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  }
+
+  .trening {
+    background: var(--bijela);
+    border: 1px solid var(--crta);
+    border-top: 6px solid var(--ton-jaka, var(--modra));
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem 1.2rem;
+  }
+
+  .trening p {
+    margin: 0;
+  }
+
+  .trening-ekipa {
+    font-weight: 700;
+    color: var(--modra);
+  }
+
+  .trening-vrijeme {
+    margin: 0.2rem 0 0.9rem !important;
+    font-size: 1.9rem;
+    font-weight: 800;
+    font-stretch: 88%;
+    line-height: 1.1;
+    color: var(--modra-tamna);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .trening-vrijeme span {
+    color: var(--ton-jaka, var(--narancasta));
+    padding-inline: 0.15em;
+  }
+
+  .tjedan {
+    list-style: none;
+    margin: 0 0 0.6rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .tjedan li {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    max-width: 2.1rem;
+    border-radius: 50%;
+    background: var(--papir);
+    color: var(--siva);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .tjedan li.aktivan {
+    background: var(--ton, var(--modra-svijetla));
+    color: var(--modra-tamna);
+    box-shadow: inset 0 0 0 2px var(--ton-jaka, var(--modra));
+  }
+
+  .trening-dani {
+    font-size: 0.85rem;
+    color: var(--siva);
+  }
+</style>
