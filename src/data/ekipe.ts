@@ -33,6 +33,7 @@ export const ekipe: Ekipa[] = [
     opis:
       'Prva ekipa kluba igra ligu od 13 klubova iz Međimurja i Varaždinske županije, 26 kola od listopada do svibnja. U sezoni 2023./24. završila je skupinu Sjever 2. lige na prvom mjestu.',
     prva: true,
+    trener: { ime: 'Siniša Stanković', telefon: '091 730 1905' },
   },
   {
     slug: 'strigova-2',
