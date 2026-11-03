@@ -3,6 +3,7 @@ import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
 import { klub } from '../data/klub';
 import { povijest } from '../data/povijest';
+import { predsjednik } from '../data/uprava';
 ---
 
 <Layout title="O klubu" opis={`Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog ${klub.godinaOsnutka}. u Međimurju.`}>
@@ -75,7 +76,7 @@ import { povijest } from '../data/povijest';
         <p>
           Kontakt osobe kluba pri savezima su {klub.kontaktOsoba}, Goran Vuk i Matija Horvat.
         </p>
-        <p class="small muted">Trenere i upravu kluba dopisat ćemo kad potvrdimo sastav za ovu sezonu.</p>
+        <p class="small muted">{predsjednik.uloga} je {predsjednik.ime}. Trenere ćemo dopisati kad potvrdimo sastav za ovu sezonu.</p>
         <p><a href={p('/uprava')}>Hijerarhija uprave</a></p>
       </div>
       <div class="kontakt-blok">

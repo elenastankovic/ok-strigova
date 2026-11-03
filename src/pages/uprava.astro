@@ -20,7 +20,7 @@ const popis = (imena: string[]) => imena.slice(0, -1).join(', ') + ' i ' + imena
     <div class="wrap">
       <div class="napomena">
         <p>
-          Imena i fotografije članova uprave dopunjavaju se; dok ne budu potvrđeni, prikazane su siluete i
+          Imena trenera i fotografije još se dopunjavaju; dok ne budu potvrđeni, prikazane su siluete i
           oznaka "Ime Prezime".
         </p>
       </div>
@@ -97,7 +97,7 @@ const popis = (imena: string[]) => imena.slice(0, -1).join(', ') + ' i ' + imena
       <h2>Kontakt osobe kluba</h2>
       <p>
         Pri Hrvatskom odbojkaškom savezu i županijskim savezima kao kontakt osobe kluba upisani su
-        {popis(kontaktOsobe)}. Njihove uloge u upravi bit će upisane u ovu shemu čim ih klub potvrdi.
+        {popis(kontaktOsobe)}.
       </p>
       <p><a href={p('/kontakt')}>Kontakt i upisi</a></p>
     </div>

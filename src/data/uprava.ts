@@ -1,6 +1,6 @@
-// Hijerarhija uprave kluba. Imena su zasad predložak ("Ime Prezime"), a slike su
-// template siluete iz public/slike. Za pravu osobu upišite ime i stavite fotografiju
-// u public/slike (npr. '/slike/ana-horvat.jpg') u polje slika.
+// Hijerarhija uprave kluba. Imena trenera su zasad predložak ("Ime Prezime"), a slike su
+// template siluete iz public/slike. Za fotografiju stavite datoteku u public/slike
+// (npr. '/slike/ana-horvat.jpg') i upišite je u polje slika.
 export type Osoba = {
   uloga: string;
   ime: string;
@@ -21,7 +21,7 @@ export const skupstina = {
 
 export const predsjednik: Osoba = {
   uloga: 'Predsjednik kluba',
-  ime: 'Ime Prezime',
+  ime: 'Lea Heric',
   slika: '/slike/osoba-narancasta.svg',
   opis: 'Zastupa klub, vodi upravni odbor i odgovara skupštini.',
 };
@@ -30,9 +30,8 @@ export const upravniOdbor: Tijelo = {
   naziv: 'Upravni odbor',
   opis: 'Vodi klub između dviju skupština: proračun, prijave ekipa, dvorana i oprema.',
   clanovi: [
-    { uloga: 'Dopredsjednik', ime: 'Ime Prezime', slika: '/slike/osoba-modra.svg' },
-    { uloga: 'Tajnik', ime: 'Ime Prezime', slika: '/slike/osoba-modra.svg' },
-    { uloga: 'Blagajnik', ime: 'Ime Prezime', slika: '/slike/osoba-modra.svg' },
+    { uloga: 'Dopredsjednik', ime: 'Nikola Risek', slika: '/slike/osoba-modra.svg' },
+    { uloga: 'Tajnik', ime: 'Siniša Stanković', slika: '/slike/osoba-modra.svg' },
   ],
 };
 
@@ -40,8 +39,8 @@ export const nadzorniOdbor: Tijelo = {
   naziv: 'Nadzorni odbor',
   opis: 'Nadzire financijsko poslovanje i rad upravnog odbora, izvještava skupštinu.',
   clanovi: [
-    { uloga: 'Predsjednik nadzornog odbora', ime: 'Ime Prezime', slika: '/slike/osoba-modra.svg' },
-    { uloga: 'Član nadzornog odbora', ime: 'Ime Prezime', slika: '/slike/osoba-modra.svg' },
+    { uloga: 'Član nadzornog odbora', ime: 'Goran Vuk', slika: '/slike/osoba-modra.svg' },
+    { uloga: 'Član nadzornog odbora', ime: 'Tilen Semenič', slika: '/slike/osoba-modra.svg' },
   ],
 };
 
@@ -55,5 +54,5 @@ export const strucniStozer: Tijelo = {
   ],
 };
 
-// Potvrđeno u registrima saveza; uloge u upravi još nisu objavljene.
+// Kontakt osobe kluba upisane u registrima saveza.
 export const kontaktOsobe = ['Siniša Stanković', 'Goran Vuk', 'Matija Horvat'];
