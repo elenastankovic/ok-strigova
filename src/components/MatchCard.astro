@@ -44,7 +44,7 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
   <div class="mc-tijelo">
     {
       showCompetition && competition && (
-        <a class="mc-liga" href={p(`/natjecanja/${competition.id}`)}>
+        <a class:list={['mc-liga', teamTone(clubTeams[0])]} href={p(`/natjecanja/${competition.id}`)}>
           {competitionShortName(competition) + (m.round ? `, ${m.round}. kolo` : '')}
         </a>
       )
@@ -124,10 +124,30 @@ const note = m.status === 'postponed' ? 'odgođeno' : m.status === 'tbd' ? 'term
   }
 
   .mc-liga {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--siva);
-    margin-bottom: 0.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--modra);
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+  }
+
+  .mc-liga::before {
+    content: '';
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 2px;
+    background: var(--ton-jaka, var(--siva));
+    flex: none;
+  }
+
+  .mc-liga:hover {
+    text-decoration: underline;
+    color: var(--modra);
   }
 
   .mc-par {

@@ -152,7 +152,21 @@ export interface WeekGroup {
   matches: Match[];
 }
 
-/** Grupira utakmice po tjednima (pon–ned), zadržavajući redoslijed ulaznog popisa. */
+/** Važnost ekipa unutar tjedna: prva ekipa (3. HOL) prva, zatim druga i treća, pa mlađe. */
+const teamPriority = ['ok-strigova', 'ok-strigova-2', 'ok-strigova-3'];
+
+function matchPriority(m: Match): number {
+  const ranks = clubTeamsOf(m).map((t) => {
+    const i = teamPriority.indexOf(t.slug);
+    return i === -1 ? teamPriority.length : i;
+  });
+  return Math.min(teamPriority.length, ...ranks);
+}
+
+/**
+ * Grupira utakmice po tjednima (pon–ned). Unutar tjedna utakmice prve ekipe idu prve,
+ * a utakmice iste važnosti zadržavaju redoslijed ulaznog popisa.
+ */
 export function groupByWeek(list: Match[]): WeekGroup[] {
   const groups = new Map<string, WeekGroup>();
   for (const m of list) {
@@ -161,6 +175,7 @@ export function groupByWeek(list: Match[]): WeekGroup[] {
     if (!group) groups.set(start, (group = { start, end: addDays(start, 6), matches: [] }));
     group.matches.push(m);
   }
+  for (const group of groups.values()) group.matches.sort((a, b) => matchPriority(a) - matchPriority(b));
   return [...groups.values()];
 }
 
