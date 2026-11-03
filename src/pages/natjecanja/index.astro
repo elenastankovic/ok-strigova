@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Standings from '../../components/Standings.astro';
 import { p } from '../../lib/putanja';
 import { klub } from '../../data/klub';
-import { competitionShortName, competitions, snapshot } from '../../lib/data';
+import { competitionShortName, competitionsByPriority, snapshot } from '../../lib/data';
 import { formatStamp } from '../../lib/format';
 ---
 
@@ -27,7 +27,7 @@ import { formatStamp } from '../../lib/format';
   </section>
 
   {
-    competitions.map((c) => (
+    competitionsByPriority().map((c) => (
       <section class="section" id={c.id}>
         <div class="wrap">
           <div class="section-head">

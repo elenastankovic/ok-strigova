@@ -175,12 +175,22 @@ export interface WeekGroup {
 /** Važnost ekipa unutar tjedna: prva ekipa (3. HOL) prva, zatim druga i treća, pa mlađe. */
 const teamPriority = ['ok-strigova', 'ok-strigova-2', 'ok-strigova-3'];
 
-function matchPriority(m: Match): number {
-  const ranks = clubTeamsOf(m).map((t) => {
+function priorityOf(list: Team[]): number {
+  const ranks = list.map((t) => {
     const i = teamPriority.indexOf(t.slug);
     return i === -1 ? teamPriority.length : i;
   });
   return Math.min(teamPriority.length, ...ranks);
+}
+
+function matchPriority(m: Match): number {
+  return priorityOf(clubTeamsOf(m));
+}
+
+/** Natjecanja redom važnosti: 3. HOL (prva ekipa), 4. HOL (druga i treća), pa mlađe kategorije. */
+export function competitionsByPriority(): Competition[] {
+  const priority = (c: Competition) => priorityOf(teams.filter((t) => t.competitionIds.includes(c.id)));
+  return [...competitions].sort((a, b) => priority(a) - priority(b));
 }
 
 /**
