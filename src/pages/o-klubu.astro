@@ -2,9 +2,7 @@
 import { p } from '../lib/putanja';
 import Layout from '../layouts/Layout.astro';
 import { klub } from '../data/klub';
-import { povijest } from '../data/povijest';
-import { predsjednik } from '../data/uprava';
----
+import { povijest } from '../data/povijest';---
 
 <Layout title="O klubu" opis={`Povijest i podaci Odbojkaškog kluba Štrigova, osnovanog ${klub.godinaOsnutka}. u Međimurju.`}>
   <div class="page-head">
@@ -84,7 +82,7 @@ import { predsjednik } from '../data/uprava';
             ))
           }
         </ul>
-        <p class="small muted">{predsjednik.uloga} je {predsjednik.ime}. Trenere svih ekipa i njihove brojeve naći ćete na stranici Ekipe.</p>
+        <p class="small muted">Trenere svih ekipa i njihove brojeve naći ćete na stranici Ekipe.</p>
         <p><a href={p('/uprava')}>Uprava kluba</a></p>
       </div>
       <div class="kontakt-blok">

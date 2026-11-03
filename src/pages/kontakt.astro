@@ -25,10 +25,14 @@ import Mreze from '../components/Mreze.astro';
       </div>
       <div class="kontakt-blok">
         <h3>Telefon</h3>
-        <p>
-          <span class="veliki-broj"><a href={klub.telefonHref}>{klub.telefon}</a></span><br />
-          {klub.kontaktOsoba}
-        </p>
+        {
+          klub.kontaktOsobe.map((o) => (
+            <p>
+              <span class="veliki-broj"><a href={o.telefonHref}>{o.telefon}</a></span><br />
+              {o.ime}, {o.uloga.toLowerCase()}
+            </p>
+          ))
+        }
       </div>
       <div class="kontakt-blok">
         <h3>Dvorana</h3>
