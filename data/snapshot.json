@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T21:43:31.924Z",
+  "generatedAt": "2026-11-05T11:49:37.408Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -4104,7 +4104,10 @@
       "winner": null,
       "scheduledAt": "2026-11-07T15:30",
       "venue": "OŠ Štrigova",
-      "referees": [],
+      "referees": [
+        "Tomislava Pevec",
+        "Emili Puklavec"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
@@ -4132,7 +4135,10 @@
       "winner": null,
       "scheduledAt": "2026-11-07T18:00",
       "venue": "Dvorana OŠ Štrigova",
-      "referees": [],
+      "referees": [
+        "Miroslav Vabec",
+        "Leon Škvorc"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
