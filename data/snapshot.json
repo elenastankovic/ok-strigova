@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T11:49:37.408Z",
+  "generatedAt": "2026-11-05T21:37:57.736Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "2. studenog 2026., 22,05"
+      "lastChange": "5. studenog 2026., 21,51"
     },
     {
       "id": "osmz",
@@ -80,6 +80,22 @@
             },
             {
               "rank": 4,
+              "team": "OK Cratis Varaždin 2",
+              "teamSourceId": 56,
+              "played": 5,
+              "won": 3,
+              "lost": 2,
+              "setsWon": 12,
+              "setsLost": 9,
+              "setRatio": 1.3333,
+              "pointsWon": 438,
+              "pointsLost": 413,
+              "pointRatio": 1.0605,
+              "points": 9,
+              "isClub": false
+            },
+            {
+              "rank": 5,
               "team": "OK Cratis Varaždin 3",
               "teamSourceId": 1,
               "played": 4,
@@ -95,7 +111,7 @@
               "isClub": false
             },
             {
-              "rank": 5,
+              "rank": 6,
               "team": "ŽOK Ivanec 2",
               "teamSourceId": 87,
               "played": 4,
@@ -108,22 +124,6 @@
               "pointsLost": 336,
               "pointRatio": 1.0506,
               "points": 7,
-              "isClub": false
-            },
-            {
-              "rank": 6,
-              "team": "OK Cratis Varaždin 2",
-              "teamSourceId": 56,
-              "played": 4,
-              "won": 2,
-              "lost": 2,
-              "setsWon": 9,
-              "setsLost": 9,
-              "setRatio": 1,
-              "pointsWon": 363,
-              "pointsLost": 378,
-              "pointRatio": 0.9603,
-              "points": 6,
               "isClub": false
             },
             {
@@ -226,15 +226,15 @@
               "rank": 13,
               "team": "OK Bedex 2",
               "teamSourceId": 23,
-              "played": 2,
+              "played": 3,
               "won": 0,
-              "lost": 2,
+              "lost": 3,
               "setsWon": 1,
-              "setsLost": 6,
-              "setRatio": 0.1667,
-              "pointsWon": 106,
-              "pointsLost": 172,
-              "pointRatio": 0.6163,
+              "setsLost": 9,
+              "setRatio": 0.1111,
+              "pointsWon": 141,
+              "pointsLost": 247,
+              "pointRatio": 0.5709,
               "points": 0,
               "isClub": false
             }
@@ -3928,32 +3928,6 @@
       ]
     },
     {
-      "id": "osvz-4485",
-      "site": "osvz",
-      "sourceId": 4485,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4485",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 5,
-      "roundDates": [
-        "2026-11-07",
-        "2026-11-08"
-      ],
-      "number": 30,
-      "home": "OK Cratis Varaždin 2",
-      "away": "OK Bedex 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-05T18:30",
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osmz-252",
       "site": "osmz",
       "sourceId": 252,
@@ -3998,6 +3972,48 @@
       "result": null,
       "sets": [],
       "winner": null,
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4485",
+      "site": "osvz",
+      "sourceId": 4485,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4485",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 5,
+      "roundDates": [
+        "2026-11-07",
+        "2026-11-08"
+      ],
+      "number": 30,
+      "home": "OK Cratis Varaždin 2",
+      "away": "OK Bedex 2",
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 13
+        },
+        {
+          "home": 25,
+          "away": 10
+        },
+        {
+          "home": 25,
+          "away": 12
+        }
+      ],
+      "winner": "home",
       "scheduledAt": null,
       "venue": null,
       "referees": [],
