@@ -27,7 +27,7 @@ export const ekipe: Ekipa[] = [
   {
     slug: 'seniorke',
     naziv: 'OK Štrigova',
-    kategorija: 'Seniorke, prva ekipa',
+    kategorija: 'Seniorke',
     snapshotSlug: 'ok-strigova',
     organizator: 'Odbojkaški savez Varaždinske županije',
     opis:
