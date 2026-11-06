@@ -3,7 +3,7 @@
 // skraceno: samo idući tjedni i zadnji rezultati, s poveznicom na cijeli raspored (naslovnica).
 import WeekSection from '../WeekSection.astro';
 import { p } from '../../lib/putanja';
-import { clubTeamsOf, groupByWeek, results, upcoming } from '../../lib/data';
+import { clubTeamsOf, competitionFor, groupByWeek, results, upcoming } from '../../lib/data';
 import type { WeekGroup } from '../../lib/data';
 import { formatRange } from '../../lib/format';
 
@@ -20,6 +20,9 @@ const nadolazeci = skraceno ? sviNadolazeci.slice(0, 2) : sviNadolazeci;
 const prvaEkipa = (m: (typeof results)[number]) => clubTeamsOf(m).some((t) => t.slug === 'ok-strigova');
 const tjedniPrve: WeekGroup[] = groupByWeek(results.filter(prvaEkipa));
 const odigrani = skraceno ? tjedniPrve.slice(0, 1) : sviOdigrani;
+// "Svi rezultati sezone" vodi na službenu stranicu natjecanja prve ekipe kod saveza (3. HOL Sjever).
+const zadnjaPrve = tjedniPrve[0]?.matches[0];
+const natjecanjePrve = zadnjaPrve ? competitionFor(zadnjaPrve.competitionId) : undefined;
 ---
 
 <section class="section">
@@ -43,9 +46,11 @@ const odigrani = skraceno ? tjedniPrve.slice(0, 1) : sviOdigrani;
     {odigrani.map((w) => <WeekSection razina={3} title={formatRange([w.start, w.end])} matches={w.matches} showTeam />)}
     {odigrani.length === 0 && <p class="muted">Još nema odigranih utakmica.</p>}
     {
-      skraceno && sviOdigrani.length > odigrani.length && (
+      skraceno && natjecanjePrve && (
         <p class="vise">
-          <a href={p('/utakmice')}>Svi rezultati sezone</a>
+          <a href={natjecanjePrve.url} rel="noopener" target="_blank">
+            Svi rezultati sezone
+          </a>
         </p>
       )
     }
