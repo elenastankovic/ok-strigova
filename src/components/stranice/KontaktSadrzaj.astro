@@ -63,7 +63,15 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
       </p>
     </div>
     <div class="upisi-desno">
-      <a class="btn btn-primary upisi-gumb" href={klub.upisi.telefonHref}>
+      <div class="kontakt-blok">
+        <h3>Što ponijeti</h3>
+        <ul>
+          <li>sportsku odjeću i tenisice za dvoranu</li>
+          <li>bocu vode</li>
+          <li>za mlađe od 18 godina, roditelja na prvi trening</li>
+        </ul>
+      </div>
+      <a class="btn upisi-gumb" href={klub.upisi.telefonHref}>
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
           <path
             fill="currentColor"
@@ -75,14 +83,6 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
           <strong>{klub.upisi.telefon}</strong>
         </span>
       </a>
-      <div class="kontakt-blok">
-        <h3>Što ponijeti</h3>
-        <ul>
-          <li>sportsku odjeću i tenisice za dvoranu</li>
-          <li>bocu vode</li>
-          <li>za mlađe od 18 godina, roditelja na prvi trening</li>
-        </ul>
-      </div>
     </div>
   </div>
 
@@ -135,7 +135,7 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
 </section>
 
 <style>
-  /* Desni stupac kod upisa: gumb za poziv ("Nazovi Elenu" i broj ispod) iznad "Što ponijeti". */
+  /* Desni stupac kod upisa: "Što ponijeti", a ispod gumb za poziv ("Nazovi Elenu" i broj). */
   .upisi-desno {
     display: grid;
     gap: 1rem;
@@ -150,6 +150,13 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
   .upisi-gumb {
     gap: 0.8rem;
     padding: 0.75rem 1.4rem;
+    background: var(--modra);
+    color: var(--bijela);
+  }
+
+  .upisi-gumb:hover {
+    background: var(--modra-tamna);
+    color: var(--bijela);
   }
 
   .upisi-gumb span {
