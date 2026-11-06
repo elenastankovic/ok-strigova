@@ -20,9 +20,9 @@ export const klub = {
    * ton je boja ekipe iz global.css (ton-1 plava, ton-2 roza, ton-3 zelena, ton-5 breskva).
    */
   treninzi: [
-    { ekipa: 'Seniorke', dani: [2, 3, 5], od: '20:00', do: '21:30', ton: 'ton-1' },
-    { ekipa: 'Kadetkinje', dani: [2, 5], od: '20:00', do: '21:30', ton: 'ton-2' },
-    { ekipa: 'Mlađe kadetkinje', dani: [2, 5], od: '18:30', do: '20:00', ton: 'ton-3' },
+    { ekipa: 'Štrigova', dani: [2, 3, 5], od: '20:00', do: '21:30', ton: 'ton-1' },
+    { ekipa: 'Štrigova 2', dani: [2, 5], od: '20:00', do: '21:30', ton: 'ton-2' },
+    { ekipa: 'Štrigova 3', dani: [2, 5], od: '18:30', do: '20:00', ton: 'ton-3' },
     { ekipa: 'Mini odbojka', dani: [2, 5], od: '18:30', do: '19:30', ton: 'ton-5' },
   ],
   /** Kontakt za upise na naslovnici. */
