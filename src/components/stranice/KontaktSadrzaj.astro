@@ -26,7 +26,7 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
         klub.kontaktOsobe.map((o) => (
           <p>
             <span class="veliki-broj"><a href={o.telefonHref}>{o.telefon}</a></span><br />
-            {o.ime}, {o.uloga.toLowerCase()}
+            {o.ime}
           </p>
         ))
       }
@@ -61,6 +61,8 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
         {klub.upisi.ime}. Prije prvog dolaska nazovite <a href={klub.upisi.telefonHref}>{klub.upisi.telefon}</a> i
         dogovorite termin.
       </p>
+    </div>
+    <div class="upisi-desno">
       <a class="btn btn-primary upisi-gumb" href={klub.upisi.telefonHref}>
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
           <path
@@ -73,14 +75,14 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
           <strong>{klub.upisi.telefon}</strong>
         </span>
       </a>
-    </div>
-    <div class="kontakt-blok">
-      <h3>Što ponijeti</h3>
-      <ul>
-        <li>sportsku odjeću i tenisice za dvoranu</li>
-        <li>bocu vode</li>
-        <li>za mlađe od 18 godina, roditelja na prvi trening</li>
-      </ul>
+      <div class="kontakt-blok">
+        <h3>Što ponijeti</h3>
+        <ul>
+          <li>sportsku odjeću i tenisice za dvoranu</li>
+          <li>bocu vode</li>
+          <li>za mlađe od 18 godina, roditelja na prvi trening</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -133,10 +135,20 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
 </section>
 
 <style>
-  /* Gumb za poziv ispod teksta o upisima: "Nazovi Elenu" i broj ispod. */
+  /* Desni stupac kod upisa: gumb za poziv ("Nazovi Elenu" i broj ispod) iznad "Što ponijeti". */
+  .upisi-desno {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    justify-items: start;
+  }
+
+  .upisi-desno .kontakt-blok {
+    justify-self: stretch;
+  }
+
   .upisi-gumb {
     gap: 0.8rem;
-    margin-top: 0.25rem;
     padding: 0.75rem 1.4rem;
   }
 
