@@ -4,8 +4,7 @@
 import Standings from '../Standings.astro';
 import Izvori from '../Izvori.astro';
 import { p } from '../../lib/putanja';
-import { competitionShortName, competitionsByPriority, snapshot } from '../../lib/data';
-import { formatStamp } from '../../lib/format';
+import { competitionShortName, competitionsByPriority } from '../../lib/data';
 
 interface Props {
   bezIzvora?: boolean;
@@ -13,17 +12,6 @@ interface Props {
 
 const { bezIzvora = false } = Astro.props;
 ---
-
-<section class="section">
-  <div class="wrap">
-    <div class="napomena">
-      <p>
-        Podaci se četiri puta dnevno preuzimaju sa stranica saveza; zadnje osvježavanje
-        {formatStamp(snapshot.generatedAt)}. Poveznica na službenu stranicu je uz svako natjecanje.
-      </p>
-    </div>
-  </div>
-</section>
 
 {
   competitionsByPriority().map((c) => (
@@ -54,19 +42,6 @@ const { bezIzvora = false } = Astro.props;
       </div>
     </section>
   ))
-}
-
-{
-  snapshot.mirrors.length > 0 && (
-    <section class="section">
-      <div class="wrap">
-        <p class="muted small">
-          Natjecanja koja oba saveza objavljuju s istim utakmicama prikazana su samo jednom (
-          {snapshot.mirrors.map((m) => m.name).join(', ')}).
-        </p>
-      </div>
-    </section>
-  )
 }
 
 {!bezIzvora && <Izvori />}
