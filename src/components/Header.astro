@@ -4,23 +4,23 @@ import { p, bezKoseCrte } from '../lib/putanja';
 import Mreze from './Mreze.astro';
 
 const put = bezKoseCrte(Astro.url.pathname);
-// Na naslovnici su sve stranice složene jedna ispod druge, pa izbornik skače na njihove dijelove (dio = id);
-// na ostalim stranicama vodi na zasebne stranice.
+// Na naslovnici su sve stranice složene jedna ispod druge, pa izbornik uvijek vodi na njihove
+// dijelove (dio = id): na naslovnici samo skoči, a s ostalih stranica otvori naslovnicu na tom dijelu.
 const naslovnica = put === bezKoseCrte(p('/'));
 const stavke = [
-  { href: '/', dio: '', tekst: 'Naslovna' },
-  { href: '/utakmice', dio: 'utakmice', tekst: 'Utakmice' },
-  { href: '/ekipe', dio: 'ekipe', tekst: 'Ekipe' },
-  { href: '/natjecanja', dio: 'natjecanja', tekst: 'Natjecanja' },
-  { href: '/o-klubu', dio: 'o-klubu', tekst: 'O klubu' },
-  { href: '/uprava', dio: 'uprava', tekst: 'Uprava' },
-  { href: '/kontakt', dio: 'kontakt', tekst: 'Kontakt' },
-  { href: '/kontakt#upisi', dio: 'upisi', tekst: 'Upisi', istaknuto: true },
+  { dio: '', tekst: 'Naslovna' },
+  { dio: 'utakmice', tekst: 'Utakmice' },
+  { dio: 'ekipe', tekst: 'Ekipe' },
+  { dio: 'natjecanja', tekst: 'Natjecanja' },
+  { dio: 'o-klubu', tekst: 'O klubu' },
+  { dio: 'uprava', tekst: 'Uprava' },
+  { dio: 'kontakt', tekst: 'Kontakt' },
+  { dio: 'upisi', tekst: 'Upisi', istaknuto: true },
 ];
-const poveznica = (s: (typeof stavke)[number]) => (naslovnica ? `#${s.dio}` : p(s.href));
-// Upisi vode na dio stranice Kontakt, pa se nikad ne označavaju kao trenutna stranica.
-const trenutna = (s: (typeof stavke)[number]) =>
-  !s.istaknuto && (naslovnica ? s.dio === '' : put === bezKoseCrte(p(s.href)));
+const poveznica = (s: (typeof stavke)[number]) =>
+  naslovnica ? `#${s.dio}` : s.dio ? `${p('/')}#${s.dio}` : p('/');
+// Trenutni dio na naslovnici označava skripta dok se stranica pomiče; Upisi se nikad ne označavaju.
+const trenutna = (s: (typeof stavke)[number]) => naslovnica && !s.istaknuto && s.dio === '';
 ---
 
 <div class="gornja-traka">
