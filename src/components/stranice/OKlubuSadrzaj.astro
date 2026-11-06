@@ -113,19 +113,14 @@ const uspjesi: Uspjeh[] = [
       <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
     </div>
     <div class="kontakt-blok">
-      <h3>Kontakt osobe</h3>
+      <h3>Kontakt osoba</h3>
       <ul class="kontakt-osobe">
-        {
-          klub.kontaktOsobe.map((o) => (
-            <li>
-              <span class="small muted">{o.uloga}</span>
-              <strong>{o.ime}</strong>
-              <a href={o.telefonHref}>{o.telefon}</a>
-            </li>
-          ))
-        }
+        <li>
+          <span class="small muted">Trener</span>
+          <strong>{klub.kontaktOsoba}</strong>
+          <a href={klub.telefonHref}>{klub.telefon}</a>
+        </li>
       </ul>
-      <p class="small muted">Trenere svih ekipa i njihove brojeve naći ćete na stranici Ekipe.</p>
       <p><a href={p('/uprava')}>Uprava kluba</a></p>
     </div>
     <div class="kontakt-blok">
