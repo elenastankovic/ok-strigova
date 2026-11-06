@@ -1,7 +1,6 @@
 ---
 // Sadržaj stranice O klubu; koristi ga i naslovnica.
 import { p } from '../../lib/putanja';
-import { klub } from '../../data/klub';
 import { povijest } from '../../data/povijest';
 
 // Najveći uspjesi kluba. Fotografiju stavite u public/slike i upišite putanju u polje slika;
@@ -101,38 +100,6 @@ const uspjesi: Uspjeh[] = [
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap grid-3">
-    <div class="kontakt-blok">
-      <h3>Dvorana</h3>
-      <address>
-        {klub.dvorana.naziv}<br />
-        {klub.dvorana.adresa}
-      </address>
-      <p class="small muted">Domaće utakmice svih ekipa i svi treninzi.</p>
-      <p><a href={klub.dvorana.karta} rel="noopener">Prikaži na karti</a></p>
-    </div>
-    <div class="kontakt-blok">
-      <h3>Kontakt osoba</h3>
-      <ul class="kontakt-osobe">
-        <li>
-          <span class="small muted">Trener</span>
-          <strong>{klub.kontaktOsoba}</strong>
-          <a href={klub.telefonHref}>{klub.telefon}</a>
-        </li>
-      </ul>
-    </div>
-    <div class="kontakt-blok">
-      <h3>Podaci o udruzi</h3>
-      <address>
-        {klub.naziv}<br />
-        {klub.adresa}, {klub.postanskiBroj}<br />
-        OIB {klub.oib}
-      </address>
-    </div>
-  </div>
-</section>
-
 <style>
   .kup {
     margin: 0;
@@ -200,25 +167,6 @@ const uspjesi: Uspjeh[] = [
     .kup:nth-child(even) > :first-child {
       order: 0;
     }
-  }
-
-  .kontakt-osobe {
-    list-style: none;
-    margin: 0 0 1rem;
-    padding: 0;
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .kontakt-osobe li {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.35;
-  }
-
-  .kontakt-osobe a {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
   }
 
   .vrijeme {
