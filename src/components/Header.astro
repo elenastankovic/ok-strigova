@@ -321,7 +321,8 @@ const trenutna = (s: (typeof stavke)[number]) =>
     }
   }
 
-  @media (max-width: 860px) {
+  /* Izbornik u jednom redu treba ~990 px (s gumbom Upisi); ispod toga se sklapa u gumb. */
+  @media (max-width: 1080px) {
     .ima-izbornik .izbornik-gumb {
       display: inline-flex;
     }

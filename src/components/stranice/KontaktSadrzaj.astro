@@ -61,31 +61,26 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
         {klub.upisi.ime}. Prije prvog dolaska nazovite <a href={klub.upisi.telefonHref}>{klub.upisi.telefon}</a> i
         dogovorite termin.
       </p>
+      <a class="btn btn-primary upisi-gumb" href={klub.upisi.telefonHref}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"
+          ></path>
+        </svg>
+        <span>
+          Nazovi {klub.upisi.nazovi}
+          <strong>{klub.upisi.telefon}</strong>
+        </span>
+      </a>
     </div>
-    <div class="upisi-desno">
-      <div class="upisi-kontakt">
-        <p class="upisi-oznaka">Upisi i informacije</p>
-        <p class="upisi-ime">{klub.upisi.ime}</p>
-        <p class="upisi-uloga">{klub.upisi.uloga}</p>
-        <a class="btn upisi-gumb" href={klub.upisi.telefonHref}>
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-            <path
-              fill="currentColor"
-              d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"
-            ></path>
-          </svg>
-          {klub.upisi.telefon}
-        </a>
-        <p class="upisi-napomena">Nazovite prije prvog dolaska i dogovorite termin.</p>
-      </div>
-      <div class="kontakt-blok">
+    <div class="kontakt-blok">
       <h3>Što ponijeti</h3>
       <ul>
         <li>sportsku odjeću i tenisice za dvoranu</li>
         <li>bocu vode</li>
         <li>za mlađe od 18 godina, roditelja na prvi trening</li>
       </ul>
-      </div>
     </div>
   </div>
 
@@ -138,63 +133,23 @@ const popis = (r: string[]) => (r.length > 1 ? `${r.slice(0, -1).join(', ')} i $
 </section>
 
 <style>
-  .upisi-desno {
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-  }
-
-  /* Istaknuta kartica s kontaktom za upise. */
-  .upisi-kontakt {
-    background: var(--modra);
-    color: var(--bijela);
-    border-radius: var(--radius);
-    border-top: 6px solid var(--narancasta);
-    padding: 1.4rem 1.5rem 1.5rem;
-    box-shadow: 0 14px 34px rgba(16, 33, 58, 0.18);
-  }
-
-  .upisi-kontakt p {
-    margin: 0;
-  }
-
-  .upisi-oznaka {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--zuta);
-  }
-
-  .upisi-ime {
-    margin-top: 0.4rem !important;
-    font-size: 1.6rem;
-    font-weight: 800;
-    font-stretch: 90%;
-    line-height: 1.1;
-  }
-
-  .upisi-uloga {
-    color: rgba(255, 255, 255, 0.75);
-  }
-
+  /* Gumb za poziv ispod teksta o upisima: "Nazovi Elenu" i broj ispod. */
   .upisi-gumb {
-    margin-top: 1rem;
-    background: var(--narancasta);
-    color: var(--modra-tamna);
+    gap: 0.8rem;
+    margin-top: 0.25rem;
+    padding: 0.75rem 1.4rem;
+  }
+
+  .upisi-gumb span {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .upisi-gumb strong {
     font-size: 1.35rem;
     font-variant-numeric: tabular-nums;
-  }
-
-  .upisi-gumb:hover {
-    background: var(--zuta);
-    color: var(--modra-tamna);
-  }
-
-  .upisi-napomena {
-    margin-top: 0.75rem !important;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
   }
 
   .treninzi-naslov {
