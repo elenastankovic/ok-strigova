@@ -83,23 +83,6 @@ const dijelovi = [
     ))
   }
 
-  <section class="upisi">
-    <div class="wrap grid-2">
-      <div>
-        <h2>Dođi na trening</h2>
-        <p class="lead">
-          Primamo djevojčice i djevojke svih uzrasta, od mini odbojke do seniorki. Javite se i
-          dogovorite kad doći na prvi trening u dvoranu OŠ Štrigova.
-        </p>
-      </div>
-      <div class="upisi-akcije">
-        <a class="btn btn-primary" href="#upisi">Kako se upisati</a>
-        <p>
-          {klub.upisi.ime}, <a href={klub.upisi.telefonHref}>{klub.upisi.telefon}</a>
-        </p>
-      </div>
-    </div>
-  </section>
 
   <div class="dio" id="kontakt">
     <header class="dio-glava">
@@ -287,8 +270,7 @@ const dijelovi = [
     padding-top: clamp(3rem, 7vw, 5rem);
   }
 
-  .dio + .dio .dio-glava,
-  .upisi + .dio .dio-glava {
+  .dio + .dio .dio-glava {
     border-top: 1px solid var(--crta);
   }
 
@@ -320,38 +302,5 @@ const dijelovi = [
   /* Prvi odjeljak ispod naslova dijela ne treba dodatni razmak na vrhu. */
   .dio-glava + :global(.section) {
     padding-top: clamp(1.5rem, 3vw, 2rem);
-  }
-
-  .upisi {
-    background: var(--narancasta);
-    color: var(--modra-tamna);
-    padding-block: clamp(3rem, 6vw, 4.5rem);
-  }
-
-  .upisi .lead {
-    color: var(--modra-tamna);
-  }
-
-  .upisi .btn-primary {
-    background: var(--modra);
-    color: var(--bijela);
-  }
-
-  .upisi .btn-primary:hover {
-    background: var(--modra-tamna);
-    color: var(--bijela);
-  }
-
-  .upisi a {
-    color: var(--modra-tamna);
-  }
-
-  .upisi-akcije {
-    align-self: center;
-  }
-
-  .upisi-akcije p {
-    margin: 1rem 0 0;
-    font-weight: 600;
   }
 </style>
