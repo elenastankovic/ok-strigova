@@ -26,5 +26,5 @@ export const uprava: Osoba[] = [
     tekst:
       'Radimo na tome da klub svaki dan bude malo bolji. Rezultati dolaze s radom, a pehar Kupa Međimurja 2024. pokazao nam je da mali klub iz malog mjesta može daleko. Zato dalje gradimo ekipu i čuvamo atmosferu zbog koje se u našu dvoranu uvijek rado vraća.',
   },
-  { uloga: 'Tajnik', ime: 'Siniša Stanković', slika: '/slike/osoba-nebo.svg' },
+  { uloga: 'Trener', ime: 'Siniša Stanković', slika: '/slike/osoba-nebo.svg' },
 ];
