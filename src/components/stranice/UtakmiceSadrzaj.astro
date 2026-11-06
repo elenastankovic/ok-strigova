@@ -3,7 +3,8 @@
 // skraceno: samo idući tjedni i zadnji rezultati, s poveznicom na cijeli raspored (naslovnica).
 import WeekSection from '../WeekSection.astro';
 import { p } from '../../lib/putanja';
-import { groupByWeek, results, upcoming } from '../../lib/data';
+import { clubTeamsOf, groupByWeek, results, upcoming } from '../../lib/data';
+import type { WeekGroup } from '../../lib/data';
 import { formatRange } from '../../lib/format';
 
 interface Props {
@@ -14,7 +15,11 @@ const { skraceno = false } = Astro.props;
 const sviNadolazeci = groupByWeek(upcoming);
 const sviOdigrani = groupByWeek(results);
 const nadolazeci = skraceno ? sviNadolazeci.slice(0, 2) : sviNadolazeci;
-const odigrani = skraceno ? sviOdigrani.slice(0, 1) : sviOdigrani;
+
+// U skraćenom prikazu samo rezultati prve ekipe (OK Štrigova) iz zadnjeg tjedna u kojem je igrala.
+const prvaEkipa = (m: (typeof results)[number]) => clubTeamsOf(m).some((t) => t.slug === 'ok-strigova');
+const tjedniPrve: WeekGroup[] = groupByWeek(results.filter(prvaEkipa));
+const odigrani = skraceno ? tjedniPrve.slice(0, 1) : sviOdigrani;
 ---
 
 <section class="section">
