@@ -1,10 +1,17 @@
 ---
 // Sadržaj stranice Natjecanja; koristi ga i naslovnica.
+// bezIzvora: bez popisa izvora na dnu (naslovnica ga prikazuje skroz na kraju stranice).
 import Standings from '../Standings.astro';
+import Izvori from '../Izvori.astro';
 import { p } from '../../lib/putanja';
-import { klub } from '../../data/klub';
 import { competitionShortName, competitionsByPriority, snapshot } from '../../lib/data';
 import { formatStamp } from '../../lib/format';
+
+interface Props {
+  bezIzvora?: boolean;
+}
+
+const { bezIzvora = false } = Astro.props;
 ---
 
 <section class="section">
@@ -62,27 +69,7 @@ import { formatStamp } from '../../lib/format';
   )
 }
 
-<section class="section">
-  <div class="wrap">
-    <h2>Izvori</h2>
-    <ul class="rule-list">
-      {
-        snapshot.sources.map((s) => (
-          <li>
-            <a href={s.baseUrl} rel="noopener">
-              {s.name}
-            </a>
-            {s.lastChange && <span class="muted">, zadnja promjena na stranici saveza {s.lastChange}</span>}
-          </li>
-        ))
-      }
-      <li>
-        <a href={klub.savezi.hos.url} rel="noopener">{klub.savezi.hos.naziv}</a>
-        <span class="muted">, krovni savez i registar klubova</span>
-      </li>
-    </ul>
-  </div>
-</section>
+{!bezIzvora && <Izvori />}
 
 <style>
   .section-head h2 a {

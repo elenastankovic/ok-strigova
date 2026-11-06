@@ -1,0 +1,27 @@
+---
+// Popis izvora podataka (stranice saveza). Na stranici Natjecanja je ispod tablica, na naslovnici skroz na dnu.
+import { klub } from '../data/klub';
+import { snapshot } from '../lib/data';
+---
+
+<section class="section">
+  <div class="wrap">
+    <h2>Izvori</h2>
+    <ul class="rule-list">
+      {
+        snapshot.sources.map((s) => (
+          <li>
+            <a href={s.baseUrl} rel="noopener">
+              {s.name}
+            </a>
+            {s.lastChange && <span class="muted">, zadnja promjena na stranici saveza {s.lastChange}</span>}
+          </li>
+        ))
+      }
+      <li>
+        <a href={klub.savezi.hos.url} rel="noopener">{klub.savezi.hos.naziv}</a>
+        <span class="muted">, krovni savez i registar klubova</span>
+      </li>
+    </ul>
+  </div>
+</section>

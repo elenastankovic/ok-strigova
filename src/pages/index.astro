@@ -7,6 +7,7 @@ import NatjecanjaSadrzaj from '../components/stranice/NatjecanjaSadrzaj.astro';
 import OKlubuSadrzaj from '../components/stranice/OKlubuSadrzaj.astro';
 import UpravaSadrzaj from '../components/stranice/UpravaSadrzaj.astro';
 import KontaktSadrzaj from '../components/stranice/KontaktSadrzaj.astro';
+import Izvori from '../components/Izvori.astro';
 import { klub } from '../data/klub';
 import { competitionFor, competitionShortName, upcoming } from '../lib/data';
 import { formatRange, formatWhenFull } from '../lib/format';
@@ -19,7 +20,7 @@ const sljedecaDomaca = sljedeca ? sljedeca.clubTeams.includes(sljedeca.home) : f
 const dijelovi = [
   { id: 'utakmice', naslov: 'Utakmice', podnaslov: 'Idući tjedni i zadnji rezultati svih ekipa kluba', Sadrzaj: UtakmiceSadrzaj, svojstva: { skraceno: true } },
   { id: 'ekipe', naslov: 'Ekipe', podnaslov: `Sezona ${klub.sezona}: seniorke, kadetkinje, mlađe kadetkinje, mala odbojka U13 i mini odbojka U11`, Sadrzaj: EkipeSadrzaj },
-  { id: 'natjecanja', naslov: 'Natjecanja', podnaslov: 'Lige u kojima ove sezone nastupaju ekipe kluba, s poretkom', Sadrzaj: NatjecanjaSadrzaj },
+  { id: 'natjecanja', naslov: 'Natjecanja', podnaslov: 'Lige u kojima ove sezone nastupaju ekipe kluba, s poretkom', Sadrzaj: NatjecanjaSadrzaj, svojstva: { bezIzvora: true } },
   { id: 'o-klubu', naslov: 'O klubu', podnaslov: `Odbojkaški klub Štrigova, osnovan ${klub.osnovan}`, Sadrzaj: OKlubuSadrzaj },
   { id: 'uprava', naslov: 'Uprava', podnaslov: 'Tko vodi klub i kamo želimo ići', Sadrzaj: UpravaSadrzaj },
 ];
@@ -109,6 +110,8 @@ const dijelovi = [
     </header>
     <KontaktSadrzaj />
   </div>
+
+  <Izvori />
 </Layout>
 
 <script>
