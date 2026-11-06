@@ -77,7 +77,6 @@ const telHref = (broj: string) => {
     </div>
   </dl>
 
-  {href && <a class="e-vise" href={href}>Tablica, raspored i rezultati</a>}
 </li>
 
 <style>
@@ -181,8 +180,11 @@ const telHref = (broj: string) => {
     font-weight: 600;
   }
 
+  /* Kontakt je uvijek na dnu kartice, odvojen crtom, pa su imena u istoj visini na svim karticama. */
   .e-podaci {
-    margin: 0 0 1rem;
+    margin: auto 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--crta);
     display: grid;
     gap: 0.75rem;
   }
@@ -214,8 +216,4 @@ const telHref = (broj: string) => {
     font-variant-numeric: tabular-nums;
   }
 
-  .e-vise {
-    margin-top: auto;
-    font-weight: 600;
-  }
 </style>
