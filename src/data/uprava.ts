@@ -19,6 +19,12 @@ export const predsjednik: Osoba = {
 
 export const uprava: Osoba[] = [
   predsjednik,
-  { uloga: 'Dopredsjednik', ime: 'Nikola Risek', slika: '/slike/osoba-modra.svg' },
+  {
+    uloga: 'Dopredsjednik',
+    ime: 'Nikola Risek',
+    slika: '/slike/osoba-modra.svg',
+    tekst:
+      'Radimo na tome da klub svaki dan bude malo bolji. Rezultati dolaze s radom, a pehar Kupa Međimurja 2024. pokazao nam je da mali klub iz malog mjesta može daleko. Zato dalje gradimo ekipu i čuvamo atmosferu zbog koje se u našu dvoranu uvijek rado vraća.',
+  },
   { uloga: 'Tajnik', ime: 'Siniša Stanković', slika: '/slike/osoba-nebo.svg' },
 ];
