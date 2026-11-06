@@ -19,7 +19,7 @@ const sljedecaDomaca = sljedeca ? sljedeca.clubTeams.includes(sljedeca.home) : f
 // Naslovnica redom prikazuje sadržaj svih stranica; izbornik na njoj skače na ove dijelove (id).
 const dijelovi = [
   { id: 'utakmice', naslov: 'Utakmice', podnaslov: 'Idući tjedni i zadnji rezultati svih ekipa kluba', Sadrzaj: UtakmiceSadrzaj, svojstva: { skraceno: true } },
-  { id: 'ekipe', naslov: 'Ekipe', podnaslov: `Sezona ${klub.sezona}: seniorke, kadetkinje, mlađe kadetkinje, mala odbojka U13 i mini odbojka U11`, Sadrzaj: EkipeSadrzaj },
+  { id: 'ekipe', naslov: 'Ekipe', podnaslov: `Sezona ${klub.sezona}: tri seniorske ekipe, mala odbojka U13 i mini odbojka U11`, Sadrzaj: EkipeSadrzaj },
   { id: 'natjecanja', naslov: 'Natjecanja', podnaslov: 'Lige u kojima ove sezone nastupaju ekipe kluba, s poretkom', Sadrzaj: NatjecanjaSadrzaj, svojstva: { bezIzvora: true } },
   { id: 'o-klubu', naslov: 'O klubu', podnaslov: `Odbojkaški klub Štrigova, osnovan ${klub.osnovan}`, Sadrzaj: OKlubuSadrzaj },
   { id: 'uprava', naslov: 'Uprava', podnaslov: 'Tko vodi klub i kamo želimo ići', Sadrzaj: UpravaSadrzaj },
