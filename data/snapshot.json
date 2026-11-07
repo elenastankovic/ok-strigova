@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T17:26:16.985Z",
+  "generatedAt": "2026-11-07T21:28:33.893Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "7. studenog 2026., 16,25"
+      "lastChange": "7. studenog 2026., 22,24"
     },
     {
       "id": "osmz",
@@ -130,16 +130,16 @@
               "rank": 7,
               "team": "OK Štrigova",
               "teamSourceId": 94,
-              "played": 4,
-              "won": 2,
+              "played": 5,
+              "won": 3,
               "lost": 2,
-              "setsWon": 8,
-              "setsLost": 9,
-              "setRatio": 0.8889,
-              "pointsWon": 347,
-              "pointsLost": 354,
-              "pointRatio": 0.9802,
-              "points": 6,
+              "setsWon": 11,
+              "setsLost": 11,
+              "setRatio": 1,
+              "pointsWon": 452,
+              "pointsLost": 457,
+              "pointRatio": 0.9891,
+              "points": 8,
               "isClub": true
             },
             {
@@ -178,16 +178,16 @@
               "rank": 10,
               "team": "ŽOK Ludbreg",
               "teamSourceId": 92,
-              "played": 2,
+              "played": 3,
               "won": 1,
-              "lost": 1,
-              "setsWon": 3,
-              "setsLost": 4,
-              "setRatio": 0.75,
-              "pointsWon": 163,
-              "pointsLost": 154,
-              "pointRatio": 1.0584,
-              "points": 3,
+              "lost": 2,
+              "setsWon": 5,
+              "setsLost": 7,
+              "setRatio": 0.7143,
+              "pointsWon": 266,
+              "pointsLost": 259,
+              "pointRatio": 1.027,
+              "points": 4,
               "isClub": false
             },
             {
@@ -4185,17 +4185,41 @@
       "number": 31,
       "home": "OK Štrigova",
       "away": "ŽOK Ludbreg",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 2
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 20
+        },
+        {
+          "home": 25,
+          "away": 19
+        },
+        {
+          "home": 26,
+          "away": 28
+        },
+        {
+          "home": 14,
+          "away": 25
+        },
+        {
+          "home": 15,
+          "away": 11
+        }
+      ],
+      "winner": "home",
       "scheduledAt": "2026-11-07T18:00",
       "venue": "Dvorana OŠ Štrigova",
       "referees": [
         "Miroslav Vabec",
         "Leon Škvorc"
       ],
-      "durationMinutes": null,
+      "durationMinutes": 118,
       "note": null,
       "clubTeams": [
         "OK Štrigova"
