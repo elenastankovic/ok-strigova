@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T11:49:08.023Z",
+  "generatedAt": "2026-11-09T17:51:20.741Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "9. studenog 2026., 12,16"
+      "lastChange": "9. studenog 2026., 17,54"
     },
     {
       "id": "osmz",
@@ -4734,32 +4734,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4495",
-      "site": "osvz",
-      "sourceId": 4495,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4495",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 40,
-      "home": "ŽOK Ludbreg",
-      "away": "ŽOK Kaštel 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4496",
       "site": "osvz",
       "sourceId": 4496,
@@ -5571,6 +5545,32 @@
       "sets": [],
       "winner": null,
       "scheduledAt": "2026-11-15T13:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4495",
+      "site": "osvz",
+      "sourceId": 4495,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4495",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 40,
+      "home": "ŽOK Ludbreg",
+      "away": "ŽOK Kaštel 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-15T16:00",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
