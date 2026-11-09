@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T17:51:20.741Z",
+  "generatedAt": "2026-11-09T21:43:00.258Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "9. studenog 2026., 17,54"
+      "lastChange": "9. studenog 2026., 22,28"
     },
     {
       "id": "osmz",
@@ -4734,60 +4734,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4496",
-      "site": "osvz",
-      "sourceId": 4496,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4496",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 41,
-      "home": "OK Bedex 2",
-      "away": "OK Štrigova",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova"
-      ]
-    },
-    {
-      "id": "osvz-4497",
-      "site": "osvz",
-      "sourceId": 4497,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4497",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 42,
-      "home": "ŽOK Ivanec 3",
-      "away": "OK Cratis Varaždin 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4492",
       "site": "osvz",
       "sourceId": 4492,
@@ -4812,6 +4758,34 @@
       "durationMinutes": null,
       "note": null,
       "clubTeams": []
+    },
+    {
+      "id": "osvz-4496",
+      "site": "osvz",
+      "sourceId": 4496,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4496",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 41,
+      "home": "OK Bedex 2",
+      "away": "OK Štrigova",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T11:00",
+      "venue": "Dvorana Srednje škole Bedekovčina",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova"
+      ]
     },
     {
       "id": "osvz-4821",
@@ -5566,6 +5540,32 @@
       "number": 40,
       "home": "ŽOK Ludbreg",
       "away": "ŽOK Kaštel 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-15T16:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4497",
+      "site": "osvz",
+      "sourceId": 4497,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4497",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 42,
+      "home": "ŽOK Ivanec 3",
+      "away": "OK Cratis Varaždin 2",
       "status": "scheduled",
       "result": null,
       "sets": [],
