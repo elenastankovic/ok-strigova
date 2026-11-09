@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T21:28:20.986Z",
+  "generatedAt": "2026-11-09T11:49:08.023Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "8. studenog 2026., 21,52"
+      "lastChange": "9. studenog 2026., 12,16"
     },
     {
       "id": "osmz",
@@ -4682,32 +4682,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4492",
-      "site": "osvz",
-      "sourceId": 4492,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4492",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 37,
-      "home": "OK Cratis Varaždin 3",
-      "away": "ŽOK Lepoglava",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4493",
       "site": "osvz",
       "sourceId": 4493,
@@ -4833,6 +4807,32 @@
       "sets": [],
       "winner": null,
       "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4492",
+      "site": "osvz",
+      "sourceId": 4492,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4492",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 37,
+      "home": "OK Cratis Varaždin 3",
+      "away": "ŽOK Lepoglava",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T10:00",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
