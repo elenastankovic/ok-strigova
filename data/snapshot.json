@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T17:41:40.101Z",
+  "generatedAt": "2026-11-10T21:34:01.531Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -4732,34 +4732,6 @@
       ]
     },
     {
-      "id": "osmz-262",
-      "site": "osmz",
-      "sourceId": 262,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=262",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 35,
-      "home": "OK Plavi 3",
-      "away": "OK Štrigova 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-14T12:00",
-      "venue": "OŠ Mursko Središće",
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova 2"
-      ]
-    },
-    {
       "id": "osmz-263",
       "site": "osmz",
       "sourceId": 263,
@@ -5600,6 +5572,34 @@
       "durationMinutes": null,
       "note": null,
       "clubTeams": []
+    },
+    {
+      "id": "osmz-262",
+      "site": "osmz",
+      "sourceId": 262,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=262",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 35,
+      "home": "OK Plavi 3",
+      "away": "OK Štrigova 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-18T15:00",
+      "venue": "OŠ Mursko Središće",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova 2"
+      ]
     },
     {
       "id": "osmz-264",
