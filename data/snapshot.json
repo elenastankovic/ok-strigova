@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T05:45:29.920Z",
+  "generatedAt": "2026-11-10T11:45:19.166Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -14,7 +14,7 @@
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "8. studenog 2026., 18,58"
+      "lastChange": "10. studenog 2026., 10,01"
     }
   ],
   "competitions": [
@@ -557,6 +557,38 @@
             },
             {
               "rank": 2,
+              "team": "ŽOK Kaštel 5",
+              "teamSourceId": 7,
+              "played": 5,
+              "won": 4,
+              "lost": 1,
+              "setsWon": 14,
+              "setsLost": 7,
+              "setRatio": 2,
+              "pointsWon": 467,
+              "pointsLost": 387,
+              "pointRatio": 1.2067,
+              "points": 11,
+              "isClub": false
+            },
+            {
+              "rank": 3,
+              "team": "OK Totovec 2",
+              "teamSourceId": 12,
+              "played": 4,
+              "won": 3,
+              "lost": 1,
+              "setsWon": 11,
+              "setsLost": 6,
+              "setRatio": 1.8333,
+              "pointsWon": 376,
+              "pointsLost": 367,
+              "pointRatio": 1.0245,
+              "points": 10,
+              "isClub": false
+            },
+            {
+              "rank": 4,
               "team": "OK Štrigova 2",
               "teamSourceId": 10,
               "played": 5,
@@ -572,7 +604,7 @@
               "isClub": true
             },
             {
-              "rank": 3,
+              "rank": 5,
               "team": "OK Plavi 3",
               "teamSourceId": 8,
               "played": 4,
@@ -584,38 +616,6 @@
               "pointsWon": 278,
               "pointsLost": 157,
               "pointRatio": 1.7707,
-              "points": 9,
-              "isClub": false
-            },
-            {
-              "rank": 4,
-              "team": "OK Totovec 2",
-              "teamSourceId": 12,
-              "played": 3,
-              "won": 3,
-              "lost": 0,
-              "setsWon": 9,
-              "setsLost": 3,
-              "setRatio": 3,
-              "pointsWon": 275,
-              "pointsLost": 249,
-              "pointRatio": 1.1044,
-              "points": 9,
-              "isClub": false
-            },
-            {
-              "rank": 5,
-              "team": "ŽOK Kaštel 5",
-              "teamSourceId": 7,
-              "played": 4,
-              "won": 3,
-              "lost": 1,
-              "setsWon": 11,
-              "setsLost": 5,
-              "setRatio": 2.2,
-              "pointsWon": 349,
-              "pointsLost": 286,
-              "pointRatio": 1.2203,
               "points": 9,
               "isClub": false
             },
@@ -3996,6 +3996,56 @@
       "clubTeams": []
     },
     {
+      "id": "osmz-256",
+      "site": "osmz",
+      "sourceId": 256,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=256",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 5,
+      "roundDates": [
+        "2026-11-07",
+        "2026-11-08"
+      ],
+      "number": 29,
+      "home": "OK Totovec 2",
+      "away": "ŽOK Kaštel 5",
+      "status": "played",
+      "result": {
+        "home": 2,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 16,
+          "away": 25
+        },
+        {
+          "home": 28,
+          "away": 26
+        },
+        {
+          "home": 15,
+          "away": 25
+        },
+        {
+          "home": 29,
+          "away": 27
+        },
+        {
+          "home": 13,
+          "away": 15
+        }
+      ],
+      "winner": "away",
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
       "id": "osmz-257",
       "site": "osmz",
       "sourceId": 257,
@@ -4444,25 +4494,25 @@
       ]
     },
     {
-      "id": "osmz-256",
+      "id": "osmz-259",
       "site": "osmz",
-      "sourceId": 256,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=256",
+      "sourceId": 259,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=259",
       "competitionId": "osmz-22",
       "group": null,
-      "round": 5,
+      "round": 6,
       "roundDates": [
-        "2026-11-07",
-        "2026-11-08"
+        "2026-11-14",
+        "2026-11-15"
       ],
-      "number": 29,
-      "home": "OK Totovec 2",
-      "away": "ŽOK Kaštel 5",
+      "number": 32,
+      "home": "ŽOK Kaštel 5",
+      "away": "OK Plavi 4",
       "status": "scheduled",
       "result": null,
       "sets": [],
       "winner": null,
-      "scheduledAt": "2026-11-08T15:00",
+      "scheduledAt": "2026-11-12T19:45",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
@@ -4522,32 +4572,6 @@
       "clubTeams": []
     },
     {
-      "id": "osmz-259",
-      "site": "osmz",
-      "sourceId": 259,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=259",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 32,
-      "home": "ŽOK Kaštel 5",
-      "away": "OK Plavi 4",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osmz-260",
       "site": "osmz",
       "sourceId": 260,
@@ -4574,86 +4598,6 @@
       "clubTeams": [
         "OK Štrigova 3"
       ]
-    },
-    {
-      "id": "osmz-261",
-      "site": "osmz",
-      "sourceId": 261,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=261",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 34,
-      "home": "ŽOK Kaštel 3",
-      "away": "OK Nedelišće Elting 3",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
-      "id": "osmz-262",
-      "site": "osmz",
-      "sourceId": 262,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=262",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 35,
-      "home": "OK Plavi 3",
-      "away": "OK Štrigova 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova 2"
-      ]
-    },
-    {
-      "id": "osmz-263",
-      "site": "osmz",
-      "sourceId": 263,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=263",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 36,
-      "home": "OK Čakovec 2",
-      "away": "ŽOK Kaštel 4",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
     },
     {
       "id": "osvz-4491",
@@ -4786,6 +4730,60 @@
       "clubTeams": [
         "OK Štrigova"
       ]
+    },
+    {
+      "id": "osmz-262",
+      "site": "osmz",
+      "sourceId": 262,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=262",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 35,
+      "home": "OK Plavi 3",
+      "away": "OK Štrigova 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T12:00",
+      "venue": "OŠ Mursko Središće",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova 2"
+      ]
+    },
+    {
+      "id": "osmz-263",
+      "site": "osmz",
+      "sourceId": 263,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=263",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 36,
+      "home": "OK Čakovec 2",
+      "away": "ŽOK Kaštel 4",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T13:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
     },
     {
       "id": "osvz-4821",
@@ -5519,6 +5517,32 @@
       "sets": [],
       "winner": null,
       "scheduledAt": "2026-11-15T13:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osmz-261",
+      "site": "osmz",
+      "sourceId": 261,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=261",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 34,
+      "home": "ŽOK Kaštel 3",
+      "away": "OK Nedelišće Elting 3",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-15T15:00",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
