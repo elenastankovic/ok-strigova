@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T05:51:45.485Z",
+  "generatedAt": "2026-11-11T17:49:30.906Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -14,7 +14,7 @@
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "10. studenog 2026., 22,33"
+      "lastChange": "11. studenog 2026., 14,33"
     }
   ],
   "competitions": [
@@ -4727,7 +4727,10 @@
       "winner": null,
       "scheduledAt": "2026-11-14T15:00",
       "venue": "OŠ Štrigova",
-      "referees": [],
+      "referees": [
+        "Tomislava Pevec",
+        "Emili Puklavec"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
@@ -5595,7 +5598,7 @@
       "result": null,
       "sets": [],
       "winner": null,
-      "scheduledAt": "2026-11-18T15:00",
+      "scheduledAt": "2026-11-18T17:00",
       "venue": "OŠ Mursko Središće",
       "referees": [],
       "durationMinutes": null,
