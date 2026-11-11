@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T21:34:01.531Z",
+  "generatedAt": "2026-11-11T05:51:45.485Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,13 +8,13 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "10. studenog 2026., 17,21"
+      "lastChange": "11. studenog 2026., 0,10"
     },
     {
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "10. studenog 2026., 10,01"
+      "lastChange": "10. studenog 2026., 22,33"
     }
   ],
   "competitions": [
@@ -4572,34 +4572,6 @@
       "clubTeams": []
     },
     {
-      "id": "osmz-260",
-      "site": "osmz",
-      "sourceId": 260,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=260",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 33,
-      "home": "OK Štrigova 3",
-      "away": "OK Totovec 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova 3"
-      ]
-    },
-    {
       "id": "osvz-4491",
       "site": "osvz",
       "sourceId": 4491,
@@ -4652,32 +4624,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4494",
-      "site": "osvz",
-      "sourceId": 4494,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4494",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 39,
-      "home": "OK Nedelišće Elting 2",
-      "away": "OK Vinica",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4492",
       "site": "osvz",
       "sourceId": 4492,
@@ -4724,7 +4670,10 @@
       "winner": null,
       "scheduledAt": "2026-11-14T11:00",
       "venue": "Dvorana Srednje škole Bedekovčina",
-      "referees": [],
+      "referees": [
+        "Lana Šuper",
+        "Lana Halapir"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
@@ -4751,6 +4700,60 @@
       "sets": [],
       "winner": null,
       "scheduledAt": "2026-11-14T13:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osmz-260",
+      "site": "osmz",
+      "sourceId": 260,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=260",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 33,
+      "home": "OK Štrigova 3",
+      "away": "OK Totovec 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T15:00",
+      "venue": "OŠ Štrigova",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova 3"
+      ]
+    },
+    {
+      "id": "osvz-4494",
+      "site": "osvz",
+      "sourceId": 4494,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4494",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 39,
+      "home": "OK Nedelišće Elting 2",
+      "away": "OK Vinica",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-14T16:00",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
