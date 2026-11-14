@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:29:37.172Z",
+  "generatedAt": "2026-11-14T17:28:56.817Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,13 +8,13 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "14. studenog 2026., 12,05"
+      "lastChange": "14. studenog 2026., 14,42"
     },
     {
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "12. studenog 2026., 23,08"
+      "lastChange": "14. studenog 2026., 18,01"
     }
   ],
   "competitions": [
@@ -48,6 +48,22 @@
             },
             {
               "rank": 2,
+              "team": "OK Štrigova",
+              "teamSourceId": 94,
+              "played": 6,
+              "won": 4,
+              "lost": 2,
+              "setsWon": 14,
+              "setsLost": 11,
+              "setRatio": 1.2727,
+              "pointsWon": 527,
+              "pointsLost": 491,
+              "pointRatio": 1.0733,
+              "points": 11,
+              "isClub": true
+            },
+            {
+              "rank": 3,
               "team": "OK Nedelišće Elting 2",
               "teamSourceId": 6,
               "played": 5,
@@ -63,7 +79,7 @@
               "isClub": false
             },
             {
-              "rank": 3,
+              "rank": 4,
               "team": "ŽOK Ivanec 2",
               "teamSourceId": 87,
               "played": 5,
@@ -79,23 +95,23 @@
               "isClub": false
             },
             {
-              "rank": 4,
+              "rank": 5,
               "team": "OK Cratis Varaždin 3",
               "teamSourceId": 1,
-              "played": 5,
+              "played": 6,
               "won": 4,
-              "lost": 1,
+              "lost": 2,
               "setsWon": 14,
-              "setsLost": 10,
-              "setRatio": 1.4,
-              "pointsWon": 524,
-              "pointsLost": 477,
-              "pointRatio": 1.0985,
+              "setsLost": 13,
+              "setRatio": 1.0769,
+              "pointsWon": 572,
+              "pointsLost": 552,
+              "pointRatio": 1.0362,
               "points": 10,
               "isClub": false
             },
             {
-              "rank": 5,
+              "rank": 6,
               "team": "ŽOK Ivanec 3",
               "teamSourceId": 7,
               "played": 4,
@@ -111,7 +127,7 @@
               "isClub": false
             },
             {
-              "rank": 6,
+              "rank": 7,
               "team": "OK Cratis Varaždin 2",
               "teamSourceId": 56,
               "played": 5,
@@ -125,22 +141,6 @@
               "pointRatio": 1.0605,
               "points": 9,
               "isClub": false
-            },
-            {
-              "rank": 7,
-              "team": "OK Štrigova",
-              "teamSourceId": 94,
-              "played": 5,
-              "won": 3,
-              "lost": 2,
-              "setsWon": 11,
-              "setsLost": 11,
-              "setRatio": 1,
-              "pointsWon": 452,
-              "pointsLost": 457,
-              "pointRatio": 0.9891,
-              "points": 8,
-              "isClub": true
             },
             {
               "rank": 8,
@@ -210,31 +210,31 @@
               "rank": 12,
               "team": "ŽOK Lepoglava",
               "teamSourceId": 21,
-              "played": 4,
-              "won": 0,
+              "played": 5,
+              "won": 1,
               "lost": 4,
-              "setsWon": 2,
+              "setsWon": 5,
               "setsLost": 12,
-              "setRatio": 0.1667,
-              "pointsWon": 256,
-              "pointsLost": 344,
-              "pointRatio": 0.7442,
-              "points": 0,
+              "setRatio": 0.4167,
+              "pointsWon": 331,
+              "pointsLost": 392,
+              "pointRatio": 0.8444,
+              "points": 3,
               "isClub": false
             },
             {
               "rank": 13,
               "team": "OK Bedex 2",
               "teamSourceId": 23,
-              "played": 3,
+              "played": 4,
               "won": 0,
-              "lost": 3,
+              "lost": 4,
               "setsWon": 1,
-              "setsLost": 9,
-              "setRatio": 0.1111,
-              "pointsWon": 141,
-              "pointsLost": 247,
-              "pointRatio": 0.5709,
+              "setsLost": 12,
+              "setRatio": 0.0833,
+              "pointsWon": 175,
+              "pointsLost": 322,
+              "pointRatio": 0.5435,
               "points": 0,
               "isClub": false
             }
@@ -541,6 +541,22 @@
           "standings": [
             {
               "rank": 1,
+              "team": "OK Totovec 2",
+              "teamSourceId": 12,
+              "played": 5,
+              "won": 4,
+              "lost": 1,
+              "setsWon": 14,
+              "setsLost": 6,
+              "setRatio": 2.3333,
+              "pointsWon": 451,
+              "pointsLost": 397,
+              "pointRatio": 1.136,
+              "points": 13,
+              "isClub": false
+            },
+            {
+              "rank": 2,
               "team": "ŽOK Kaštel 3",
               "teamSourceId": 5,
               "played": 4,
@@ -556,7 +572,7 @@
               "isClub": false
             },
             {
-              "rank": 2,
+              "rank": 3,
               "team": "ŽOK Kaštel 5",
               "teamSourceId": 7,
               "played": 6,
@@ -569,22 +585,6 @@
               "pointsLost": 485,
               "pointRatio": 1.1711,
               "points": 12,
-              "isClub": false
-            },
-            {
-              "rank": 3,
-              "team": "OK Totovec 2",
-              "teamSourceId": 12,
-              "played": 4,
-              "won": 3,
-              "lost": 1,
-              "setsWon": 11,
-              "setsLost": 6,
-              "setRatio": 1.8333,
-              "pointsWon": 376,
-              "pointsLost": 367,
-              "pointRatio": 1.0245,
-              "points": 10,
               "isClub": false
             },
             {
@@ -637,6 +637,22 @@
             },
             {
               "rank": 7,
+              "team": "ŽOK Kaštel 4",
+              "teamSourceId": 6,
+              "played": 6,
+              "won": 3,
+              "lost": 3,
+              "setsWon": 11,
+              "setsLost": 11,
+              "setRatio": 1,
+              "pointsWon": 417,
+              "pointsLost": 443,
+              "pointRatio": 0.9413,
+              "points": 9,
+              "isClub": false
+            },
+            {
+              "rank": 8,
               "team": "OK Plavi 4",
               "teamSourceId": 50,
               "played": 5,
@@ -649,22 +665,6 @@
               "pointsLost": 455,
               "pointRatio": 0.9648,
               "points": 7,
-              "isClub": false
-            },
-            {
-              "rank": 8,
-              "team": "ŽOK Kaštel 4",
-              "teamSourceId": 6,
-              "played": 5,
-              "won": 2,
-              "lost": 3,
-              "setsWon": 8,
-              "setsLost": 11,
-              "setRatio": 0.7273,
-              "pointsWon": 342,
-              "pointsLost": 395,
-              "pointRatio": 0.8658,
-              "points": 6,
               "isClub": false
             },
             {
@@ -687,15 +687,15 @@
               "rank": 10,
               "team": "OK Štrigova 3",
               "teamSourceId": 51,
-              "played": 5,
+              "played": 6,
               "won": 1,
-              "lost": 4,
+              "lost": 5,
               "setsWon": 3,
-              "setsLost": 13,
-              "setRatio": 0.2308,
-              "pointsWon": 258,
-              "pointsLost": 363,
-              "pointRatio": 0.7107,
+              "setsLost": 16,
+              "setRatio": 0.1875,
+              "pointsWon": 288,
+              "pointsLost": 438,
+              "pointRatio": 0.6575,
               "points": 3,
               "isClub": true
             },
@@ -703,15 +703,15 @@
               "rank": 11,
               "team": "OK Čakovec 2",
               "teamSourceId": 52,
-              "played": 5,
+              "played": 6,
               "won": 0,
-              "lost": 5,
+              "lost": 6,
               "setsWon": 1,
-              "setsLost": 15,
-              "setRatio": 0.0667,
-              "pointsWon": 212,
-              "pointsLost": 394,
-              "pointRatio": 0.5381,
+              "setsLost": 18,
+              "setRatio": 0.0556,
+              "pointsWon": 260,
+              "pointsLost": 469,
+              "pointRatio": 0.5544,
               "points": 0,
               "isClub": false
             }
@@ -4570,6 +4570,48 @@
       "clubTeams": []
     },
     {
+      "id": "osmz-263",
+      "site": "osmz",
+      "sourceId": 263,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=263",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 36,
+      "home": "OK Čakovec 2",
+      "away": "ŽOK Kaštel 4",
+      "status": "played",
+      "result": {
+        "home": 0,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 19,
+          "away": 25
+        },
+        {
+          "home": 18,
+          "away": 25
+        },
+        {
+          "home": 11,
+          "away": 25
+        }
+      ],
+      "winner": "away",
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
       "id": "osvz-4491",
       "site": "osvz",
       "sourceId": 4491,
@@ -4588,6 +4630,48 @@
       "result": null,
       "sets": [],
       "winner": null,
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4492",
+      "site": "osvz",
+      "sourceId": 4492,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4492",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 37,
+      "home": "OK Cratis Varaždin 3",
+      "away": "ŽOK Lepoglava",
+      "status": "played",
+      "result": {
+        "home": 0,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 20,
+          "away": 25
+        },
+        {
+          "home": 19,
+          "away": 25
+        },
+        {
+          "home": 9,
+          "away": 25
+        }
+      ],
+      "winner": "away",
       "scheduledAt": null,
       "venue": null,
       "referees": [],
@@ -4622,32 +4706,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4492",
-      "site": "osvz",
-      "sourceId": 4492,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4492",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 37,
-      "home": "OK Cratis Varaždin 3",
-      "away": "ŽOK Lepoglava",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-14T10:00",
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4496",
       "site": "osvz",
       "sourceId": 4496,
@@ -4662,47 +4720,37 @@
       "number": 41,
       "home": "OK Bedex 2",
       "away": "OK Štrigova",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
+      "status": "played",
+      "result": {
+        "home": 0,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 12,
+          "away": 25
+        },
+        {
+          "home": 11,
+          "away": 25
+        },
+        {
+          "home": 11,
+          "away": 25
+        }
+      ],
+      "winner": "away",
       "scheduledAt": "2026-11-14T11:00",
       "venue": "Dvorana Srednje škole Bedekovčina",
       "referees": [
         "Lana Šuper",
         "Lana Halapir"
       ],
-      "durationMinutes": null,
+      "durationMinutes": 60,
       "note": null,
       "clubTeams": [
         "OK Štrigova"
       ]
-    },
-    {
-      "id": "osmz-263",
-      "site": "osmz",
-      "sourceId": 263,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=263",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 36,
-      "home": "OK Čakovec 2",
-      "away": "ŽOK Kaštel 4",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-14T13:00",
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
     },
     {
       "id": "osmz-260",
@@ -4719,17 +4767,33 @@
       "number": 33,
       "home": "OK Štrigova 3",
       "away": "OK Totovec 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
+      "status": "played",
+      "result": {
+        "home": 0,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 4,
+          "away": 25
+        },
+        {
+          "home": 12,
+          "away": 25
+        },
+        {
+          "home": 14,
+          "away": 25
+        }
+      ],
+      "winner": "away",
       "scheduledAt": "2026-11-14T15:00",
       "venue": "OŠ Štrigova",
       "referees": [
         "Tomislava Pevec",
         "Emili Puklavec"
       ],
-      "durationMinutes": null,
+      "durationMinutes": 50,
       "note": null,
       "clubTeams": [
         "OK Štrigova 3"
