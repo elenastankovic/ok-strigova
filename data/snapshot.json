@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T17:28:56.817Z",
+  "generatedAt": "2026-11-14T21:30:27.328Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "14. studenog 2026., 14,42"
+      "lastChange": "14. studenog 2026., 20,44"
     },
     {
       "id": "osmz",
@@ -32,6 +32,22 @@
           "standings": [
             {
               "rank": 1,
+              "team": "OK Nedelišće Elting 2",
+              "teamSourceId": 6,
+              "played": 6,
+              "won": 4,
+              "lost": 2,
+              "setsWon": 14,
+              "setsLost": 6,
+              "setRatio": 2.3333,
+              "pointsWon": 443,
+              "pointsLost": 394,
+              "pointRatio": 1.1244,
+              "points": 13,
+              "isClub": false
+            },
+            {
+              "rank": 2,
               "team": "ŽOK Kaštel 2",
               "teamSourceId": 11,
               "played": 5,
@@ -47,7 +63,7 @@
               "isClub": false
             },
             {
-              "rank": 2,
+              "rank": 3,
               "team": "OK Štrigova",
               "teamSourceId": 94,
               "played": 6,
@@ -61,22 +77,6 @@
               "pointRatio": 1.0733,
               "points": 11,
               "isClub": true
-            },
-            {
-              "rank": 3,
-              "team": "OK Nedelišće Elting 2",
-              "teamSourceId": 6,
-              "played": 5,
-              "won": 3,
-              "lost": 2,
-              "setsWon": 11,
-              "setsLost": 6,
-              "setRatio": 1.8333,
-              "pointsWon": 368,
-              "pointsLost": 342,
-              "pointRatio": 1.076,
-              "points": 10,
-              "isClub": false
             },
             {
               "rank": 4,
@@ -146,15 +146,15 @@
               "rank": 8,
               "team": "OK Vinica",
               "teamSourceId": 93,
-              "played": 5,
+              "played": 6,
               "won": 2,
-              "lost": 3,
+              "lost": 4,
               "setsWon": 10,
-              "setsLost": 12,
-              "setRatio": 0.8333,
-              "pointsWon": 490,
-              "pointsLost": 459,
-              "pointRatio": 1.0675,
+              "setsLost": 15,
+              "setRatio": 0.6667,
+              "pointsWon": 542,
+              "pointsLost": 534,
+              "pointRatio": 1.015,
               "points": 6,
               "isClub": false
             },
@@ -4706,6 +4706,48 @@
       "clubTeams": []
     },
     {
+      "id": "osvz-4494",
+      "site": "osvz",
+      "sourceId": 4494,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4494",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 39,
+      "home": "OK Nedelišće Elting 2",
+      "away": "OK Vinica",
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 18
+        },
+        {
+          "home": 25,
+          "away": 12
+        },
+        {
+          "home": 25,
+          "away": 22
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
       "id": "osvz-4496",
       "site": "osvz",
       "sourceId": 4496,
@@ -4798,32 +4840,6 @@
       "clubTeams": [
         "OK Štrigova 3"
       ]
-    },
-    {
-      "id": "osvz-4494",
-      "site": "osvz",
-      "sourceId": 4494,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4494",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 39,
-      "home": "OK Nedelišće Elting 2",
-      "away": "OK Vinica",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-14T16:00",
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
     },
     {
       "id": "osvz-4821",
