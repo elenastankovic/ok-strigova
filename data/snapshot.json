@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T06:01:22.477Z",
+  "generatedAt": "2026-11-16T11:59:49.135Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -14,7 +14,7 @@
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "15. studenog 2026., 13,10"
+      "lastChange": "16. studenog 2026., 8,53"
     }
   ],
   "competitions": [
@@ -796,6 +796,22 @@
           "standings": [
             {
               "rank": 1,
+              "team": "ŽOK Kaštel 3",
+              "teamSourceId": 5,
+              "played": 5,
+              "won": 5,
+              "lost": 0,
+              "setsWon": 15,
+              "setsLost": 0,
+              "setRatio": null,
+              "pointsWon": 375,
+              "pointsLost": 176,
+              "pointRatio": 2.1307,
+              "points": 15,
+              "isClub": false
+            },
+            {
+              "rank": 2,
               "team": "OK Totovec 2",
               "teamSourceId": 12,
               "played": 5,
@@ -808,22 +824,6 @@
               "pointsLost": 397,
               "pointRatio": 1.136,
               "points": 13,
-              "isClub": false
-            },
-            {
-              "rank": 2,
-              "team": "ŽOK Kaštel 3",
-              "teamSourceId": 5,
-              "played": 4,
-              "won": 4,
-              "lost": 0,
-              "setsWon": 12,
-              "setsLost": 0,
-              "setRatio": null,
-              "pointsWon": 300,
-              "pointsLost": 147,
-              "pointRatio": 2.0408,
-              "points": 12,
               "isClub": false
             },
             {
@@ -926,15 +926,15 @@
               "rank": 9,
               "team": "OK Nedelišće Elting 3",
               "teamSourceId": 9,
-              "played": 5,
+              "played": 6,
               "won": 1,
-              "lost": 4,
+              "lost": 5,
               "setsWon": 6,
-              "setsLost": 12,
-              "setRatio": 0.5,
-              "pointsWon": 382,
-              "pointsLost": 410,
-              "pointRatio": 0.9317,
+              "setsLost": 15,
+              "setRatio": 0.4,
+              "pointsWon": 411,
+              "pointsLost": 485,
+              "pointRatio": 0.8474,
               "points": 3,
               "isClub": false
             },
@@ -4868,6 +4868,48 @@
       "clubTeams": []
     },
     {
+      "id": "osmz-261",
+      "site": "osmz",
+      "sourceId": 261,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=261",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 6,
+      "roundDates": [
+        "2026-11-14",
+        "2026-11-15"
+      ],
+      "number": 34,
+      "home": "ŽOK Kaštel 3",
+      "away": "OK Nedelišće Elting 3",
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 5
+        },
+        {
+          "home": 25,
+          "away": 11
+        },
+        {
+          "home": 25,
+          "away": 13
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
       "id": "osmz-263",
       "site": "osmz",
       "sourceId": 263,
@@ -6255,32 +6297,6 @@
       "clubTeams": [
         "OK Štrigova"
       ]
-    },
-    {
-      "id": "osmz-261",
-      "site": "osmz",
-      "sourceId": 261,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=261",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 6,
-      "roundDates": [
-        "2026-11-14",
-        "2026-11-15"
-      ],
-      "number": 34,
-      "home": "ŽOK Kaštel 3",
-      "away": "OK Nedelišće Elting 3",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-15T15:00",
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
     },
     {
       "id": "osmz-262",
