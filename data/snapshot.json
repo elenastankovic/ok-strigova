@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T11:44:04.621Z",
+  "generatedAt": "2026-11-17T17:58:19.012Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "16. studenog 2026., 22,28"
+      "lastChange": "17. studenog 2026., 13,33"
     },
     {
       "id": "osmz",
@@ -713,22 +713,6 @@
           "standings": [
             {
               "rank": 1,
-              "team": "ŽOK Lepoglava",
-              "teamSourceId": 53,
-              "played": 0,
-              "won": 0,
-              "lost": 0,
-              "setsWon": 0,
-              "setsLost": 0,
-              "setRatio": null,
-              "pointsWon": 0,
-              "pointsLost": 0,
-              "pointRatio": null,
-              "points": 0,
-              "isClub": false
-            },
-            {
-              "rank": 2,
               "team": "OK Beretinec",
               "teamSourceId": 114,
               "played": 0,
@@ -744,7 +728,7 @@
               "isClub": false
             },
             {
-              "rank": 3,
+              "rank": 2,
               "team": "OK Totovec",
               "teamSourceId": 35,
               "played": 0,
@@ -760,9 +744,25 @@
               "isClub": false
             },
             {
-              "rank": 4,
+              "rank": 3,
               "team": "OK Čakovec",
               "teamSourceId": 112,
+              "played": 0,
+              "won": 0,
+              "lost": 0,
+              "setsWon": 0,
+              "setsLost": 0,
+              "setRatio": null,
+              "pointsWon": 0,
+              "pointsLost": 0,
+              "pointRatio": null,
+              "points": 0,
+              "isClub": false
+            },
+            {
+              "rank": 4,
+              "team": "ŽOK Lepoglava",
+              "teamSourceId": 53,
               "played": 0,
               "won": 0,
               "lost": 0,
@@ -6513,32 +6513,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4503",
-      "site": "osvz",
-      "sourceId": 4503,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4503",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 7,
-      "roundDates": [
-        "2026-11-21",
-        "2026-11-22"
-      ],
-      "number": 48,
-      "home": "ŽOK Lepoglava",
-      "away": "OK Plavi 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4502",
       "site": "osvz",
       "sourceId": 4502,
@@ -6558,6 +6532,32 @@
       "sets": [],
       "winner": null,
       "scheduledAt": "2026-11-21T14:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osvz-4503",
+      "site": "osvz",
+      "sourceId": 4503,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4503",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 7,
+      "roundDates": [
+        "2026-11-21",
+        "2026-11-22"
+      ],
+      "number": 48,
+      "home": "ŽOK Lepoglava",
+      "away": "OK Plavi 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-21T16:30",
       "venue": null,
       "referees": [],
       "durationMinutes": null,
