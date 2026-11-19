@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T21:46:06.467Z",
+  "generatedAt": "2026-11-19T17:50:35.040Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -14,7 +14,7 @@
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "18. studenog 2026., 11,42"
+      "lastChange": "19. studenog 2026., 18,00"
     }
   ],
   "competitions": [
@@ -828,6 +828,22 @@
             },
             {
               "rank": 3,
+              "team": "OK Plavi 3",
+              "teamSourceId": 8,
+              "played": 5,
+              "won": 4,
+              "lost": 1,
+              "setsWon": 12,
+              "setsLost": 3,
+              "setRatio": 4,
+              "pointsWon": 353,
+              "pointsLost": 187,
+              "pointRatio": 1.8877,
+              "points": 12,
+              "isClub": false
+            },
+            {
+              "rank": 4,
               "team": "ŽOK Kaštel 5",
               "teamSourceId": 7,
               "played": 6,
@@ -843,36 +859,20 @@
               "isClub": false
             },
             {
-              "rank": 4,
+              "rank": 5,
               "team": "OK Štrigova 2",
               "teamSourceId": 10,
-              "played": 5,
+              "played": 6,
               "won": 3,
-              "lost": 2,
+              "lost": 3,
               "setsWon": 11,
-              "setsLost": 7,
-              "setRatio": 1.5714,
-              "pointsWon": 381,
-              "pointsLost": 358,
-              "pointRatio": 1.0642,
+              "setsLost": 10,
+              "setRatio": 1.1,
+              "pointsWon": 411,
+              "pointsLost": 433,
+              "pointRatio": 0.9492,
               "points": 10,
               "isClub": true
-            },
-            {
-              "rank": 5,
-              "team": "OK Plavi 3",
-              "teamSourceId": 8,
-              "played": 4,
-              "won": 3,
-              "lost": 1,
-              "setsWon": 9,
-              "setsLost": 3,
-              "setRatio": 3,
-              "pointsWon": 278,
-              "pointsLost": 157,
-              "pointRatio": 1.7707,
-              "points": 9,
-              "isClub": false
             },
             {
               "rank": 6,
@@ -6313,17 +6313,33 @@
       "number": 35,
       "home": "OK Plavi 3",
       "away": "OK Štrigova 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 14
+        },
+        {
+          "home": 25,
+          "away": 9
+        },
+        {
+          "home": 25,
+          "away": 7
+        }
+      ],
+      "winner": "home",
       "scheduledAt": "2026-11-18T17:00",
       "venue": "OŠ Mursko Središće",
       "referees": [
         "Dora Debelec",
         "Damir Premužić"
       ],
-      "durationMinutes": null,
+      "durationMinutes": 53,
       "note": null,
       "clubTeams": [
         "OK Štrigova 2"
@@ -6586,7 +6602,10 @@
       "winner": null,
       "scheduledAt": "2026-11-22T15:00",
       "venue": "OŠ Štrigova",
-      "referees": [],
+      "referees": [
+        "Tomislava Pevec",
+        "Emili Puklavec"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
@@ -6640,7 +6659,10 @@
       "winner": null,
       "scheduledAt": "2026-11-22T16:15",
       "venue": "OŠ Mursko Središće",
-      "referees": [],
+      "referees": [
+        "Dora Debelec",
+        "Damir Premužić"
+      ],
       "durationMinutes": null,
       "note": null,
       "clubTeams": [
