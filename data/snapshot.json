@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T11:39:53.941Z",
+  "generatedAt": "2026-11-21T17:36:10.701Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "21. studenog 2026., 12,04"
+      "lastChange": "21. studenog 2026., 18,30"
     },
     {
       "id": "osmz",
@@ -34,16 +34,16 @@
               "rank": 1,
               "team": "OK Nedelišće Elting 2",
               "teamSourceId": 6,
-              "played": 6,
+              "played": 7,
               "won": 4,
-              "lost": 2,
-              "setsWon": 14,
-              "setsLost": 6,
-              "setRatio": 2.3333,
-              "pointsWon": 443,
-              "pointsLost": 394,
-              "pointRatio": 1.1244,
-              "points": 13,
+              "lost": 3,
+              "setsWon": 16,
+              "setsLost": 9,
+              "setRatio": 1.7778,
+              "pointsWon": 547,
+              "pointsLost": 506,
+              "pointRatio": 1.081,
+              "points": 14,
               "isClub": false
             },
             {
@@ -160,6 +160,38 @@
             },
             {
               "rank": 9,
+              "team": "OK Plavi 2",
+              "teamSourceId": 17,
+              "played": 6,
+              "won": 2,
+              "lost": 4,
+              "setsWon": 12,
+              "setsLost": 14,
+              "setRatio": 0.8571,
+              "pointsWon": 524,
+              "pointsLost": 567,
+              "pointRatio": 0.9242,
+              "points": 7,
+              "isClub": false
+            },
+            {
+              "rank": 10,
+              "team": "ŽOK Toplice",
+              "teamSourceId": 95,
+              "played": 5,
+              "won": 2,
+              "lost": 3,
+              "setsWon": 10,
+              "setsLost": 12,
+              "setRatio": 0.8333,
+              "pointsWon": 459,
+              "pointsLost": 484,
+              "pointRatio": 0.9483,
+              "points": 7,
+              "isClub": false
+            },
+            {
+              "rank": 11,
               "team": "OK Vinica",
               "teamSourceId": 93,
               "played": 6,
@@ -175,50 +207,18 @@
               "isClub": false
             },
             {
-              "rank": 10,
-              "team": "ŽOK Toplice",
-              "teamSourceId": 95,
-              "played": 4,
-              "won": 1,
-              "lost": 3,
-              "setsWon": 7,
-              "setsLost": 10,
-              "setRatio": 0.7,
-              "pointsWon": 347,
-              "pointsLost": 380,
-              "pointRatio": 0.9132,
-              "points": 5,
-              "isClub": false
-            },
-            {
-              "rank": 11,
-              "team": "OK Plavi 2",
-              "teamSourceId": 17,
-              "played": 5,
-              "won": 1,
-              "lost": 4,
-              "setsWon": 9,
-              "setsLost": 14,
-              "setRatio": 0.6429,
-              "pointsWon": 449,
-              "pointsLost": 505,
-              "pointRatio": 0.8891,
-              "points": 4,
-              "isClub": false
-            },
-            {
               "rank": 12,
               "team": "ŽOK Lepoglava",
               "teamSourceId": 21,
-              "played": 5,
+              "played": 6,
               "won": 1,
-              "lost": 4,
+              "lost": 5,
               "setsWon": 5,
-              "setsLost": 12,
-              "setRatio": 0.4167,
-              "pointsWon": 331,
-              "pointsLost": 392,
-              "pointRatio": 0.8444,
+              "setsLost": 15,
+              "setRatio": 0.3333,
+              "pointsWon": 393,
+              "pointsLost": 467,
+              "pointRatio": 0.8415,
               "points": 3,
               "isClub": false
             },
@@ -6533,11 +6533,35 @@
       "number": 47,
       "home": "ŽOK Toplice",
       "away": "OK Nedelišće Elting 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-21T14:00",
+      "status": "played",
+      "result": {
+        "home": 3,
+        "away": 2
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 27
+        },
+        {
+          "home": 25,
+          "away": 23
+        },
+        {
+          "home": 21,
+          "away": 25
+        },
+        {
+          "home": 25,
+          "away": 15
+        },
+        {
+          "home": 16,
+          "away": 14
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": null,
       "venue": null,
       "referees": [],
       "durationMinutes": null,
@@ -6559,11 +6583,27 @@
       "number": 48,
       "home": "ŽOK Lepoglava",
       "away": "OK Plavi 2",
-      "status": "scheduled",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": "2026-11-21T16:30",
+      "status": "played",
+      "result": {
+        "home": 0,
+        "away": 3
+      },
+      "sets": [
+        {
+          "home": 17,
+          "away": 25
+        },
+        {
+          "home": 23,
+          "away": 25
+        },
+        {
+          "home": 22,
+          "away": 25
+        }
+      ],
+      "winner": "away",
+      "scheduledAt": null,
       "venue": null,
       "referees": [],
       "durationMinutes": null,
