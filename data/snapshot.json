@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T17:53:08.630Z",
+  "generatedAt": "2026-11-21T11:39:53.941Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,13 +8,13 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "20. studenog 2026., 15,02"
+      "lastChange": "21. studenog 2026., 12,04"
     },
     {
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "20. studenog 2026., 18,11"
+      "lastChange": "21. studenog 2026., 8,19"
     }
   ],
   "competitions": [
@@ -976,6 +976,19 @@
       "clubTeams": [
         "OK Štrigova 2",
         "OK Štrigova 3"
+      ]
+    },
+    {
+      "id": "osmz-26",
+      "site": "osmz",
+      "sourceId": 26,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&natjecanje=26",
+      "name": "Prvenstvo Međimurja",
+      "category": "juniorke",
+      "section": "Dvoranska odbojka",
+      "groups": [],
+      "clubTeams": [
+        "OK Štrigova"
       ]
     }
   ],
@@ -6343,6 +6356,86 @@
       "note": null,
       "clubTeams": [
         "OK Štrigova 2"
+      ]
+    },
+    {
+      "id": "osmz-414",
+      "site": "osmz",
+      "sourceId": 414,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=414",
+      "competitionId": "osmz-26",
+      "group": null,
+      "round": null,
+      "roundDates": [],
+      "number": 2,
+      "home": "ŽOK Kaštel",
+      "away": "OK Štrigova",
+      "status": "played",
+      "result": {
+        "home": 2,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 8
+        },
+        {
+          "home": 25,
+          "away": 15
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": "2026-11-20T19:30",
+      "venue": "Sport Hub Nedelišće",
+      "referees": [
+        "Mislav Ptiček",
+        "Klara Soldić"
+      ],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova"
+      ]
+    },
+    {
+      "id": "osmz-415",
+      "site": "osmz",
+      "sourceId": 415,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=415",
+      "competitionId": "osmz-26",
+      "group": null,
+      "round": null,
+      "roundDates": [],
+      "number": 3,
+      "home": "OK Plavi",
+      "away": "OK Štrigova",
+      "status": "played",
+      "result": {
+        "home": 2,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 21
+        },
+        {
+          "home": 25,
+          "away": 17
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": "2026-11-20T21:00",
+      "venue": "Sport Hub Nedelišće",
+      "referees": [
+        "Mia Kovačić",
+        "Leon Škvorc"
+      ],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova"
       ]
     },
     {
@@ -15285,6 +15378,76 @@
       "result": null,
       "sets": [],
       "winner": null,
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osmz-413",
+      "site": "osmz",
+      "sourceId": 413,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=413",
+      "competitionId": "osmz-26",
+      "group": null,
+      "round": null,
+      "roundDates": [],
+      "number": 1,
+      "home": "OK Nedelišće Elting",
+      "away": "OK Plavi",
+      "status": "played",
+      "result": {
+        "home": 2,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 14
+        },
+        {
+          "home": 25,
+          "away": 20
+        }
+      ],
+      "winner": "home",
+      "scheduledAt": null,
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osmz-416",
+      "site": "osmz",
+      "sourceId": 416,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=416",
+      "competitionId": "osmz-26",
+      "group": null,
+      "round": null,
+      "roundDates": [],
+      "number": 4,
+      "home": "ŽOK Kaštel",
+      "away": "OK Nedelišće Elting",
+      "status": "played",
+      "result": {
+        "home": 2,
+        "away": 0
+      },
+      "sets": [
+        {
+          "home": 25,
+          "away": 18
+        },
+        {
+          "home": 25,
+          "away": 15
+        }
+      ],
+      "winner": "home",
       "scheduledAt": null,
       "venue": null,
       "referees": [],
