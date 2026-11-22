@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T21:32:35.316Z",
+  "generatedAt": "2026-11-22T11:37:36.980Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,13 +8,13 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "21. studenog 2026., 21,21"
+      "lastChange": "22. studenog 2026., 12,31"
     },
     {
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "21. studenog 2026., 8,19"
+      "lastChange": "22. studenog 2026., 9,34"
     }
   ],
   "competitions": [
