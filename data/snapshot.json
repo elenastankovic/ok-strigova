@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T11:49:06.352Z",
+  "generatedAt": "2026-11-23T17:53:48.336Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -14,7 +14,7 @@
       "id": "osmz",
       "name": "Odbojkaški savez Međimurske županije",
       "baseUrl": "https://www.osmz.hr",
-      "lastChange": "22. studenog 2026., 21,58"
+      "lastChange": "23. studenog 2026., 18,32"
     }
   ],
   "competitions": [
@@ -7019,32 +7019,6 @@
       ]
     },
     {
-      "id": "osmz-272",
-      "site": "osmz",
-      "sourceId": 272,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=272",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 8,
-      "roundDates": [
-        "2026-11-28",
-        "2026-11-29"
-      ],
-      "number": 45,
-      "home": "ŽOK Kaštel 3",
-      "away": "OK Plavi 4",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osmz-273",
       "site": "osmz",
       "sourceId": 273,
@@ -7095,34 +7069,6 @@
       "durationMinutes": null,
       "note": null,
       "clubTeams": []
-    },
-    {
-      "id": "osmz-275",
-      "site": "osmz",
-      "sourceId": 275,
-      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=275",
-      "competitionId": "osmz-22",
-      "group": null,
-      "round": 8,
-      "roundDates": [
-        "2026-11-28",
-        "2026-11-29"
-      ],
-      "number": 48,
-      "home": "ŽOK Kaštel 4",
-      "away": "OK Štrigova 2",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova 2"
-      ]
     },
     {
       "id": "osvz-4505",
@@ -7306,6 +7252,60 @@
       "note": null,
       "clubTeams": [
         "OK Štrigova"
+      ]
+    },
+    {
+      "id": "osmz-272",
+      "site": "osmz",
+      "sourceId": 272,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=272",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 8,
+      "roundDates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "number": 45,
+      "home": "ŽOK Kaštel 3",
+      "away": "OK Plavi 4",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-29T11:00",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
+    },
+    {
+      "id": "osmz-275",
+      "site": "osmz",
+      "sourceId": 275,
+      "url": "https://www.osmz.hr/index.php?rubrika=utakmica&obrazac=1&id=275",
+      "competitionId": "osmz-22",
+      "group": null,
+      "round": 8,
+      "roundDates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "number": 48,
+      "home": "ŽOK Kaštel 4",
+      "away": "OK Štrigova 2",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-29T14:00",
+      "venue": "OŠ Belica",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova 2"
       ]
     },
     {
