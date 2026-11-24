@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T05:54:28.979Z",
+  "generatedAt": "2026-11-24T11:51:45.719Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "24. studenog 2026., 0,02"
+      "lastChange": "24. studenog 2026., 8,09"
     },
     {
       "id": "osmz",
@@ -6965,6 +6965,34 @@
       ]
     },
     {
+      "id": "osvz-4511",
+      "site": "osvz",
+      "sourceId": 4511,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4511",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 8,
+      "roundDates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "number": 56,
+      "home": "OK Cratis Varaždin 2",
+      "away": "OK Štrigova",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-26T18:00",
+      "venue": "Dvorana Prve gimnazije",
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": [
+        "OK Štrigova"
+      ]
+    },
+    {
       "id": "osvz-4506",
       "site": "osvz",
       "sourceId": 4506,
@@ -7173,34 +7201,6 @@
       "durationMinutes": null,
       "note": "odgođeno",
       "clubTeams": []
-    },
-    {
-      "id": "osvz-4511",
-      "site": "osvz",
-      "sourceId": 4511,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4511",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 8,
-      "roundDates": [
-        "2026-11-28",
-        "2026-11-29"
-      ],
-      "number": 56,
-      "home": "OK Cratis Varaždin 2",
-      "away": "OK Štrigova",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": [
-        "OK Štrigova"
-      ]
     },
     {
       "id": "osvz-4509",
