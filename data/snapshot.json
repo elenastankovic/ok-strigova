@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T17:48:24.884Z",
+  "generatedAt": "2026-11-24T21:48:23.190Z",
   "club": {
     "name": "OK Štrigova"
   },
@@ -8,7 +8,7 @@
       "id": "osvz",
       "name": "Odbojkaški savez Varaždinske županije",
       "baseUrl": "https://osvz.hr",
-      "lastChange": "24. studenog 2026., 8,09"
+      "lastChange": "24. studenog 2026., 20,29"
     },
     {
       "id": "osmz",
@@ -7071,32 +7071,6 @@
       "clubTeams": []
     },
     {
-      "id": "osvz-4507",
-      "site": "osvz",
-      "sourceId": 4507,
-      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4507",
-      "competitionId": "osvz-152",
-      "group": null,
-      "round": 8,
-      "roundDates": [
-        "2026-11-28",
-        "2026-11-29"
-      ],
-      "number": 52,
-      "home": "OK Nedelišće Elting 2",
-      "away": "ŽOK Lepoglava",
-      "status": "tbd",
-      "result": null,
-      "sets": [],
-      "winner": null,
-      "scheduledAt": null,
-      "venue": null,
-      "referees": [],
-      "durationMinutes": null,
-      "note": null,
-      "clubTeams": []
-    },
-    {
       "id": "osvz-4510",
       "site": "osvz",
       "sourceId": 4510,
@@ -7253,6 +7227,32 @@
       "clubTeams": [
         "OK Štrigova 2"
       ]
+    },
+    {
+      "id": "osvz-4507",
+      "site": "osvz",
+      "sourceId": 4507,
+      "url": "https://osvz.hr/index.php?rubrika=utakmica&obrazac=1&id=4507",
+      "competitionId": "osvz-152",
+      "group": null,
+      "round": 8,
+      "roundDates": [
+        "2026-11-28",
+        "2026-11-29"
+      ],
+      "number": 52,
+      "home": "OK Nedelišće Elting 2",
+      "away": "ŽOK Lepoglava",
+      "status": "scheduled",
+      "result": null,
+      "sets": [],
+      "winner": null,
+      "scheduledAt": "2026-11-29T14:30",
+      "venue": null,
+      "referees": [],
+      "durationMinutes": null,
+      "note": null,
+      "clubTeams": []
     },
     {
       "id": "osmz-271",
